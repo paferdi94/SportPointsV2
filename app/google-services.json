@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "311139086681",
+    "firebase_url": "https://sport-points-7f5e0.firebaseio.com",
+    "project_id": "sport-points-7f5e0",
+    "storage_bucket": "sport-points-7f5e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311139086681:android:59882aeb444ae157",
+        "android_client_info": {
+          "package_name": "com.example.dannyang27.sportpoints"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311139086681-u2cm4paqrmt4guts87fhgcrpoi34vmb2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dannyang27.sportpoints",
+            "certificate_hash": "CD21EAD2B51DB42822CAEDE9AEAA53115283295D"
+          }
+        },
+        {
+          "client_id": "311139086681-633jsf53aocch3gh4au93qhhtlcc5e3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDonzV1O6YpOHKE0QwNLhzKqMmlwKkm9ng"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311139086681-633jsf53aocch3gh4au93qhhtlcc5e3o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
