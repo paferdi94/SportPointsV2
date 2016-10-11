@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 public class MainActivity extends AppCompatActivity {
 
     //comentario de prueba
-    //2 comentariog
+    //2 comentarios
 
     private EditText keyField;
     private EditText valueField;
