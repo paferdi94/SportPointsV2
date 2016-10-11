@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "311139086681-5qb0u1a0qne2khrs9ipoqngeqkli6hcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dannyang27.sportpoints",
+            "certificate_hash": "4A8FEA58F60A9A47D08500AA5BBCBE2F8A26168D"
+          }
+        },
+        {
           "client_id": "311139086681-u2cm4paqrmt4guts87fhgcrpoi34vmb2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
