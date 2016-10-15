@@ -1,48 +1,49 @@
 package com.example.dannyang27.sportpoints;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-
-
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
 
-    //comentario de prueba
-    //2 comentarios
-
-    private EditText keyField;
-    private EditText valueField;
-    private Button buttonApp;
-
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+    private Button altaButton;
+    private  Button registroButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.registro);
 
+        registroButton = (Button) findViewById(R.id.registro_button);
+        altaButton = (Button) findViewById(R.id.alta_button);
 
-
-        keyField = (EditText) findViewById(R.id.key);
-        valueField = (EditText) findViewById(R.id.value);
-        buttonApp = (Button) findViewById(R.id.buttonApp);
-
-        buttonApp.setOnClickListener(new View.OnClickListener() {
+        registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                registro();
+            }
+        });
 
-                String key = keyField.getText().toString();
-                String value = valueField.getText().toString();
-                root.child(key).setValue(value);
-
+        altaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alta();
             }
         });
 
     }
 
+
+    public void alta(){
+            Intent i = new Intent(this, alta.class);
+            startActivity(i);
+        }
+
+    public void registro(){
+            //funcionalidad
+        }
 }
+
+
