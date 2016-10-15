@@ -8,13 +8,18 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     private Button altaButton;
     private  Button registroButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
 
         registroButton = (Button) findViewById(R.id.registro_button);
         altaButton = (Button) findViewById(R.id.alta_button);
@@ -33,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
 
 
     public void alta(){
@@ -42,8 +50,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
     public void registro(){
-            //funcionalidad
+            Intent i = new Intent(this, TipoUsuario.class);
+            startActivity(i);
         }
+
+
 }
 
 
