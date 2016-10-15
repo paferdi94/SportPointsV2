@@ -1,0 +1,35 @@
+package com.example.dannyang27.sportpoints;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class Correcto extends AppCompatActivity {
+
+    private ImageView img;
+    private TextView correcto_txt;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.correcto);
+
+        img = (ImageView) findViewById(R.id.imageView);
+        correcto_txt = (TextView) findViewById(R.id.correcto_txt);
+
+        /*
+        Para que no cargue al instante...
+        try {
+            Thread.sleep(3000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+         */
+
+
+    }
+}

@@ -17,8 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".alta"></activity>
-        <activity android:name=".alta2"></activity>
+        <activity android:name=".alta" />
+        <activity android:name=".alta2" />
+        <activity android:name=".PerfilAlta" />
+        <activity android:name=".Deportes" />
+        <activity android:name=".Correcto" />
+        <activity android:name=".TipoUsuario" />
+        <activity android:name=".Login" />
+        <activity android:name=".Principal" />
+        <activity android:name=".ConfiguracionPerfil"></activity>
     </application>
 
 </manifest>
