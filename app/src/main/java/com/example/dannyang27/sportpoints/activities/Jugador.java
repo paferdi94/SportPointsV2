@@ -1,13 +1,8 @@
-package com.example.dannyang27.sportpoints;
+package com.example.dannyang27.sportpoints.activities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
-
-/**
- * Created by Dannyang27 on 15/10/16.
- */
 
 public class Jugador implements Parcelable {
 
@@ -57,7 +52,6 @@ public class Jugador implements Parcelable {
     }
 
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -72,8 +66,8 @@ public class Jugador implements Parcelable {
         parcel.writeString(fechaNacimiento);
         parcel.writeString(password);
 
-
     }
+
     public static final Parcelable.Creator<Jugador> CREATOR
             = new Parcelable.Creator<Jugador>() {
         public Jugador createFromParcel(Parcel in) {
@@ -84,6 +78,7 @@ public class Jugador implements Parcelable {
             return new Jugador[size];
         }
     };
+
     private Jugador(Parcel in) {
         nombre = in.readString();
         apellidos = in.readString();

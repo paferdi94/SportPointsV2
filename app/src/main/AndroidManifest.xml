@@ -10,22 +10,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".alta" />
-        <activity android:name=".alta2" />
-        <activity android:name=".PerfilAlta" />
-        <activity android:name=".Deportes" />
-        <activity android:name=".Correcto" />
-        <activity android:name=".TipoUsuario" />
-        <activity android:name=".Login" />
-        <activity android:name=".Principal" />
-        <activity android:name=".ConfiguracionPerfil"></activity>
+        <activity android:name=".activities.alta" />
+        <activity android:name=".activities.alta2" />
+        <activity android:name=".activities.PerfilAlta" />
+        <activity android:name=".activities.Deportes" />
+        <activity android:name=".activities.Correcto" />
+        <activity android:name=".activities.TipoUsuario" />
+        <activity android:name=".activities.Login" />
+        <activity android:name=".activities.Principal" />
+        <activity android:name=".activities.ConfiguracionPerfil"></activity>
     </application>
 
 </manifest>
