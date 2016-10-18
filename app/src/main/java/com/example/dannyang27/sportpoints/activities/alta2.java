@@ -1,13 +1,16 @@
-package com.example.dannyang27.sportpoints;
+package com.example.dannyang27.sportpoints.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ConfiguracionPerfil extends AppCompatActivity {
+import com.example.dannyang27.sportpoints.R;
+
+public class alta2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.configuracion_perfil);
+        setContentView(R.layout.alta_2);
+
     }
 }

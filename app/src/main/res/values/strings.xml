@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Sport Points</string>
+
+    <!--MainActivity Strings-->
+    <string name="title_txt_main">Sport Points</string>
+    <string name="subtitle_txt_main">Disfruta de tu deporte favorito en compañía</string>
+    <string name="entrar_btn_main">Entrar</string>
+    <string name="registrarse_btn_main">Crear cuenta</string>
+
 </resources>

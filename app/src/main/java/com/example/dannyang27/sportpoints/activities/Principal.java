@@ -1,7 +1,9 @@
-package com.example.dannyang27.sportpoints;
+package com.example.dannyang27.sportpoints.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.dannyang27.sportpoints.R;
 
 public class Principal extends AppCompatActivity {
 

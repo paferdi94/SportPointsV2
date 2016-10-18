@@ -1,10 +1,12 @@
-package com.example.dannyang27.sportpoints;
+package com.example.dannyang27.sportpoints.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.dannyang27.sportpoints.R;
 
 public class alta extends AppCompatActivity {
 
