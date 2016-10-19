@@ -12,7 +12,7 @@ public class alta extends AppCompatActivity {
 
     private Button atras;
     private Button siguiente;
-
+//prueba1commit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
