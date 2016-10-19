@@ -25,7 +25,10 @@
         <activity android:name=".activities.TipoUsuario" />
         <activity android:name=".activities.Login" />
         <activity android:name=".activities.Principal" />
-        <activity android:name=".activities.ConfiguracionPerfil"></activity>
+        <activity android:name=".activities.ConfiguracionPerfil" />
+        <activity android:name=".activities.OpcionesChoser" />
+        <activity android:name=".activities.EquipoInfo" />
+        <activity android:name=".activities.EventoInfo"></activity>
     </application>
 
 </manifest>

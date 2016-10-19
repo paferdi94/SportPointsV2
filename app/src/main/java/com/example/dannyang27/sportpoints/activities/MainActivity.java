@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, PerfilAlta.class);
                 break;
             case R.id.login_btn:
-                intent = new Intent(this, TipoUsuario.class);
+                intent = new Intent(this, OpcionesChoser.class);
                 break;
         }
         startActivity(intent);
