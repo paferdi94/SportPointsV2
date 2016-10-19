@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
+import com.google.firebase.database.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,12 @@ public class MainActivity extends AppCompatActivity {
         //cargar fuentes
         TextView title_txt = (TextView) findViewById(R.id.title_txt);
         title_txt.setTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/AlfaSlabOne-Regular.ttf"));
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
     }
 
     public void onclick(View v) {
