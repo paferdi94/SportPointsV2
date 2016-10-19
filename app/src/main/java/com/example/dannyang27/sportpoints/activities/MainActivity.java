@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         TextView title_txt = (TextView) findViewById(R.id.title_txt);
         title_txt.setTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/AlfaSlabOne-Regular.ttf"));
 
-        // Write a message to the databasess
+        // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
