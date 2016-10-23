@@ -9,9 +9,9 @@ import android.os.Bundle;
 
 public class FireBase {
 
-    private String FIREBASE_URL = "https://sport-points-7f5e0.firebaseio.com/"; // direccion de la BD
-    private String FIREBASE_TABLA = ""; // hay que insertar el nombre de la tabla con la que queramos trabajar;
-
+    private  static final String FIREBASE_URL = "https://sport-points-7f5e0.firebaseio.com/"; // direccion de la BD
+    //private String FIREBASE_TABLA = ""; // hay que insertar el nombre de la tabla con la que queramos trabajar;
+/*
     public String getFIREBASE_URL() {
         return FIREBASE_URL;
     }
@@ -34,5 +34,5 @@ public class FireBase {
         super.onCreate(saveInstanceSatet);
 
 
-    }
+    }*/
 }
