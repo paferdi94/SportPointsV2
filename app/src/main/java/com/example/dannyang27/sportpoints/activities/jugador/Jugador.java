@@ -1,10 +1,10 @@
-package com.example.dannyang27.sportpoints.activities;
+package com.example.dannyang27.sportpoints.activities.jugador;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class Jugador implements Parcelable {
+public class jugador implements Parcelable {
 
     private String nombre;
     private String apellidos;
@@ -68,18 +68,18 @@ public class Jugador implements Parcelable {
 
     }
 
-    public static final Parcelable.Creator<Jugador> CREATOR
-            = new Parcelable.Creator<Jugador>() {
-        public Jugador createFromParcel(Parcel in) {
-            return new Jugador(in);
+    public static final Parcelable.Creator<jugador> CREATOR
+            = new Parcelable.Creator<jugador>() {
+        public jugador createFromParcel(Parcel in) {
+            return new jugador(in);
         }
 
-        public Jugador[] newArray(int size) {
-            return new Jugador[size];
+        public jugador[] newArray(int size) {
+            return new jugador[size];
         }
     };
 
-    private Jugador(Parcel in) {
+    private jugador(Parcel in) {
         nombre = in.readString();
         apellidos = in.readString();
         email = in.readString();

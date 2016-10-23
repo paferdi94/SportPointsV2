@@ -1,15 +1,15 @@
-package com.example.dannyang27.sportpoints.activities;
+package com.example.dannyang27.sportpoints.activities.equipo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.dannyang27.sportpoints.R;
 
-public class Principal extends AppCompatActivity {
+public class EquipoInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.principal);
+        setContentView(R.layout.equipo_info);
     }
 }
