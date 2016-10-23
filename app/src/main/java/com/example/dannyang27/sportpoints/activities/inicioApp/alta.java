@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities;
+package com.example.dannyang27.sportpoints.activities.inicioApp;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.main.MainActivity;
 
 public class alta extends AppCompatActivity {
 
     private Button atras;
     private Button siguiente;
-
+//prueba1commit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

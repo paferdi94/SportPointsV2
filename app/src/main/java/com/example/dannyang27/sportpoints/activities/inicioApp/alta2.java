@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities;
+package com.example.dannyang27.sportpoints.activities.inicioApp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
