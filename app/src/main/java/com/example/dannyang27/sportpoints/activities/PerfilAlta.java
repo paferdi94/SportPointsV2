@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.inicioApp;
+package com.example.dannyang27.sportpoints.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Deportes;
-import com.example.dannyang27.sportpoints.activities.main.MainActivity;
 
 public class PerfilAlta extends AppCompatActivity {
 

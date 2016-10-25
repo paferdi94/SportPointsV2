@@ -10,25 +10,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.main.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.inicioApp.alta" />
-        <activity android:name=".activities.inicioApp.alta2" />
-        <activity android:name=".activities.inicioApp.PerfilAlta" />
+        <activity android:name=".activities.alta" />
+        <activity android:name=".activities.alta2" />
+        <activity android:name=".activities.PerfilAlta" />
         <activity android:name=".activities.Deportes" />
         <activity android:name=".activities.Correcto" />
-        <activity android:name=".activities.inicioApp.TipoUsuario" />
-        <activity android:name=".activities.inicioApp.Login" />
-        <activity android:name=".activities.Deportes$Principal" />
-        <activity android:name=".activities.jugador.ConfiguracionPerfil" />
+        <activity android:name=".activities.TipoUsuario" />
+        <activity android:name=".activities.Login" />
+        <activity android:name=".activities.Principal" />
+        <activity android:name=".activities.ConfiguracionPerfil" />
         <activity android:name=".activities.OpcionesChoser" />
-        <activity android:name=".activities.equipo.EquipoInfo" />
-        <activity android:name=".activities.evento.EventoInfo"></activity>
+        <activity android:name=".activities.EquipoInfo" />
+        <activity android:name=".activities.EventoInfo"></activity>
     </application>
 
 </manifest>
