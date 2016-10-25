@@ -49,4 +49,13 @@ public class Login extends AppCompatActivity {
         Intent i = new Intent(this, TipoUsuario.class);
         startActivity(i);
     }
+
+    public static class EventoInfo extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.evento_info);
+        }
+    }
 }
