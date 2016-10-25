@@ -1,15 +1,14 @@
-package com.example.dannyang27.sportpoints.activities.main;
+package com.example.dannyang27.sportpoints.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.OpcionesChoser;
-import com.example.dannyang27.sportpoints.activities.inicioApp.PerfilAlta;
 import com.google.firebase.database.*;
 
 public class MainActivity extends AppCompatActivity {
