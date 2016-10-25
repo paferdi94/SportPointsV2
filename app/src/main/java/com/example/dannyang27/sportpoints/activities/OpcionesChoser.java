@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.equipo.EquipoInfo;
-import com.example.dannyang27.sportpoints.activities.evento.EventoInfo;
 
 public class OpcionesChoser extends AppCompatActivity {
 

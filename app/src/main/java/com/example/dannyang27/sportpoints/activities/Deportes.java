@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.inicioApp.PerfilAlta;
 
 public class Deportes extends AppCompatActivity {
 
@@ -60,14 +59,5 @@ public class Deportes extends AppCompatActivity {
         Intent i = new Intent(this, Correcto.class);
         startActivity(i);
 
-    }
-
-    public static class Principal extends AppCompatActivity {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.principal);
-        }
     }
 }
