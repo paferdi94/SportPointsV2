@@ -1,14 +1,10 @@
-package com.example.dannyang27.sportpoints.activities.ClasesBasicas;
+package com.example.dannyang27.sportpoints.activities.Modelos;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Dannyang27 on 26/10/16.
- */
 
 public class EventoParcelable implements Parcelable {
     private String nombre;
