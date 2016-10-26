@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/perfil_alta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.dannyang27.sportpoints.activities.PerfilAlta">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/img_equipo" />
+
+    <Button
+        android:text="Subir imagen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_equipo"
+        android:layout_toEndOf="@+id/img_equipo"
+        android:layout_marginStart="58dp"
+        android:id="@+id/subir_btn"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/nombre_equipo_txt"
+        android:layout_alignStart="@+id/nombre_equipo_txt"
+        android:id="@+id/nombre_equipo_field"
+        android:textSize="18sp"
+        android:hint="Pepe" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deporte_spinner"
+        android:layout_below="@+id/deporte_txt"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/deporte_txt" />
+
+    <Button
+        android:text="CANCELAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelar_btn"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:text="NOMBRE DEL EQUIPO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="94dp"
+        android:id="@+id/nombre_equipo_txt"
+        android:textStyle="normal|bold"
+        android:textSize="24sp"
+        android:layout_below="@+id/img_equipo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/img_equipo" />
+
+    <TextView
+        android:text="DEPORTE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deporte_txt"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/nombre_equipo_field"
+        android:layout_alignStart="@+id/nombre_equipo_field" />
+
+    <Button
+        android:text="CREAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/crear_btn"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/cancelar_btn"
+        android:layout_alignBottom="@+id/cancelar_btn"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

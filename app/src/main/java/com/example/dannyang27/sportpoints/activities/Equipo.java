@@ -10,54 +10,51 @@ import java.util.ArrayList;
 
 public class Equipo {
 
-    int identificador = -1;
-    String nom = "";
-    int num_integrantes = 0;
-    ArrayList<Jugador> jugadores = null;
+    String identificador;
+    String nombre;
+    ArrayList<Jugador> jugadores;
 
+    public Equipo(String id, String n, ArrayList<Jugador> js){
+        this.identificador = id;
+        this.nombre = n;
+        this.jugadores = js;
+    }
 
-
-    public int getIdentificador() {
+    public String getIdentificador() {
         return identificador;
     }
+    public String getNom() {
+        return nombre;
+    }
+    public int getNum_integrantes() {
+        return this.jugadores.size();
+    }
 
-    public void setIdentificador(int identificador) {
+    public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
-
-    public String getNom() {
-        return nom;
-    }
-
     public void setNom(String nom) {
-        this.nom = nom;
+        this.nombre = nom;
     }
 
-    public int getNum_integrantes() {
-        return num_integrantes;
-    }
-
-    public void setNum_integrantes(int num_integrantes) {
-        this.num_integrantes = num_integrantes;
-    }
-
+    // Devuelve el ArrayList de jugadores
     public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
 
+    // Sobreescribe los jugadores con los nuevos.
     public void setJugadores(ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
 
-    public Equipo(int id, String nombre, int n_integrantes, ArrayList<Jugador> j){
-        this.identificador = id;
-        this.nom= nombre;
-        this.num_integrantes = n_integrantes;
-        this.jugadores = j;
+    // Añade un jugador al arraylist de jugadores
+    public void addJugador(Jugador j){
+        this.jugadores.add(j);
     }
 
-   // public importarEquipo(int ident){
-
-
-    //}
+    // Elimina un jugador del arraylist de jugadores
+    // Por hacer.
+    public Jugador deleteJugador(String id){
+        return null;
+    }
 }
