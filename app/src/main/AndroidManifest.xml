@@ -28,7 +28,8 @@
         <activity android:name=".activities.ConfiguracionPerfil" />
         <activity android:name=".activities.OpcionesChoser" />
         <activity android:name=".activities.EquipoInfo" />
-        <activity android:name=".activities.EventoInfo"></activity>
+        <activity android:name=".activities.EventoInfo" />
+        <activity android:name=".activities.EventoConfigView"></activity>
     </application>
 
 </manifest>
