@@ -18,22 +18,12 @@
         android:layout_alignParentStart="true"
         android:id="@+id/buscar_evento" />
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:paddingRight="20dp"
-        android:layout_marginLeft="30dp"
-
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:layout_toRightOf="@id/buscar_evento"
-        android:layout_alignBottom="@+id/buscar_evento"
-        android:id="@+id/imageView_evento" />
-
     <ListView
-        android:paddingTop="40dp"
+        android:paddingTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/buscar_equipo"
         android:layout_centerHorizontal="true"
         android:id="@+id/evento_listView" />
+
 </RelativeLayout>
