@@ -9,18 +9,31 @@ import com.example.dannyang27.sportpoints.activities.ClasesBasicas.EventoParcela
 
 public class EventoConfigView extends AppCompatActivity {
 
-    private TextView tv;
+    private TextView nombreTv;
+    private TextView fechaTv;
+    private TextView horaTv;
+    private TextView descripcionTv;
+    private TextView participantes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evento_config_view);
 
-        tv = (TextView) findViewById(R.id.textPrueba);
+        nombreTv = (TextView) findViewById(R.id.nombreTxt);
+        fechaTv = (TextView) findViewById(R.id.fechaTxt);
+        horaTv = (TextView) findViewById(R.id.horaTxt);
+        descripcionTv = (TextView) findViewById(R.id.descripcionTxt);
+        participantes = (TextView) findViewById(R.id.participantesTxt);
 
         final EventoParcelable evento = getIntent().getParcelableExtra("PARCELABLE");
 
-        tv.setText(evento.getNombre() + "" + evento.getDescripcion());
+        nombreTv.setText(evento.getNombre());
+        fechaTv.setText(evento.getFecha());
+        horaTv.setText(evento.getHora());
+        descripcionTv.setText(evento.getDescripcion());
+        participantes.setText(evento.getParticipantes().size() + "/22");
+
 
 
 

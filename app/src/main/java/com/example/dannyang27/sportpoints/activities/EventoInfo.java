@@ -41,10 +41,10 @@ public class EventoInfo extends AppCompatActivity {
         //Pasar objeto parcelable al intent;
 
          final EventoParcelable evento = new EventoParcelable();
-        evento.setNombre("Quedada youtuber huehue");
+        evento.setNombre("Torneo Overwatch");
         evento.setHora("15:00");
         evento.setFecha("23/04/2017");
-        evento.setDescripcion("Caceria Poketomonostah");
+        evento.setDescripcion("omg no widow");
         evento.setCapacidadActual(0);
         evento.setCapacidadMaxima(100);
 
