@@ -1,24 +1,18 @@
 package com.example.dannyang27.sportpoints.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
 import com.example.dannyang27.sportpoints.activities.RecyclerViewHolders.EventoItemHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -66,6 +60,14 @@ public class EventoInfo extends AppCompatActivity {
                 viewHolder.setHora(model.getHora());
                 viewHolder.setUsuario(model.getUsuario());
 
+                //Cuando pulsemos un evento...
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         };
         mEventosList.setAdapter(adapter);
