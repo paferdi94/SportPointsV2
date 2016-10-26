@@ -2,6 +2,7 @@ package com.example.dannyang27.sportpoints.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
@@ -19,6 +20,7 @@ public class EventoConfigView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evento_config_view);
+
 
         nombreTv = (TextView) findViewById(R.id.nombreTxt);
         fechaTv = (TextView) findViewById(R.id.fechaTxt);

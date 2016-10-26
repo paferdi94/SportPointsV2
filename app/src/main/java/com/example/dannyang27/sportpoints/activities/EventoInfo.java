@@ -17,7 +17,7 @@ import com.example.dannyang27.sportpoints.activities.ClasesBasicas.EventoParcela
 public class EventoInfo extends AppCompatActivity {
 
     private ListView listaEventos;
-    private ImageView addBtn;
+    //private ImageView addBtn;
     private SearchView buscador;
 
     private String[] eventos = { "Evento1", "Evento2", "Evento3", "Evento4", "Evento5", "Evento6", "Evento7", };
@@ -32,7 +32,7 @@ public class EventoInfo extends AppCompatActivity {
         //findByView
 
         listaEventos = (ListView) findViewById(R.id.evento_listView);
-        addBtn = (ImageView) findViewById(R.id.imageView_evento);
+        //addBtn = (ImageView) findViewById(R.id.imageView_evento);
         //buscador = (SearchView) findViewById(R.id.buscar_evento);
 
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,eventos);
