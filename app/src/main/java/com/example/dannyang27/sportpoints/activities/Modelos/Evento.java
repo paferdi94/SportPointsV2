@@ -1,10 +1,12 @@
 package com.example.dannyang27.sportpoints.activities.Modelos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Evento {
-    private String nombre;
+    private String deporte;
     private String fecha;
     private String hora;
     private String descripcion;
@@ -18,7 +20,7 @@ public class Evento {
     }
 
     public Evento(int capacidadActual, int capacidadMaxima, String descripcion, String fecha,
-                  String hora, String lugar, String nombre, String usuario) {
+                  String hora, String lugar, String deporte, String usuario) {
 
         this.capacidadActual = capacidadActual;
         this.capacidadMaxima = capacidadMaxima;
@@ -26,16 +28,32 @@ public class Evento {
         this.fecha = fecha;
         this.hora = hora;
         this.lugar = lugar;
-        this.nombre = nombre;
+        this.deporte = deporte;
         this.usuario = usuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Map<String, Object> toMap() {
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("capacidadActual", capacidadActual);
+        result.put("capacidadMaxima", capacidadMaxima);
+        result.put("descripcion", descripcion);
+        result.put("fecha", fecha);
+        result.put("hora", hora);
+        result.put("lugar", lugar);
+        result.put("deporte", deporte);
+        result.put("usuario", usuario);
+
+        return result;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+    public String getDeporteeporte() {
+        return deporte;
+    }
+
+    public void setDeporte(String nombre) {
+        this.deporte = nombre;
     }
 
     public String getFecha() {

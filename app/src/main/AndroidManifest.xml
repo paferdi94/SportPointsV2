@@ -29,7 +29,8 @@
         <activity android:name=".activities.OpcionesChoser" />
         <activity android:name=".activities.EquipoInfo" />
         <activity android:name=".activities.EventoInfo" />
-        <activity android:name=".activities.EventoConfigView"></activity>
+        <activity android:name=".activities.EventoConfigView" />
+        <activity android:name=".activities.CrearEvento"></activity>
     </application>
 
 </manifest>
