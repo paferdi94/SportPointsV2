@@ -1,6 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
     private TextView fechaTv;
     private TextView participantesTv;
     private Button unirseBtn;
+    private Button verParticipantes;
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
 
@@ -44,6 +46,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //References to xml file
+        verParticipantes = (Button) findViewById(R.id.verP_id);
         unirseBtn = (Button) findViewById(R.id.joinBtn);
         nombreTv = (TextView) findViewById(R.id.nombreTextView);
         descripcionTv = (TextView) findViewById(R.id.descripcionTextView);
@@ -59,7 +62,14 @@ public class PruebaEventoInfo extends AppCompatActivity {
         lugarTv.setText(evento.getLugar());
         horaTv.setText(evento.getHora());
         descripcionTv.setText(evento.getDescripcion());
-        participantesTv.setText(evento.getParticipantes().size() + "/22");
+        //participantesTv.setText(evento.getParticipantes().size() + "/22");
+
+        verParticipantes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goListarParticipantes(evento);
+            }
+        });
 
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +111,12 @@ public class PruebaEventoInfo extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void goListarParticipantes(EventoParcelable e) {
+        Intent i = new Intent(this, ListarParticipantes.class);
+        i.putExtra("PARCELABLE", e);
+        startActivity(i);
     }
 
     @Override
