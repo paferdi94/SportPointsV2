@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
+
+    <TextView
+        android:text="NOMBRE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView4"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/nombre_id"
+        android:textAlignment="center"
+        android:hint="nombre" />
+
+    <TextView
+        android:text="Descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombre_id"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView6"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine|textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/descripcion_id"
+        android:textAlignment="viewStart"
+        android:hint="Descripcion"
+        android:textSize="14sp"
+        android:layout_height="180dp"
+
+        />
+
+    <TextView
+        android:text="Lugar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descripcion_id"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView8"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/lugar_id"
+        android:textAlignment="center"
+        android:hint="Cami de Vera 8" />
+
+    <TextView
+        android:text="Hora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lugar_id"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView10"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView10"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/hora_id"
+        android:hint="13:32"
+        android:textAlignment="center"
+        android:textSize="14sp" />
+
+    <TextView
+        android:text="Fecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hora_id"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView12"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|date"
+        android:ems="10"
+        android:layout_below="@+id/textView12"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fecha_id"
+        android:textAlignment="center"
+        android:hint="27/09/2017"
+        android:textSize="14sp" />
+
+    <Button
+        android:text="CREAR"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit_buttonId"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/fecha_id"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/cancelar_buttonId"
+        android:layout_width="100dp" />
+
+    <Button
+        android:text="Cancelar"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelar_buttonId"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fecha_id"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_width="120dp" />
+</RelativeLayout>
