@@ -28,6 +28,7 @@ import java.util.Map;
 
 public class CrearEquipo extends AppCompatActivity {
     private EditText nombre_equipo;
+    private EditText max_jug;
     private Spinner deportes;
     private ImageView img_equipo;
     private Button cambiar_img_btn;
@@ -54,6 +55,7 @@ public class CrearEquipo extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         deportes.setAdapter(adapter);
         nombre_equipo = (EditText) findViewById(R.id.nombre_equipo_field);
+        max_jug = (EditText) findViewById(R.id.max_jug_field);
         img_equipo = (ImageView) findViewById(R.id.img_equipo);
         cambiar_img_btn = (Button) findViewById(R.id.cambiar_img_btn);
         cancelar_btn = (Button) findViewById(R.id.cancelar_btn);
@@ -88,7 +90,14 @@ public class CrearEquipo extends AppCompatActivity {
                 Map<String, Object> map = (Map<String, Object>) data.getValue();
                 byte[] decodedString = Base64.decode(map.get("logo").toString(), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                Equipo q = new Equipo(data.getKey(),map.get("nombre").toString(),map.get("deporte").toString(),map.get("jugadores").toString(),decodedByte);
+                Equipo q = new Equipo(
+                        data.getKey(),
+                        map.get("nombre").toString(),
+                        map.get("deporte").toString(),
+                        map.get("jugadores").toString(),
+                        Integer.parseInt(map.get("max_jugadores").toString()),
+                        decodedByte
+                );
                 equipos.add(q);
             }
 
@@ -123,9 +132,21 @@ public class CrearEquipo extends AppCompatActivity {
 
     public void crear() {
         String id_eq = ref_db.child("Equipos").push().getKey();
-        //Bitmap logo = Bitmap.createBitmap(img_equipo.getWidth(),img_equipo.getHeight(),Bitmap.Config.ARGB_8888);
         Bitmap bitmap = ((BitmapDrawable)img_equipo.getDrawable()).getBitmap();
-        Equipo q = new Equipo(id_eq, nombre_equipo.getText().toString(), deportes.getSelectedItem().toString(), id_usuario, bitmap);
+        int max;
+        if(max_jug.getText().toString().equals("")){
+            max = -1;
+        }else{
+            max = Integer.parseInt(max_jug.getText().toString());
+        }
+        Equipo q = new Equipo(
+                id_eq,
+                nombre_equipo.getText().toString(),
+                deportes.getSelectedItem().toString(),
+                id_usuario,
+                max,
+                bitmap
+        );
         q.setID(id_eq);
         Map<String, Object> postValuesEq = q.toMap();
         Map<String, Object> childUpdatesEq = new HashMap<>();

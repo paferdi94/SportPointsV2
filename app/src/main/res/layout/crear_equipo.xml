@@ -60,29 +60,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp" />
 
-    <TextView
-        android:text="NOMBRE DEL EQUIPO"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="94dp"
-        android:id="@+id/nombre_equipo_txt"
-        android:textStyle="normal|bold"
-        android:textSize="24sp"
-        android:layout_below="@+id/img_equipo"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/img_equipo" />
-
-    <TextView
-        android:text="DEPORTE"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/deporte_txt"
-        android:textSize="24sp"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/nombre_equipo_field"
-        android:layout_alignStart="@+id/nombre_equipo_field" />
-
     <Button
         android:text="CREAR"
         android:layout_width="wrap_content"
@@ -92,5 +69,51 @@
         android:layout_alignBaseline="@+id/cancelar_btn"
         android:layout_alignBottom="@+id/cancelar_btn"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="NOMBRE DEL EQUIPO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:id="@+id/nombre_equipo_txt"
+        android:textStyle="normal|bold"
+        android:textSize="24sp"
+        android:layout_below="@+id/img_equipo"
+        android:layout_alignStart="@+id/img_equipo" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/max_jug_field"
+        android:layout_below="@+id/max_jug_txt"
+        android:layout_alignStart="@+id/max_jug_txt"
+        android:hint="Sin límite"
+        android:singleLine="false" />
+
+    <TextView
+        android:text="JUGADORES MÁXIMOS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/max_jug_txt"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/deporte_spinner"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/deporte_spinner" />
+
+    <TextView
+        android:text="DEPORTE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deporte_txt"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/nombre_equipo_field"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/nombre_equipo_field" />
 
 </RelativeLayout>
