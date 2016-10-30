@@ -14,7 +14,15 @@ public class EventoParcelable implements Parcelable {
     private String descripcion;
     private int capacidadActual;
     private int capacidadMaxima;
-    private List<String> participantes = new ArrayList<String>();
+    private List<Participante> participantes = new ArrayList<>();
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public String getLugar() {
         return lugar;
@@ -24,59 +32,51 @@ public class EventoParcelable implements Parcelable {
         this.lugar = lugar;
     }
 
-    public int getCapacidadActual() {
-        return capacidadActual;
-    }
-
-    public int getCapacidadMaxima() {
-        return capacidadMaxima;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
     public String getFecha() {
         return fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public List<String> getParticipantes() {
-        return participantes;
-    }
-
-    public void setCapacidadActual(int capacidadActual) {
-        this.capacidadActual = capacidadActual;
-    }
-
-    public void setCapacidadMaxima(int capacidadMaxima) {
-        this.capacidadMaxima = capacidadMaxima;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
     public void setHora(String hora) {
         this.hora = hora;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public int getCapacidadActual() {
+        return capacidadActual;
     }
 
-    public void setParticipantes(List<String> participantes) {
+    public void setCapacidadActual(int capacidadActual) {
+        this.capacidadActual = capacidadActual;
+    }
+
+    public int getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    public void setCapacidadMaxima(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
+
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<Participante> participantes) {
         this.participantes = participantes;
     }
 
@@ -94,7 +94,7 @@ public class EventoParcelable implements Parcelable {
         dest.writeString(this.descripcion);
         dest.writeInt(this.capacidadActual);
         dest.writeInt(this.capacidadMaxima);
-        dest.writeStringList(this.participantes);
+        dest.writeList(this.participantes);
     }
 
     public EventoParcelable() {
@@ -108,10 +108,11 @@ public class EventoParcelable implements Parcelable {
         this.descripcion = in.readString();
         this.capacidadActual = in.readInt();
         this.capacidadMaxima = in.readInt();
-        this.participantes = in.createStringArrayList();
+        this.participantes = new ArrayList<Participante>();
+        in.readList(this.participantes, Participante.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<EventoParcelable> CREATOR = new Parcelable.Creator<EventoParcelable>() {
+    public static final Creator<EventoParcelable> CREATOR = new Creator<EventoParcelable>() {
         @Override
         public EventoParcelable createFromParcel(Parcel source) {
             return new EventoParcelable(source);

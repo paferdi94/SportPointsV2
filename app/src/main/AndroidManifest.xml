@@ -34,7 +34,8 @@
         <activity android:name=".activities.CrearEvento" />
         <activity android:name=".activities.CrearEquipo" />
         <activity android:name=".activities.CorrectoEquipo" />
-        <activity android:name=".activities.PruebasDanny.PruebaEventoInfo"></activity>
+        <activity android:name=".activities.PruebasDanny.PruebaEventoInfo" />
+        <activity android:name=".activities.PruebasDanny.ListarParticipantes"></activity>
     </application>
 
 </manifest>

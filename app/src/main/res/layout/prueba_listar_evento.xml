@@ -48,6 +48,8 @@
         android:paddingTop="50dp"/>
         <!--android:layout_below="@id/filter_id"-->
 
+
+
     <Button
         android:text="CREAR EVENTO"
         android:layout_width="match_parent"
