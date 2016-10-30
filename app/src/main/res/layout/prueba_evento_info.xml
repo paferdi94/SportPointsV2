@@ -5,13 +5,28 @@
     android:id="@+id/prueba_evento_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaEventoInfo">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_id_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarStyle">
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+
     <TextView
+        android:paddingTop="50dp"
         android:text="NOMBRE"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -72,16 +87,7 @@
         android:layout_below="@+id/textView9"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_marginTop="17dp"
-        android:id="@+id/descripcionTextView"
-        android:layout_height="250dp"
-        android:layout_below="@+id/textView5"
-        android:textSize="17sp"
-        android:layout_alignParentStart="true" />
-
-    <Button
+        <Button
         android:text="UNIRSE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +96,9 @@
         android:textStyle="normal|bold"
         android:layout_below="@+id/participantesTextView"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="18dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:text="PARTICIPANTES"
@@ -141,7 +149,16 @@
         android:textSize="17sp"
         android:layout_toEndOf="@+id/textView7" />
 
-    <!--<android.support.design.widget.FloatingActionButton-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="17dp"
+            android:id="@+id/descripcionTextView"
+            android:layout_height="220dp"
+            android:textSize="17sp"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentStart="true" />
+
+        <!--<android.support.design.widget.FloatingActionButton-->
         <!--android:id="@+id/id_fab"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
@@ -153,6 +170,6 @@
         <!--app:backgroundTint="@color/colorAccent"-->
         <!--app:fabSize="normal" />-->
 
-
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.EventoConfigView;
 import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
+import com.example.dannyang27.sportpoints.activities.OpcionesChoser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +39,7 @@ public class PruebaListarEvento extends AppCompatActivity {
     private CustomRow customAdapter;
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
     private Button newEventBtn;
-    private EditText filter;
+   // private EditText filter;
 
     private ArrayList<EventoParcelable> listaEventos = new ArrayList<>();
 
@@ -47,38 +50,14 @@ public class PruebaListarEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba_listar_evento);
 
-        //Creacion de EventosParcelables
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_2);
+        toolbar.setTitle("LISTADO DE EVENTOS");
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-//        EventoParcelable ep1 = new EventoParcelable();
-//        EventoParcelable ep2 = new EventoParcelable();
-//
-//        ep1.setNombre("DENIA-VALENCIA");
-//        ep1.setHora("14:30");
-//        ep1.setFecha("27-09-2017");
-//        ep1.setLugar("Denia");
-//        ep1.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
-//                "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis " +
-//                "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
-//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu " +
-//                "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-//                " qui officia deserunt mollit anim id est laborum.");
-//        ep2.setNombre("DENIA-MADRID");
-//        ep2.setHora("16:30");
-//        ep2.setFecha("21-10-2017");
-//        ep2.setLugar("Madrid");
-//        ep2.setDescripcion("At vero eos et accusamus et iusto odio dignissimos ducimus qui " +
-//                "blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas " +
-//                "molestias excepturi sint occaecati cupiditate non provident, similique sunt in " +
-//                "culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. " +
-//                "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, " +
-//                "cum soluta nobis est eligendi optio cumque nihil impedit");
-//
-//        //fin creacion eventosParcelables
-//
-//        listaEventos.add(ep1);
-//        listaEventos.add(ep2);
-
-        filter = (EditText) findViewById(R.id.filter_id);
+        //filter = (EditText) findViewById(R.id.filter_id);
         newEventBtn = (Button) findViewById(R.id.id_new_event);
         lv = (ListView) findViewById(R.id.id_lv);
         //adapter = new ArrayAdapter<EventoParcelable>(this, android.R.layout.simple_list_item_1, listaEventos);
@@ -93,7 +72,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
                 EventoParcelable e = listaEventos.get(i);
                 String str = e.getNombre().toString();
-                Toast.makeText(getApplicationContext(),str ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),str ,Toast.LENGTH_SHORT).show();
 
                 showEventInfo(e);
             }
@@ -131,6 +110,7 @@ public class PruebaListarEvento extends AppCompatActivity {
         });
 
 
+        /*
         filter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -148,6 +128,8 @@ public class PruebaListarEvento extends AppCompatActivity {
 
             }
         });
+         */
+
 
 
         newEventBtn.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +173,7 @@ public class PruebaListarEvento extends AppCompatActivity {
                         eventoData.setCapacidadActual(eventoData.getParticipantes().size());
 
                         if(nombre_et.getText().toString().equals("")) {
-                        dialog.cancel();
+                            dialog.cancel();
                         }else {
 
                             eventRef.child(nombre_et.getText().toString()).setValue(eventoData);
@@ -200,14 +182,19 @@ public class PruebaListarEvento extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
-
-
             }
         });
-
-
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Back arrow
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void showEventInfo(EventoParcelable e) {
         Intent i = new Intent(this, PruebaEventoInfo.class);
         i.putExtra("PARCELABLE",e);

@@ -18,49 +18,60 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/nameTxt"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_height="25dp"
+                android:textAlignment="viewStart" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+
+                android:id="@+id/PlaceTxt"
+                android:layout_below="@+id/nameTxt"
+                android:layout_width="350dp"
+                android:textAlignment="viewStart" />
+        </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/PlaceTxt"
+                    android:id="@+id/hourTxt"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/dateTxt"
+                    android:layout_below="@+id/PlaceTxt"
+                    android:layout_toEndOf="@+id/hourTxt"
+                    android:textAlignment="viewStart"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </TableRow>
+
     </TableLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/nameTxt" />
 
-    <TextView
-        android:layout_height="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="21dp"
-        android:id="@+id/PlaceTxt"
-        android:layout_below="@+id/nameTxt"
-        android:layout_width="100dp" />
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/nameTxt"
-        android:layout_toEndOf="@+id/PlaceTxt"
-        android:layout_marginStart="15dp"
-        android:id="@+id/hourTxt" />
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/nameTxt"
-        android:layout_toEndOf="@+id/hourTxt"
-        android:layout_marginStart="40dp"
-        android:id="@+id/dateTxt" />
 </RelativeLayout>
