@@ -21,31 +21,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
         android:orientation="vertical">
 
-
-        <Button
-            android:id="@+id/equipo_btn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="198dp"
-            android:onClick="toEquipoView"
-            android:text="EQUIPO" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal">
 
-        <Button
-            android:id="@+id/eventos_btn"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_equipo"
+                android:onClick="toEquipoView"
+                android:id="@+id/equipo_imView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Equipos"
+                android:textSize="25sp"
+                android:layout_marginTop="-25dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:onClick="toEventoView"
-            android:layout_below="@+id/equipo_btn"
-            android:layout_marginTop="16dp"
-            android:text="EVENTOS" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_event"
+                android:onClick="toEventoView"
+                android:id="@+id/eventos_imView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eventos"
+                android:textSize="25sp"
+                android:layout_marginTop="0dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+
+
+        </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

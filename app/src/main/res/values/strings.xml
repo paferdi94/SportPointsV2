@@ -9,6 +9,7 @@
 
     <!--Toolbar string-->
     <string name="add_evento_toolbar">Crear Evento</string>
+    <string name="entrar_en_toolbar">Entrar en</string>
 
 
     <!--CrearEvento Activity-->
