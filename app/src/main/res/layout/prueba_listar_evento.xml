@@ -41,39 +41,54 @@
     -->
 
     <ListView
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
         android:id="@+id/id_lv"
-        android:layout_height="460dp"
-        android:paddingTop="50dp"/>
+        android:layout_height="420dp"
+        />
         <!--android:layout_below="@id/filter_id"-->
 
 
 
-    <Button
-        android:text="CREAR EVENTO"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_new_event"
-        android:layout_below="@+id/id_lv"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
 
 
-    <!--
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_search_category_default"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="13dp"
-        android:id="@+id/imageView2"
-        android:layout_above="@+id/id_lv" />
-    -->
+
+             <!--
+                 <Button
+                     android:text="CREAR EVENTO"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/id_new_event"
+                     android:layout_below="@+id/id_lv"
+                     android:layout_alignParentStart="true"
+                     android:layout_marginTop="10dp"
+                     android:background="@color/colorPrimary"
+                     android:textColor="@android:color/white"/>
+             -->
+
+                 <!--
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     app:srcCompat="@android:drawable/ic_search_category_default"
+                     android:layout_alignParentTop="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_marginStart="13dp"
+                     android:id="@+id/imageView2"
+                     android:layout_above="@+id/id_lv" />
+                 -->
 
      </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/id_new_event" />
 
 </RelativeLayout>

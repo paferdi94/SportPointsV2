@@ -37,8 +37,18 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ListView lv;
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRow customAdapter;
-    private Button newEventBtn;
+
+    private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
+
+    private FloatingActionButton newEventBtn;
+    private EditText filter;
+
+
+
+   // private Button newEventBtn;
+
    // private EditText filter;
+
 
     private ArrayList<EventoParcelable> listaEventos = new ArrayList<>();
 
@@ -49,6 +59,41 @@ public class PruebaListarEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba_listar_evento);
 
+
+        //Creacion de EventosParcelables
+
+//        EventoParcelable ep1 = new EventoParcelable();
+//        EventoParcelable ep2 = new EventoParcelable();
+//
+//        ep1.setNombre("DENIA-VALENCIA");
+//        ep1.setHora("14:30");
+//        ep1.setFecha("27-09-2017");
+//        ep1.setLugar("Denia");
+//        ep1.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
+//                "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis " +
+//                "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
+//                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu " +
+//                "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
+//                " qui officia deserunt mollit anim id est laborum.");
+//        ep2.setNombre("DENIA-MADRID");
+//        ep2.setHora("16:30");
+//        ep2.setFecha("21-10-2017");
+//        ep2.setLugar("Madrid");
+//        ep2.setDescripcion("At vero eos et accusamus et iusto odio dignissimos ducimus qui " +
+//                "blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas " +
+//                "molestias excepturi sint occaecati cupiditate non provident, similique sunt in " +
+//                "culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. " +
+//                "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, " +
+//                "cum soluta nobis est eligendi optio cumque nihil impedit");
+//
+//        //fin creacion eventosParcelables
+//
+//        listaEventos.add(ep1);
+//        listaEventos.add(ep2);
+
+        //filter = (EditText) findViewById(R.id.filter_id);
+        newEventBtn = (FloatingActionButton) findViewById(R.id.id_new_event);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_2);
         toolbar.setTitle("LISTADO DE EVENTOS");
         setSupportActionBar(toolbar);
@@ -57,7 +102,8 @@ public class PruebaListarEvento extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //filter = (EditText) findViewById(R.id.filter_id);
-        newEventBtn = (Button) findViewById(R.id.id_new_event);
+
+
         lv = (ListView) findViewById(R.id.id_lv);
         customAdapter = new CustomRow(this, listaEventos);
         //lv.setEmptyView(findViewById(android.R.id.empty));
