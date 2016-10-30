@@ -28,15 +28,12 @@ public class Equipo {
     Bitmap logo;
     String logo_b64;
 
-    public Equipo(String id, String n, String deporte, String id_j, String logo) {
+    public Equipo(String id, String n, String deporte, String id_j, Bitmap logo) {
         this.identificador = id;
         this.nombre = n;
         this.deporte = deporte;
         this.jugadores.add(id_j);
-        byte[] decodedString = Base64.decode(logo, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        this.logo = decodedByte;
-        this.logo_b64 = logo;
+        this.logo = logo;
     }
 
     public String getID() {
@@ -103,7 +100,11 @@ public class Equipo {
         String jugadores_db = sb.toString();
         result.put("jugadores", jugadores_db);
         result.put("deporte", deporte);
-        result.put("logo", logo_b64);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        logo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        String logo_db = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        result.put("logo", logo_db);
         return result;
     }
 }
