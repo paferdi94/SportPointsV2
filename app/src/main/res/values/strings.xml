@@ -7,4 +7,10 @@
     <string name="entrar_btn_main">Entrar</string>
     <string name="registrarse_btn_main">Crear cuenta</string>
 
+    <!--Toolbar string-->
+    <string name="add_evento_toolbar">Crear Evento</string>
+
+
+    <!--CrearEvento Activity-->
+    <string name="crearEvento_btn">Crear Evento</string>
 </resources>
