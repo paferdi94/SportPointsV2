@@ -41,11 +41,12 @@
     -->
 
     <ListView
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
         android:id="@+id/id_lv"
-        android:layout_height="460dp"
-        android:paddingTop="50dp"/>
+        android:layout_height="420dp"
+        />
         <!--android:layout_below="@id/filter_id"-->
 
 
