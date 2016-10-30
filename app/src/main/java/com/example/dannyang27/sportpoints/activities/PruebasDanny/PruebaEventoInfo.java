@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.EventoConfigView;
-import com.example.dannyang27.sportpoints.activities.FireBase;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 import com.google.firebase.database.DatabaseReference;

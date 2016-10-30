@@ -87,20 +87,7 @@
         android:layout_below="@+id/textView9"
         android:layout_alignParentStart="true" />
 
-        <Button
-        android:text="UNIRSE"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/joinBtn"
-        android:elevation="0dp"
-        android:textStyle="normal|bold"
-        android:layout_below="@+id/participantesTextView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
-
-    <TextView
+        <TextView
         android:text="PARTICIPANTES"
         android:layout_height="wrap_content"
         android:id="@+id/textView13"
@@ -156,6 +143,18 @@
             android:layout_height="220dp"
             android:textSize="17sp"
             android:layout_below="@+id/textView5"
+            android:layout_alignParentStart="true" />
+
+        <Button
+        android:text="UNIRSE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/joinBtn"
+        android:elevation="0dp"
+        android:textStyle="normal|bold"
+            android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true" />
 
         <!--<android.support.design.widget.FloatingActionButton-->

@@ -38,13 +38,13 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRow customAdapter;
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
-<<<<<<< HEAD
+
     private FloatingActionButton newEventBtn;
     private EditText filter;
-=======
-    private Button newEventBtn;
+
+
    // private EditText filter;
->>>>>>> Dannyang27/master
+
 
     private ArrayList<EventoParcelable> listaEventos = new ArrayList<>();
 
@@ -55,7 +55,7 @@ public class PruebaListarEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba_listar_evento);
 
-<<<<<<< HEAD
+
         //Creacion de EventosParcelables
 
 //        EventoParcelable ep1 = new EventoParcelable();
@@ -89,7 +89,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
         filter = (EditText) findViewById(R.id.filter_id);
         newEventBtn = (FloatingActionButton) findViewById(R.id.id_new_event);
-=======
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_2);
         toolbar.setTitle("LISTADO DE EVENTOS");
         setSupportActionBar(toolbar);
@@ -98,8 +98,8 @@ public class PruebaListarEvento extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //filter = (EditText) findViewById(R.id.filter_id);
-        newEventBtn = (Button) findViewById(R.id.id_new_event);
->>>>>>> Dannyang27/master
+
+
         lv = (ListView) findViewById(R.id.id_lv);
         //adapter = new ArrayAdapter<EventoParcelable>(this, android.R.layout.simple_list_item_1, listaEventos);
 

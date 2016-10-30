@@ -10,7 +10,6 @@ package com.example.dannyang27.sportpoints.activities.Equipo;
         import android.text.Editable;
         import android.text.TextWatcher;
         import android.view.View;
-        import android.widget.Adapter;
         import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
@@ -19,10 +18,8 @@ package com.example.dannyang27.sportpoints.activities.Equipo;
         import android.widget.Toast;
 
         import com.example.dannyang27.sportpoints.R;
-        import com.example.dannyang27.sportpoints.activities.EventoConfigView;
-        import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
-        import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
 
+        import com.example.dannyang27.sportpoints.activities.PruebasDanny.CustomRow;
         import com.google.firebase.database.ChildEventListener;
         import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.DatabaseError;
@@ -35,12 +32,12 @@ package com.example.dannyang27.sportpoints.activities.Equipo;
 public class ListarEquipo extends AppCompatActivity {
 
     private ListView listar;
-    private ArrayAdapter<EquipoParceable> adapter;
-    private EquipoItemHolder customAdapter;
+    private ArrayAdapter<CustomRow.EquipoParceable> adapter;
+    private CustomRow.EquipoItemHolder customAdapter;
     private FloatingActionButton newEquipbtn;
     private EditText filter;
 
-    private ArrayList<EquipoParceable> listaEquipos = new ArrayList<>();
+    private ArrayList<CustomRow.EquipoParceable> listaEquipos = new ArrayList<>();
 
 
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
@@ -58,7 +55,7 @@ public class ListarEquipo extends AppCompatActivity {
         listar = (ListView) findViewById(R.id.equipo_listView);
         //adapter = new ArrayAdapter<EventoParcelable>(this, android.R.layout.simple_list_item_1, listaEventos);
 
-        customAdapter = new EquipoItemHolder(this, listaEquipos);
+        customAdapter = new CustomRow.EquipoItemHolder(this, listaEquipos);
 
         listar.setAdapter(customAdapter);
 
@@ -66,7 +63,7 @@ public class ListarEquipo extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                EquipoParceable e = listaEquipos.get(i);
+                CustomRow.EquipoParceable e = listaEquipos.get(i);
                 String str = e.getNombre().toString();
                 Toast.makeText(getApplicationContext(),str ,Toast.LENGTH_SHORT).show();
 
@@ -79,7 +76,7 @@ public class ListarEquipo extends AppCompatActivity {
         eRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                EquipoParceable e = dataSnapshot.getValue(EquipoParceable.class);
+                CustomRow.EquipoParceable e = dataSnapshot.getValue(CustomRow.EquipoParceable.class);
                 listaEquipos.add(e);
                 customAdapter.notifyDataSetChanged();
             }
@@ -159,7 +156,7 @@ public class ListarEquipo extends AppCompatActivity {
 
                         //Submitting events to Firebase
                         DatabaseReference eventRef = mRef.child("Eventos");
-                        EquipoParceable eventoData = new EquipoParceable();
+                        CustomRow.EquipoParceable eventoData = new CustomRow.EquipoParceable();
 
                         eventoData.setNombre(nombre_et1.getText().toString());
 
@@ -184,7 +181,7 @@ public class ListarEquipo extends AppCompatActivity {
 
                         //Submitting events to Firebase
                         DatabaseReference eventRef = mRef.child("Eventos");
-                        EquipoParceable eventoData = new EquipoParceable();
+                        CustomRow.EquipoParceable eventoData = new CustomRow.EquipoParceable();
 
                         eventoData.setNombre(nombre_et1.getText().toString());
 
@@ -209,7 +206,7 @@ public class ListarEquipo extends AppCompatActivity {
 
     }
 
-    private void showEventInfo(EquipoParceable e) {
+    private void showEventInfo(CustomRow.EquipoParceable e) {
         Intent i = new Intent(this, EquipoInfo.class);
         i.putExtra("PARCELABLE",e);
         startActivity(i);

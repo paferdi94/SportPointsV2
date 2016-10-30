@@ -32,12 +32,10 @@
         <activity android:name=".activities.EventoConfigView" />
         <activity android:name=".activities.PruebasDanny.PruebaListarEvento" />
         <activity android:name=".activities.CrearEvento" />
-<<<<<<< HEAD
+
         <activity android:name=".activities.Equipo.CrearEquipo" />
-=======
-        <activity android:name=".activities.CrearEquipo" />
         <activity android:name=".activities.CorrectoEquipo" />
->>>>>>> Dannyang27/master
+
         <activity android:name=".activities.PruebasDanny.PruebaEventoInfo"></activity>
     </application>
 
