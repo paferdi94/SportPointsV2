@@ -37,16 +37,16 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ListView lv;
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRow customAdapter;
-<<<<<<< HEAD
+
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
 
     private FloatingActionButton newEventBtn;
     private EditText filter;
 
 
-=======
-    private Button newEventBtn;
->>>>>>> Dannyang27/master
+
+   // private Button newEventBtn;
+
    // private EditText filter;
 
 

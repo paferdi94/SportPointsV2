@@ -35,13 +35,10 @@
 
         <activity android:name=".activities.Equipo.CrearEquipo" />
         <activity android:name=".activities.CorrectoEquipo" />
-<<<<<<< HEAD
 
-        <activity android:name=".activities.PruebasDanny.PruebaEventoInfo"></activity>
-=======
         <activity android:name=".activities.PruebasDanny.PruebaEventoInfo" />
         <activity android:name=".activities.PruebasDanny.ListarParticipantes"></activity>
->>>>>>> Dannyang27/master
+
     </application>
 
 </manifest>

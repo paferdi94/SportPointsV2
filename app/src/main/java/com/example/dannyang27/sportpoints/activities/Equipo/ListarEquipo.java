@@ -50,6 +50,7 @@ public class ListarEquipo extends AppCompatActivity {
 
 
 
+
         filter = (EditText) findViewById(R.id.filter_id1);
         newEquipbtn = (FloatingActionButton) findViewById(R.id.newEquipbtn);
         listar = (ListView) findViewById(R.id.equipo_listView);
