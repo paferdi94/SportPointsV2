@@ -37,20 +37,6 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:inputType="textMultiLine|textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/textView6"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/descripcion_id"
-        android:textAlignment="viewStart"
-        android:hint="Descripcion"
-        android:textSize="14sp"
-        android:layout_height="180dp"
-
-        />
-
     <TextView
         android:text="Lugar"
         android:layout_width="match_parent"
@@ -139,4 +125,17 @@
         android:textStyle="normal|bold"
         android:textSize="18sp"
         android:layout_width="120dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine|textPersonName"
+        android:ems="10"
+        android:id="@+id/descripcion_id"
+        android:textAlignment="viewStart"
+        android:hint="Descripcion"
+        android:textSize="14sp"
+        android:layout_height="100dp"
+
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
