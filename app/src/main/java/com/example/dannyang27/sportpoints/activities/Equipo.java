@@ -1,7 +1,18 @@
 package com.example.dannyang27.sportpoints.activities;
-import com.example.dannyang27.sportpoints.activities.Jugador;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Base64;
+import android.util.Log;
+
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created by paferdi94 on 23/10/2016.
@@ -12,49 +23,87 @@ public class Equipo {
 
     String identificador;
     String nombre;
-    ArrayList<Jugador> jugadores;
+    String deporte;
+    ArrayList<String> jugadores = new ArrayList<String>();
+    Bitmap logo;
+    String logo_b64;
 
-    public Equipo(String id, String n, ArrayList<Jugador> js){
+    public Equipo(String id, String n, String deporte, String id_j, String logo) {
         this.identificador = id;
         this.nombre = n;
-        this.jugadores = js;
+        this.deporte = deporte;
+        this.jugadores.add(id_j);
+        byte[] decodedString = Base64.decode(logo, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        this.logo = decodedByte;
+        this.logo_b64 = logo;
     }
 
-    public String getIdentificador() {
+    public String getID() {
         return identificador;
     }
+
     public String getNom() {
         return nombre;
     }
-    public int getNum_integrantes() {
-        return this.jugadores.size();
+
+    public String getDeporte() {
+        return deporte;
     }
 
-    public void setIdentificador(String identificador) {
+    public Bitmap getLogo() {
+        return this.logo;
+    }
+
+    public ArrayList<String> getJugadores() {
+        return jugadores;
+    }
+
+    public void setID(String identificador) {
         this.identificador = identificador;
     }
+
     public void setNom(String nom) {
         this.nombre = nom;
     }
 
-    // Devuelve el ArrayList de jugadores
-    public ArrayList<Jugador> getJugadores() {
-        return jugadores;
+    public void setDeporte(String deporte) {
+        this.deporte = deporte;
     }
 
-    // Sobreescribe los jugadores con los nuevos.
-    public void setJugadores(ArrayList<Jugador> jugadores) {
+    public void setLogo(Bitmap logo) {
+        this.logo = logo;
+    }
+
+    public void setJugadores(ArrayList<String> jugadores) {
         this.jugadores = jugadores;
     }
 
+
     // Añade un jugador al arraylist de jugadores
-    public void addJugador(Jugador j){
-        this.jugadores.add(j);
+    public void addJugador(String id_j) {
+        this.jugadores.add(id_j);
     }
 
     // Elimina un jugador del arraylist de jugadores
-    // Por hacer.
-    public Jugador deleteJugador(String id){
-        return null;
+    public Boolean deleteJugador(String id_j) {
+        return this.jugadores.remove(id_j);
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("nombre", nombre);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < jugadores.size(); i++) {
+            sb.append(jugadores.get(i));
+            if (i != jugadores.size() - 1) {
+                sb.append(",");
+            }
+        }
+        String jugadores_db = sb.toString();
+        result.put("jugadores", jugadores_db);
+        result.put("deporte", deporte);
+        result.put("logo", logo_b64);
+        return result;
     }
 }

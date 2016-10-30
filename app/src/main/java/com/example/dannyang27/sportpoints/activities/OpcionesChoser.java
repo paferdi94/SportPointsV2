@@ -16,6 +16,7 @@ public class OpcionesChoser extends AppCompatActivity {
 
     private Button equipoBtn;
     private Button eventoBtn;
+    private String id_usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,8 @@ public class OpcionesChoser extends AppCompatActivity {
         equipoBtn = (Button) findViewById(R.id.equipo_btn);
         eventoBtn = (Button) findViewById(R.id.eventos_btn);
 
-
-
+        Intent intent = getIntent();
+        id_usuario = intent.getStringExtra("id_usuario");
     }
 
     @Override
@@ -47,6 +48,7 @@ public class OpcionesChoser extends AppCompatActivity {
     }
     public void toEquipoView(View v){
         Intent i = new Intent(this, EquipoInfo.class);
+        i.putExtra("id_usuario",id_usuario);
         startActivity(i);
     }
     public void toEventoView(View v){
