@@ -10,6 +10,7 @@ import android.widget.Button;
 
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaListarEvento;
 
 public class OpcionesChoser extends AppCompatActivity {
 
@@ -49,7 +50,7 @@ public class OpcionesChoser extends AppCompatActivity {
         startActivity(i);
     }
     public void toEventoView(View v){
-        Intent i = new Intent(this, EventoInfo.class);
+        Intent i = new Intent(this, PruebaListarEvento.class);
         startActivity(i);
     }
 }

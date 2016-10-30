@@ -8,12 +8,21 @@ import java.util.List;
 
 public class EventoParcelable implements Parcelable {
     private String nombre;
+    private String lugar;
     private String fecha;
     private String hora;
     private String descripcion;
     private int capacidadActual;
     private int capacidadMaxima;
     private List<String> participantes = new ArrayList<String>();
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
 
     public int getCapacidadActual() {
         return capacidadActual;
@@ -79,6 +88,7 @@ public class EventoParcelable implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nombre);
+        dest.writeString(this.lugar);
         dest.writeString(this.fecha);
         dest.writeString(this.hora);
         dest.writeString(this.descripcion);
@@ -92,6 +102,7 @@ public class EventoParcelable implements Parcelable {
 
     protected EventoParcelable(Parcel in) {
         this.nombre = in.readString();
+        this.lugar = in.readString();
         this.fecha = in.readString();
         this.hora = in.readString();
         this.descripcion = in.readString();
