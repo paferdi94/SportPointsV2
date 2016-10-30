@@ -37,12 +37,16 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ListView lv;
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRow customAdapter;
+<<<<<<< HEAD
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
 
     private FloatingActionButton newEventBtn;
     private EditText filter;
 
 
+=======
+    private Button newEventBtn;
+>>>>>>> Dannyang27/master
    // private EditText filter;
 
 
@@ -101,12 +105,9 @@ public class PruebaListarEvento extends AppCompatActivity {
 
 
         lv = (ListView) findViewById(R.id.id_lv);
-        //adapter = new ArrayAdapter<EventoParcelable>(this, android.R.layout.simple_list_item_1, listaEventos);
-
         customAdapter = new CustomRow(this, listaEventos);
-
+        //lv.setEmptyView(findViewById(android.R.id.empty));
         lv.setAdapter(customAdapter);
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -114,7 +115,6 @@ public class PruebaListarEvento extends AppCompatActivity {
                 EventoParcelable e = listaEventos.get(i);
                 String str = e.getNombre().toString();
                 //Toast.makeText(getApplicationContext(),str ,Toast.LENGTH_SHORT).show();
-
                 showEventInfo(e);
             }
         });
@@ -149,8 +149,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
             }
         });
-
-
+        
         /*
         filter.addTextChangedListener(new TextWatcher() {
             @Override
@@ -170,9 +169,6 @@ public class PruebaListarEvento extends AppCompatActivity {
             }
         });
          */
-
-
-
         newEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
