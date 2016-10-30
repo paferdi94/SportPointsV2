@@ -1,9 +1,14 @@
 package com.example.dannyang27.sportpoints.activities;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -16,9 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +37,10 @@ public class CrearEquipo extends AppCompatActivity {
     private String errores;
     private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
     private DatabaseReference ref_db = FirebaseDatabase.getInstance().getReference();
+
+    // Codigos
+    int CAMBIAR_IMAGEN = 20;
+    int EQUIPO_CORRECTO = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,12 @@ public class CrearEquipo extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), errores, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        cambiar_img_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarLogo();
             }
         });
 
@@ -110,24 +123,52 @@ public class CrearEquipo extends AppCompatActivity {
 
     public void crear() {
         String id_eq = ref_db.child("Equipos").push().getKey();
-        Bitmap logo = Bitmap.createBitmap(img_equipo.getWidth(),img_equipo.getHeight(),Bitmap.Config.ARGB_8888);
-        Equipo q = new Equipo(id_eq, nombre_equipo.getText().toString(), deportes.getSelectedItem().toString(), id_usuario, logo);
+        //Bitmap logo = Bitmap.createBitmap(img_equipo.getWidth(),img_equipo.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = ((BitmapDrawable)img_equipo.getDrawable()).getBitmap();
+        Equipo q = new Equipo(id_eq, nombre_equipo.getText().toString(), deportes.getSelectedItem().toString(), id_usuario, bitmap);
         q.setID(id_eq);
         Map<String, Object> postValuesEq = q.toMap();
         Map<String, Object> childUpdatesEq = new HashMap<>();
         childUpdatesEq.put("/Equipos/" + id_eq, postValuesEq);
         ref_db.updateChildren(childUpdatesEq);
         Intent i = new Intent(this, CorrectoEquipo.class);
-        startActivityForResult(i,10);
+        startActivityForResult(i,EQUIPO_CORRECTO);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Intent intent= getIntent();
-        if(resultCode==RESULT_OK && requestCode==10){
+        if(resultCode==RESULT_OK && requestCode==EQUIPO_CORRECTO){
             finish();
         }
+        if(resultCode==RESULT_OK && requestCode== CAMBIAR_IMAGEN){
+            if (data == null) {
+                return;
+            }
+            Uri pickedImage = data.getData();
+            String[] filePath = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
+            cursor.moveToFirst();
+            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
+            int maxHeight = 600;
+            int maxWidth = 600;
+            float scale = Math.min(((float)maxHeight / bitmap.getWidth()), ((float)maxWidth / bitmap.getHeight()));
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            img_equipo.setImageBitmap(bitmap);
+        }
+    }
+
+    public void cambiarLogo(){
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, CAMBIAR_IMAGEN);
     }
 
     public Boolean comprobarDatos() {

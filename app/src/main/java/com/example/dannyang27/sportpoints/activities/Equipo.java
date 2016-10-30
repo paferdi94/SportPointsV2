@@ -26,7 +26,6 @@ public class Equipo {
     String deporte;
     ArrayList<String> jugadores = new ArrayList<String>();
     Bitmap logo;
-    String logo_b64;
 
     public Equipo(String id, String n, String deporte, String id_j, Bitmap logo) {
         this.identificador = id;
