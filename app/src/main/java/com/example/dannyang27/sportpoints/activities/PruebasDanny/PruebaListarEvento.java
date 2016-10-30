@@ -2,6 +2,7 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -196,10 +197,6 @@ public class PruebaListarEvento extends AppCompatActivity {
                             eventRef.child(nombre_et.getText().toString()).setValue(eventoData);
                         }
 
-
-
-
-
                         dialog.cancel();
                     }
                 });
@@ -207,8 +204,6 @@ public class PruebaListarEvento extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 import com.example.dannyang27.sportpoints.R;
@@ -14,8 +15,8 @@ import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaListarEv
 
 public class OpcionesChoser extends AppCompatActivity {
 
-    private Button equipoBtn;
-    private Button eventoBtn;
+    private ImageView equipoBtn;
+    private ImageView eventoBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +24,14 @@ public class OpcionesChoser extends AppCompatActivity {
         setContentView(R.layout.opciones_choser);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id);
-        toolbar.setTitle(getResources().getString(R.string.app_name));
+        toolbar.setTitle(getResources().getString(R.string.entrar_en_toolbar));
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        equipoBtn = (Button) findViewById(R.id.equipo_btn);
-        eventoBtn = (Button) findViewById(R.id.eventos_btn);
+        equipoBtn = (ImageView) findViewById(R.id.equipo_imView);
+        eventoBtn = (ImageView) findViewById(R.id.eventos_imView);
 
 
 
