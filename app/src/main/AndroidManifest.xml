@@ -21,7 +21,7 @@
         <activity android:name=".activities.alta2" />
         <activity android:name=".activities.PerfilAlta" />
         <activity android:name=".activities.Deportes" />
-        <activity android:name=".activities.Correcto" />
+        <activity android:name=".activities.CorrectoAlta" />
         <activity android:name=".activities.TipoUsuario" />
         <activity android:name=".activities.Login" />
         <activity android:name=".activities.Principal" />
@@ -32,6 +32,7 @@
         <activity android:name=".activities.EventoConfigView" />
         <activity android:name=".activities.PruebasDanny.PruebaListarEvento" />
         <activity android:name=".activities.CrearEvento" />
+        <activity android:name=".activities.CrearEquipo" />
         <activity android:name=".activities.PruebasDanny.PruebaEventoInfo"></activity>
     </application>
 

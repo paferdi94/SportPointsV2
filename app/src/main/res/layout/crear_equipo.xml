@@ -22,13 +22,13 @@
         android:id="@+id/img_equipo" />
 
     <Button
-        android:text="Subir imagen"
+        android:text="Cambiar imagen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img_equipo"
         android:layout_toEndOf="@+id/img_equipo"
         android:layout_marginStart="58dp"
-        android:id="@+id/subir_btn"
+        android:id="@+id/cambiar_img_btn"
         android:textSize="18sp" />
 
     <EditText

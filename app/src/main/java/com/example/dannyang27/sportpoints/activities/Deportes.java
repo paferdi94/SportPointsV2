@@ -56,7 +56,7 @@ public class Deportes extends AppCompatActivity {
         startActivity(i);
     }
     public void siguiente(){
-        Intent i = new Intent(this, Correcto.class);
+        Intent i = new Intent(this, CorrectoAlta.class);
         startActivity(i);
 
     }
