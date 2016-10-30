@@ -31,7 +31,7 @@
         <activity android:name=".activities.EventoInfo" />
         <activity android:name=".activities.EventoConfigView" />
         <activity android:name=".activities.PruebasDanny.PruebaListarEvento" />
-        <activity android:name=".activities.PruebasDanny.CustomRow" />
+        <activity android:name=".activities.CrearEvento" />
         <activity android:name=".activities.PruebasDanny.PruebaEventoInfo"></activity>
     </application>
 

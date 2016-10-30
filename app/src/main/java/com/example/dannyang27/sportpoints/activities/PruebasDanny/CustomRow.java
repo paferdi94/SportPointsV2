@@ -19,6 +19,7 @@ import java.util.List;
 public class CustomRow extends ArrayAdapter<EventoParcelable> {
 
 
+
     public CustomRow(Context context, List<EventoParcelable> eventos) {
         super(context,0, eventos);
     }

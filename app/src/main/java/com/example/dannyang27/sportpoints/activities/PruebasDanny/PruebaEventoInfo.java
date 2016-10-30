@@ -11,7 +11,11 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.EventoConfigView;
+import com.example.dannyang27.sportpoints.activities.FireBase;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
+import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PruebaEventoInfo extends AppCompatActivity {
 
@@ -22,6 +26,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
     private TextView fechaTv;
     private TextView participantesTv;
     private Button unirseBtn;
+    private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -56,7 +61,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
                 dialog.show();
 
                 final EditText nombre_editText = (EditText) dialog.findViewById(R.id.n_editText);
-                EditText tlf_editText = (EditText) dialog.findViewById(R.id.tlf_editText);
+                final EditText tlf_editText = (EditText) dialog.findViewById(R.id.tlf_editText);
                 Button cancel_btn = (Button) dialog.findViewById(R.id.cancel_btn);
                 Button submit_btn = (Button) dialog.findViewById(R.id.submit_btn);
 
@@ -73,13 +78,21 @@ public class PruebaEventoInfo extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Submitting: "+nombre_editText
                                 .getText()
                                 .toString(), Toast.LENGTH_SHORT).show();
+
+                        DatabaseReference eventoRef = mRef.child("Eventos");
+                        Participante part = new Participante(nombre_editText.getText().toString(),
+                                tlf_editText.getText().toString());
+
+                        eventoRef.child(evento.getNombre().toString()).child("Participantes")
+                                .push()
+                                .setValue(part);
+
                         dialog.cancel();
                     }
                 });
 
             }
         });
-
-
     }
+
 }
