@@ -9,29 +9,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.dannyang27.sportpoints.activities.EquipoInfo">
+    tools:context="com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo">
 
-    <SearchView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/buscar_equipo" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ListView
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/imageView3"
+                android:adjustViewBounds="false"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:text="Nombre Equipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nom_eq"
+                android:textSize="36sp" />
+
+        </TableRow>
+    </LinearLayout>
+
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/buscar_equipo"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/equipo_listView" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:id="@+id/nuevo_equipo"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/equipo_listView"
-        android:onClick="toCrearEquipoView" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="448dp">
+
+        <Button
+            android:text="Unirse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/union"
+            android:textSize="18sp" />
+    </TableRow>
 </RelativeLayout>

@@ -2,7 +2,8 @@ package com.example.dannyang27.sportpoints.activities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+
+import com.example.dannyang27.sportpoints.activities.Equipo.Equipo;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
