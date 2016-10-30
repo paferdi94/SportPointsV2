@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.example.dannyang27.sportpoints.R;
@@ -55,5 +56,6 @@ public class OpcionesChoser extends AppCompatActivity {
     public void toEventoView(View v){
         Intent i = new Intent(this, PruebaListarEvento.class);
         startActivity(i);
+        Toast.makeText(getApplicationContext(),"Cargando eventos...", Toast.LENGTH_SHORT).show();
     }
 }

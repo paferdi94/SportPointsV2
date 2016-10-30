@@ -3,6 +3,8 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,13 @@ public class PruebaEventoInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba_evento_info);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_3);
+        toolbar.setTitle("INFORMACION EVENTO");
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         //References to xml file
         unirseBtn = (Button) findViewById(R.id.joinBtn);
         nombreTv = (TextView) findViewById(R.id.nombreTextView);
@@ -55,7 +64,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Pulsado", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"Pulsado", Toast.LENGTH_SHORT).show();
                 final Dialog dialog = new Dialog(PruebaEventoInfo.this);
                 dialog.setContentView(R.layout.join_event_dialog);
                 dialog.show();
@@ -75,9 +84,8 @@ public class PruebaEventoInfo extends AppCompatActivity {
                 submit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "Submitting: "+nombre_editText
-                                .getText()
-                                .toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Usuario añadido",
+                                Toast.LENGTH_SHORT).show();
 
                         DatabaseReference eventoRef = mRef.child("Eventos");
                         Participante part = new Participante(nombre_editText.getText().toString(),
@@ -93,6 +101,16 @@ public class PruebaEventoInfo extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Back arrow
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
