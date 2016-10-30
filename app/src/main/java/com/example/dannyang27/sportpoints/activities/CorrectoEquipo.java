@@ -1,5 +1,6 @@
 package com.example.dannyang27.sportpoints.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -21,5 +22,10 @@ public class CorrectoEquipo extends AppCompatActivity {
         correcto_txt = (TextView) findViewById(R.id.correcto_txt);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent= getIntent();
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

@@ -63,7 +63,7 @@ public class CrearEquipo extends AppCompatActivity {
                 if (comprobarDatos()) {
                     crear();
                 }else{
-                    // Mostrar errores.
+                    Toast.makeText(getApplicationContext(), errores, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -71,8 +71,10 @@ public class CrearEquipo extends AppCompatActivity {
         ref_db.child("Equipos").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot data, String s) {
-                Equipo q = data.getValue(Equipo.class);
-                q.setID(data.getKey());
+                Map<String, Object> map = (Map<String, Object>) data.getValue();
+                byte[] decodedString = Base64.decode(map.get("logo").toString(), Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                Equipo q = new Equipo(data.getKey(),map.get("nombre").toString(),map.get("deporte").toString(),map.get("jugadores").toString(),decodedByte);
                 equipos.add(q);
             }
 
@@ -108,35 +110,37 @@ public class CrearEquipo extends AppCompatActivity {
     public void crear() {
         String id_eq = ref_db.child("Equipos").push().getKey();
         Bitmap logo = Bitmap.createBitmap(img_equipo.getWidth(),img_equipo.getHeight(),Bitmap.Config.ARGB_8888);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        logo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        String logo_b64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        Equipo q = new Equipo(id_eq, nombre_equipo.getText().toString(), deportes.getSelectedItem().toString(), id_usuario, logo_b64);
+        Equipo q = new Equipo(id_eq, nombre_equipo.getText().toString(), deportes.getSelectedItem().toString(), id_usuario, logo);
+        q.setID(id_eq);
         Map<String, Object> postValuesEq = q.toMap();
         Map<String, Object> childUpdatesEq = new HashMap<>();
         childUpdatesEq.put("/Equipos/" + id_eq, postValuesEq);
         ref_db.updateChildren(childUpdatesEq);
-
         Intent i = new Intent(this, CorrectoEquipo.class);
-        startActivity(i);
+        startActivityForResult(i,10);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent= getIntent();
+        if(resultCode==RESULT_OK && requestCode==10){
+            finish();
+        }
     }
 
     public Boolean comprobarDatos() {
         errores = "";
-        if(nombre_equipo.getText().toString()==""){
-            errores+="El nombre del equipo no puede ser vacío.\n";
+        if(nombre_equipo.getText().toString().equals("")){
+            errores+="El nombre del equipo no puede estar vacío.";
+            return false;
         }
         for(Equipo q : equipos){
             if(nombre_equipo.getText().toString().equals(q.getNom())) {
-                errores += "El nombre del equipo ya existe.\n";
-                break;
+                errores += "El nombre del equipo ya existe.";
+                return false;
             }
         }
-        if(errores.equals("")){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 }

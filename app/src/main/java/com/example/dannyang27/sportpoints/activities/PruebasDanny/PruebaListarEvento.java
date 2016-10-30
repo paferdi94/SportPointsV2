@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.EventoConfigView;
 import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
+import com.example.dannyang27.sportpoints.activities.OpcionesChoser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,8 +38,13 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRow customAdapter;
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
+<<<<<<< HEAD
     private FloatingActionButton newEventBtn;
     private EditText filter;
+=======
+    private Button newEventBtn;
+   // private EditText filter;
+>>>>>>> Dannyang27/master
 
     private ArrayList<EventoParcelable> listaEventos = new ArrayList<>();
 
@@ -47,6 +55,7 @@ public class PruebaListarEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba_listar_evento);
 
+<<<<<<< HEAD
         //Creacion de EventosParcelables
 
 //        EventoParcelable ep1 = new EventoParcelable();
@@ -80,6 +89,17 @@ public class PruebaListarEvento extends AppCompatActivity {
 
         filter = (EditText) findViewById(R.id.filter_id);
         newEventBtn = (FloatingActionButton) findViewById(R.id.id_new_event);
+=======
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_2);
+        toolbar.setTitle("LISTADO DE EVENTOS");
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        //filter = (EditText) findViewById(R.id.filter_id);
+        newEventBtn = (Button) findViewById(R.id.id_new_event);
+>>>>>>> Dannyang27/master
         lv = (ListView) findViewById(R.id.id_lv);
         //adapter = new ArrayAdapter<EventoParcelable>(this, android.R.layout.simple_list_item_1, listaEventos);
 
@@ -93,7 +113,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
                 EventoParcelable e = listaEventos.get(i);
                 String str = e.getNombre().toString();
-                Toast.makeText(getApplicationContext(),str ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),str ,Toast.LENGTH_SHORT).show();
 
                 showEventInfo(e);
             }
@@ -131,6 +151,7 @@ public class PruebaListarEvento extends AppCompatActivity {
         });
 
 
+        /*
         filter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -148,6 +169,8 @@ public class PruebaListarEvento extends AppCompatActivity {
 
             }
         });
+         */
+
 
 
         newEventBtn.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +214,7 @@ public class PruebaListarEvento extends AppCompatActivity {
                         eventoData.setCapacidadActual(eventoData.getParticipantes().size());
 
                         if(nombre_et.getText().toString().equals("")) {
-                        dialog.cancel();
+                            dialog.cancel();
                         }else {
 
                             eventRef.child(nombre_et.getText().toString()).setValue(eventoData);
@@ -200,14 +223,19 @@ public class PruebaListarEvento extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
-
-
             }
         });
-
-
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Back arrow
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void showEventInfo(EventoParcelable e) {
         Intent i = new Intent(this, PruebaEventoInfo.class);
         i.putExtra("PARCELABLE",e);

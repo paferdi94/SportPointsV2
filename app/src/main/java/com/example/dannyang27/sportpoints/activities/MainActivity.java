@@ -28,7 +28,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     //private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
-    private String id_Usuario;
+    private String id_usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         childUpdatesEq.put("/Equipos/" + id_jug, postValuesEq);
         mRef.updateChildren(childUpdatesEq);
         */
-        id_Usuario = "-KVLiykWMQXr4_aQf8tz";
+        id_usuario = "-KVLiykWMQXr4_aQf8tz";
         //cargar fuentes
         TextView title_txt = (TextView) findViewById(R.id.title_txt);
         title_txt.setTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/AlfaSlabOne-Regular.ttf"));
@@ -65,8 +65,13 @@ public class MainActivity extends AppCompatActivity {
 //                intent = new Intent(this, PerfilAlta.class);
 //                break;
             case R.id.login_btn:
+<<<<<<< HEAD
                 intent = new Intent(this, Principal.class);
                 intent.putExtra("id_usuario",id_Usuario);
+=======
+                intent = new Intent(this, OpcionesChoser.class);
+                intent.putExtra("id_usuario",id_usuario);
+>>>>>>> Dannyang27/master
                 break;
         }
         startActivity(intent);

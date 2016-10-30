@@ -22,9 +22,8 @@ public class Jugador implements Parcelable {
     private String email;
     private String direccion;
     private Date fechaNacimiento;
-    private ArrayList<Equipo> equipos;
 
-    public Jugador(String id, String login, String password, String nombre, String apellidos, String email, String direccion, Date fechaNacimiento, ArrayList<Equipo> equipos){
+    public Jugador(String id, String login, String password, String nombre, String apellidos, String email, String direccion, Date fechaNacimiento){
         this.id = id;
         this.login = login;
         this.password = password;
@@ -33,7 +32,6 @@ public class Jugador implements Parcelable {
         this.email = email;
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
-        this.equipos = equipos;
     }
 
     public String getID(){
@@ -60,9 +58,6 @@ public class Jugador implements Parcelable {
     public Date getFechaNacimiento(){
         return this.fechaNacimiento;
     }
-    public ArrayList<Equipo> getEquipos(){
-        return this.equipos;
-    }
 
     public void setLogin(String login){
         this.login = login;
@@ -85,19 +80,6 @@ public class Jugador implements Parcelable {
     public void setFechaNacimiento(Date fechaNacimiento){
         this.fechaNacimiento = fechaNacimiento;
     }
-    public void setEquipos(ArrayList<Equipo> equipos) {
-        this.equipos = equipos;
-    }
-
-    // Añade un equipo al arraylist de equipos.
-    public void addEquipo(Equipo q){
-        this.equipos.add(q);
-    }
-
-    // Elimina un jugador del arraylist de jugadores
-    public Boolean deleteEquipo(Equipo q){
-        return this.equipos.remove(q);
-    }
 
     public Map<String, Object> toMap() {
 
@@ -109,9 +91,6 @@ public class Jugador implements Parcelable {
         result.put("email", email);
         result.put("direccion", direccion);
         result.put("fechaNacimiento", (new SimpleDateFormat("dd/MM/yyyy")).format(fechaNacimiento));
-        String equipos_db = "";
-        for(Equipo q : equipos){ equipos_db+=q.getID()+","; }
-        result.put("equipos",equipos_db);
         return result;
     }
 
@@ -132,7 +111,6 @@ public class Jugador implements Parcelable {
         parcel.writeString(email);
         parcel.writeString(direccion);
         parcel.writeLong(fechaNacimiento.getTime());
-        parcel.writeList(equipos);
     }
 
     public static final Parcelable.Creator<Jugador> CREATOR = new Parcelable.Creator<Jugador>() {
@@ -154,6 +132,5 @@ public class Jugador implements Parcelable {
         email = in.readString();
         direccion = in.readString();
         fechaNacimiento = new Date(in.readLong());
-        equipos = in.readArrayList(null);
     }
 }
