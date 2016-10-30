@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities;
+package com.example.dannyang27.sportpoints.activities.Equipo;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

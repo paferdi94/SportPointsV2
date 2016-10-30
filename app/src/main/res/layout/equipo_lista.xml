@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,17 +16,11 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:hint="filtro"
-        android:id="@+id/filter_id"
+        android:id="@+id/filter_id1"
         android:textAlignment="center"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/imageView2" />
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/id_lv"
-        android:layout_height="430dp"
-        android:layout_below="@id/filter_id"/>
 
 
     <ImageView
@@ -48,6 +41,13 @@
         app:srcCompat="@android:drawable/ic_input_add"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/id_new_event" />
+        android:id="@+id/newEquipbtn" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/equipo_listView"
+        android:layout_height="430dp"
+        android:layout_above="@+id/newEquipbtn"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

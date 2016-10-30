@@ -7,6 +7,7 @@
     <string name="entrar_btn_main">Entrar</string>
     <string name="registrarse_btn_main">Crear cuenta</string>
 
+
     <!--Toolbar string-->
     <string name="add_evento_toolbar">Crear Evento</string>
     <string name="entrar_en_toolbar">Entrar en</string>
@@ -14,4 +15,11 @@
 
     <!--CrearEvento Activity-->
     <string name="crearEvento_btn">Crear Evento</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
+
+

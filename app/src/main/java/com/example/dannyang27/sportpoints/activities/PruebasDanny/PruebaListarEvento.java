@@ -35,7 +35,7 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRow customAdapter;
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
-    private Button newEventBtn;
+    private FloatingActionButton newEventBtn;
     private EditText filter;
 
     private ArrayList<EventoParcelable> listaEventos = new ArrayList<>();
@@ -79,7 +79,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 //        listaEventos.add(ep2);
 
         filter = (EditText) findViewById(R.id.filter_id);
-        newEventBtn = (Button) findViewById(R.id.id_new_event);
+        newEventBtn = (FloatingActionButton) findViewById(R.id.id_new_event);
         lv = (ListView) findViewById(R.id.id_lv);
         //adapter = new ArrayAdapter<EventoParcelable>(this, android.R.layout.simple_list_item_1, listaEventos);
 

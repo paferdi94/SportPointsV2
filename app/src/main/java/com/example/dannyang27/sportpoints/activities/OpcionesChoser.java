@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo;
 import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaListarEvento;
 
 public class OpcionesChoser extends AppCompatActivity {

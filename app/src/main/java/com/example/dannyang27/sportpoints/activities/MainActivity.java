@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 //                intent = new Intent(this, PerfilAlta.class);
 //                break;
             case R.id.login_btn:
-                intent = new Intent(this, OpcionesChoser.class);
+                intent = new Intent(this, Principal.class);
                 intent.putExtra("id_usuario",id_Usuario);
                 break;
         }
