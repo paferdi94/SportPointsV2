@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo;
+import com.example.dannyang27.sportpoints.activities.Equipo.ListarEquipo;
 import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaListarEvento;
 
 public class OpcionesChoser extends AppCompatActivity {
@@ -49,7 +50,7 @@ public class OpcionesChoser extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void toEquipoView(View v){
-        Intent i = new Intent(this, EquipoInfo.class);
+        Intent i = new Intent(this, ListarEquipo.class);
         i.putExtra("id_usuario",id_usuario);
         startActivity(i);
     }

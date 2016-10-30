@@ -87,7 +87,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 //        listaEventos.add(ep1);
 //        listaEventos.add(ep2);
 
-        filter = (EditText) findViewById(R.id.filter_id);
+        //filter = (EditText) findViewById(R.id.filter_id);
         newEventBtn = (FloatingActionButton) findViewById(R.id.id_new_event);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_2);

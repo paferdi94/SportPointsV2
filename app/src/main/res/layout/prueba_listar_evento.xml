@@ -49,17 +49,22 @@
         <!--android:layout_below="@id/filter_id"-->
 
 
-             <!--
-             <ImageView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 app:srcCompat="@android:drawable/ic_search_category_default"
-                 android:layout_alignParentTop="true"
-                 android:layout_alignParentStart="true"
-                 android:layout_marginStart="13dp"
-                 android:id="@+id/imageView2"
-                 android:layout_above="@+id/id_lv" />
-             -->
+
+
+
+
+
+    <!--
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_search_category_default"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="13dp"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/id_lv" />
+    -->
 
      </RelativeLayout>
 

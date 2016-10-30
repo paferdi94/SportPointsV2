@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onclick(View v) {
+
         Intent intent = new Intent();
         switch (v.getId()) {
 //            case R.id.signIn_btn:
@@ -66,10 +67,8 @@ public class MainActivity extends AppCompatActivity {
 //                break;
             case R.id.login_btn:
 
-                intent = new Intent(this, Principal.class);
-                intent.putExtra("id_usuario",id_Usuario);
-
-
+                intent = new Intent(this, OpcionesChoser.class);
+                intent.putExtra("id_usuario",id_usuario);
                 break;
         }
         startActivity(intent);
