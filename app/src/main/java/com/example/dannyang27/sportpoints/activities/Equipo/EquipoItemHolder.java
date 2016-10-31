@@ -41,7 +41,7 @@ public class EquipoItemHolder extends ArrayAdapter<EquipoParceable> {
         mView = (View) convertView.findViewById(R.id.imageView_equipo);
 
         EquipoParceable ep = getItem(position);
-        txtNombreEq.setText(ep.getNombre());
+        txtNombreEq.setText(ep.getNom());
         //hacer imagen
         //añadir subti si lo usamos
         return convertView;

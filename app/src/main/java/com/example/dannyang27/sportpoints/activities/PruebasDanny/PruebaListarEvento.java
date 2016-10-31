@@ -6,11 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,10 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.EventoConfigView;
-import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
-import com.example.dannyang27.sportpoints.activities.OpcionesChoser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +30,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
     private ListView lv;
     private ArrayAdapter<EventoParcelable> adapter;
-    private CustomRow customAdapter;
+    private CustomRowEvento customAdapter;
 
     private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
 
@@ -105,7 +99,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
 
         lv = (ListView) findViewById(R.id.id_lv);
-        customAdapter = new CustomRow(this, listaEventos);
+        customAdapter = new CustomRowEvento(this, listaEventos);
         //lv.setEmptyView(findViewById(android.R.id.empty));
         lv.setAdapter(customAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
