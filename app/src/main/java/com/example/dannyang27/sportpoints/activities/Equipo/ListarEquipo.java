@@ -35,7 +35,7 @@ public class ListarEquipo extends AppCompatActivity {
     private ArrayAdapter<EquipoParceable> adapter;
     private CustomRowEquipo customAdapter;
     private FloatingActionButton newEquipbtn;
-    private EditText filter;
+    //private EditText filter;
     private ArrayList<EquipoParceable> listaEquipos = new ArrayList<>();
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     private String id_usuario;
@@ -47,7 +47,7 @@ public class ListarEquipo extends AppCompatActivity {
         Intent intent = getIntent();
         id_usuario = intent.getStringExtra("id_usuario");
 
-        filter = (EditText) findViewById(R.id.filter_id1);
+        //filter = (EditText) findViewById(R.id.filter_id1);
         newEquipbtn = (FloatingActionButton) findViewById(R.id.newEquipbtn);
         listar = (ListView) findViewById(R.id.equipo_listView);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaEquipos);
