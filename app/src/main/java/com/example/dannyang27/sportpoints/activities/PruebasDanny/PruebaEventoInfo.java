@@ -103,6 +103,9 @@ public class PruebaEventoInfo extends AppCompatActivity {
                         Participante part = new Participante(nombre_editText.getText().toString(),
                                 tlf_editText.getText().toString());
 
+
+
+
                         eventoRef.child(evento.getNombre().toString()).child("Participantes")
                                 .push()
                                 .setValue(part);
