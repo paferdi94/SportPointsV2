@@ -38,10 +38,11 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_input_add"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/newEquipbtn" />
+        android:id="@+id/newEquipbtn"
+        app:backgroundTint="#ef5350"
+        app:srcCompat="@drawable/ic_plus"/>
 
     <ListView
         android:layout_width="match_parent"
