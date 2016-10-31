@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
     private TextView participantesTv;
     private Button unirseBtn;
     private Button verParticipantes;
+    private EventoParcelable evento;
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
 
@@ -45,7 +48,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //References to xml file
-        verParticipantes = (Button) findViewById(R.id.verP_id);
+        //verParticipantes = (Button) findViewById(R.id.verP_id);
         unirseBtn = (Button) findViewById(R.id.joinBtn);
         nombreTv = (TextView) findViewById(R.id.nombreTextView);
         descripcionTv = (TextView) findViewById(R.id.descripcionTextView);
@@ -54,7 +57,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
         fechaTv = (TextView) findViewById(R.id.fechaTextView);
         participantesTv = (TextView) findViewById(R.id.participantesTextView);
 
-        final EventoParcelable evento = getIntent().getParcelableExtra("PARCELABLE");
+        evento = getIntent().getParcelableExtra("PARCELABLE");
 
         nombreTv.setText(evento.getNombre());
         fechaTv.setText(evento.getFecha());
@@ -63,17 +66,17 @@ public class PruebaEventoInfo extends AppCompatActivity {
         descripcionTv.setText(evento.getDescripcion());
         //participantesTv.setText(evento.getParticipantes().size() + "/22");
 
-        verParticipantes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goListarParticipantes(evento);
-            }
-        });
+//        verParticipantes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goListarParticipantes(evento);
+//            }
+//        });
 
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(getApplicationContext(),"Pulsado", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(),"Pulsado", Toast.LENGTH_SHORT).show();
                 final Dialog dialog = new Dialog(PruebaEventoInfo.this);
                 dialog.setContentView(R.layout.join_event_dialog);
                 dialog.show();
@@ -93,7 +96,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
                 submit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(),"Usuario añadido",
+                        Toast.makeText(getApplicationContext(), "Usuario añadido",
                                 Toast.LENGTH_SHORT).show();
 
                         DatabaseReference eventoRef = mRef.child("Eventos");
@@ -118,14 +121,27 @@ public class PruebaEventoInfo extends AppCompatActivity {
         startActivity(i);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Añadir icono al actionBar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.info_participantes_item, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
         switch (item.getItemId()) {
-            //Back arrow
+            case R.id.info_participantes:
+                goListarParticipantes(evento);
+                return true;
             case android.R.id.home:
                 onBackPressed();
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
 }

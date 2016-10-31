@@ -9,8 +9,9 @@
 
 
     <!--Toolbar string-->
-    <string name="add_evento_toolbar">Crear Evento</string>
-    <string name="entrar_en_toolbar">Entrar en</string>
+    <string name="add_evento_toolbar">CREAR EVENTO</string>
+    <string name="entrar_en_toolbar">ENTRAR EN</string>
+    <string name="info_participantes_item">Ver participantes</string>
 
 
     <!--CrearEvento Activity-->
