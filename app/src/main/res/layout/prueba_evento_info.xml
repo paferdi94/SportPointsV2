@@ -59,15 +59,15 @@
         android:textSize="18sp"
         android:textStyle="normal|bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_alignBottom="@+id/textView13"
-        android:textSize="17sp"
-        android:layout_alignRight="@+id/participantesTxt"
-        android:layout_toEndOf="@+id/textView13"
-        android:id="@+id/participantesTextView" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="12dp"-->
+        <!--android:layout_alignBottom="@+id/textView13"-->
+        <!--android:textSize="17sp"-->
+        <!--android:layout_alignRight="@+id/participantesTxt"-->
+        <!--android:layout_toEndOf="@+id/textView13"-->
+        <!--android:id="@+id/participantesTextView" />-->
 
 
     <TextView
@@ -90,15 +90,15 @@
         android:layout_below="@+id/textView9"
         android:layout_alignParentStart="true" />
 
-        <TextView
-        android:text="PARTICIPANTES"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView13"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:textStyle="normal|bold"
-        android:layout_below="@+id/textView11"
-        android:layout_alignParentStart="true" />
+        <!--<TextView-->
+        <!--android:text="PARTICIPANTES"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView13"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:textStyle="normal|bold"-->
+        <!--android:layout_below="@+id/textView11"-->
+        <!--android:layout_alignParentStart="true" />-->
 
     <TextView
         android:text="HORA"
@@ -153,7 +153,7 @@
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/descripcionTextView"
-            android:layout_height="220dp"
+            android:layout_height="260dp"
             android:textSize="17sp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />

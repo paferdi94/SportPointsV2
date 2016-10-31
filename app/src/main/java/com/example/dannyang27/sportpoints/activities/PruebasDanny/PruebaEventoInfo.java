@@ -28,7 +28,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
     private TextView lugarTv;
     private TextView horaTv;
     private TextView fechaTv;
-    private TextView participantesTv;
+    //private TextView participantesTv;
     private Button unirseBtn;
     private Button verParticipantes;
     private EventoParcelable evento;
@@ -55,7 +55,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
         lugarTv = (TextView) findViewById(R.id.lugarTextView);
         horaTv = (TextView) findViewById(R.id.horaTextView);
         fechaTv = (TextView) findViewById(R.id.fechaTextView);
-        participantesTv = (TextView) findViewById(R.id.participantesTextView);
+        //participantesTv = (TextView) findViewById(R.id.participantesTextView);
 
         evento = getIntent().getParcelableExtra("PARCELABLE");
 
