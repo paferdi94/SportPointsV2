@@ -29,9 +29,9 @@ public class EquipoInfo extends AppCompatActivity {
         imageView3 = (ImageView) findViewById(R.id.imageView3);
         union = (Button) findViewById(R.id.union);
 
-        final CustomRowEvento.EquipoParceable equipo = getIntent().getParcelableExtra("PARCELABLE");
+        final EquipoParceable equipo = getIntent().getParcelableExtra("PARCELABLE");
 
-        nom_eq.setText(equipo.getNombre());
+        nom_eq.setText(equipo.getNom());
         //imageView3.setImageBitmap(equipo.getLogo());
 
 

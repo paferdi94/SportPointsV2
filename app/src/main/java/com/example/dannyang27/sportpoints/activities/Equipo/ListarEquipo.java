@@ -123,7 +123,7 @@ public class ListarEquipo extends AppCompatActivity {
     // Mostrar un equipo.
     private void showEquipoInfo(EquipoParceable e) {
         Intent i = new Intent(this, EquipoInfo.class);
-        i.putExtra("Equipo", e);
+        i.putExtra("PARCELABLE", e);
         startActivity(i);
     }
 
