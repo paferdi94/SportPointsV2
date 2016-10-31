@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.CustomRowEquipo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +32,7 @@ public class ListarEquipo extends AppCompatActivity {
 
     private ListView listar;
     private ArrayAdapter<EquipoParceable> adapter;
-    private CustomRowEquipo customAdapter;
+    private EquipoItemHolder customAdapter;
     private FloatingActionButton newEquipbtn;
     //private EditText filter;
     private ArrayList<EquipoParceable> listaEquipos = new ArrayList<>();
@@ -52,7 +51,7 @@ public class ListarEquipo extends AppCompatActivity {
         listar = (ListView) findViewById(R.id.equipo_listView);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaEquipos);
 
-        customAdapter = new CustomRowEquipo(this, listaEquipos);
+        customAdapter = new EquipoItemHolder(this, listaEquipos);
         listar.setAdapter(customAdapter);
         listar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

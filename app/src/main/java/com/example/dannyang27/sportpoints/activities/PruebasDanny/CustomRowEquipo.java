@@ -38,7 +38,6 @@ public class CustomRowEquipo extends ArrayAdapter<EquipoParceable> {
 
         EquipoParceable eq = getItem(position);
         nombre.setText(eq.getNom());
-        Log.e("Sport",(eq.getMaxJugadores()==-1)+"");
         deporte.setText("Deporte: "+eq.getDeporte());
         jugadores.setText("Jugadores: "+eq.getJugadores().size());
         if(eq.getMaxJugadores()==-1){
