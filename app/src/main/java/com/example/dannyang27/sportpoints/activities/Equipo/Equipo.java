@@ -26,14 +26,15 @@ public class Equipo {
     String deporte;
     ArrayList<String> jugadores = new ArrayList<String>();
     Bitmap logo;
-    String logo_b64;
+    int max_jug;
 
-    public Equipo(String id, String n, String deporte, String id_j, Bitmap logo) {
+    public Equipo(String id, String n, String deporte, String id_j, int max, Bitmap logo) {
         this.identificador = id;
         this.nombre = n;
         this.deporte = deporte;
         this.jugadores.add(id_j);
         this.logo = logo;
+        this.max_jug = max;
     }
 
     public String getID() {
@@ -56,6 +57,10 @@ public class Equipo {
         return jugadores;
     }
 
+    public int getMaxJugadores() {
+        return max_jug;
+    }
+
     public void setID(String identificador) {
         this.identificador = identificador;
     }
@@ -74,6 +79,10 @@ public class Equipo {
 
     public void setJugadores(ArrayList<String> jugadores) {
         this.jugadores = jugadores;
+    }
+
+    public void setMaxJugadores(int max) {
+        this.max_jug = max;
     }
 
 
@@ -105,6 +114,7 @@ public class Equipo {
         byte[] byteArray = stream.toByteArray();
         String logo_db = Base64.encodeToString(byteArray, Base64.DEFAULT);
         result.put("logo", logo_db);
+        result.put("max_jugadores",max_jug);
         return result;
     }
 }
