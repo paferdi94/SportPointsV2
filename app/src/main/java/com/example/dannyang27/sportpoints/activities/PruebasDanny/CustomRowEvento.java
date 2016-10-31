@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CustomRow extends ArrayAdapter<EventoParcelable> {
+public class CustomRowEvento extends ArrayAdapter<EventoParcelable> {
 
 
 
-    public CustomRow(Context context, List<EventoParcelable> eventos) {
+    public CustomRowEvento(Context context, List<EventoParcelable> eventos) {
         super(context,0, eventos);
     }
 
@@ -34,7 +34,7 @@ public class CustomRow extends ArrayAdapter<EventoParcelable> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.custom_row,parent,false);
+            convertView = inflater.inflate(R.layout.custom_row_evento,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nameTxt);
