@@ -27,17 +27,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-
         <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="17sp"
-        android:id="@+id/nombreTextView"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="DESCRIPCIÓN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,55 +38,72 @@
         android:textSize="18sp"
         android:textStyle="normal|bold" />
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="12dp"-->
-        <!--android:layout_alignBottom="@+id/textView13"-->
-        <!--android:textSize="17sp"-->
-        <!--android:layout_alignRight="@+id/participantesTxt"-->
-        <!--android:layout_toEndOf="@+id/textView13"-->
-        <!--android:id="@+id/participantesTextView" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/descripcionTextView"
+            android:layout_height="250dp"
+            android:textSize="17sp"
+            android:layout_below="@id/textView5"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
-
-        <!--<TextView-->
-        <!--android:text="PARTICIPANTES"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/textView13"-->
-        <!--android:textSize="18sp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:textStyle="normal|bold"-->
-        <!--android:layout_below="@+id/textView11"-->
-        <!--android:layout_alignParentStart="true" />-->
 
         <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/horaTextView"
-        android:layout_alignBaseline="@+id/textView9"
-        android:layout_alignBottom="@+id/textView9"
-        android:textSize="17sp"
-        android:layout_toEndOf="@+id/textView11" />
+            android:layout_width="80dp"
+            android:id="@+id/lugarTextView1"
+            android:layout_height="20dp"
+            android:text="LUGAR"
+            android:textSize="17sp"
+            android:layout_below="@id/descripcionTextView"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="normal|bold" />
+        <TextView
+            android:layout_width="250dp"
+            android:id="@+id/lugarTextView"
+            android:layout_height="20dp"
+            android:textSize="17sp"
+            android:layout_toRightOf="@id/lugarTextView1"
+            android:layout_below="@id/descripcionTextView" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lugarTextView"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_alignParentEnd="true"
-        android:textSize="17sp"
-        android:layout_alignStart="@+id/fechaTextView" />
+        <TextView
+            android:layout_width="80dp"
+            android:id="@+id/hora_tv"
+            android:layout_height="25dp"
+            android:text="HORA"
+            android:textSize="17sp"
+            android:layout_below="@id/lugarTextView1"
+            android:paddingTop="5dp"
+            android:textStyle="normal|bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fechaTextView"
-        android:layout_marginLeft="10dp"
-        android:layout_alignBaseline="@+id/textView11"
-        android:layout_alignBottom="@+id/textView11"
-        android:textSize="17sp"
-        android:layout_toEndOf="@+id/textView7" />
+        <TextView
+            android:layout_width="80dp"
+            android:id="@+id/horaTextView"
+            android:layout_height="25dp"
+            android:textSize="17sp"
+            android:layout_below="@id/lugarTextView1"
+            android:layout_toRightOf="@id/hora_tv"
+            android:paddingTop="5dp" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:id="@+id/fecha_tv"
+            android:layout_height="25dp"
+            android:text="FECHA"
+            android:textSize="17sp"
+            android:layout_below="@id/hora_tv"
+            android:paddingTop="5dp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:id="@+id/fechaTextView"
+            android:layout_height="25dp"
+            android:textSize="17sp"
+            android:layout_below="@id/horaTextView"
+            android:layout_toRightOf="@id/fecha_tv"
+            android:paddingTop="5dp" />
+
 
         <!--<Button-->
             <!--android:text="Ver participantes"-->
@@ -109,13 +116,7 @@
             <!--android:textColor="@android:color/white"-->
             <!--android:layout_width="125dp" />-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:id="@+id/descripcionTextView"
-            android:layout_height="260dp"
-            android:textSize="17sp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+
 
         <Button
         android:text="UNIRSE"
@@ -130,15 +131,26 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+            android:textSize="17sp"
+        android:id="@+id/nombreTextView"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="100dp"/>
+
+        <TextView
             android:paddingTop="50dp"
-            android:text="NOMBRE DEL EQUIPO"
-            android:layout_width="200dp"
+            android:text="NOMBRE DEL EVENTO"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
             android:textSize="18sp"
             android:textStyle="normal|bold"
-            android:layout_below="@+id/lugarTextView"
-            android:layout_toEndOf="@+id/horaTextView" />
+            android:paddingLeft="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="13dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -146,8 +158,8 @@
             app:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/imageView3"
             android:layout_above="@+id/textView5"
-            android:layout_alignStart="@+id/lugarTextView"
-            android:layout_marginBottom="17dp" />
+            android:layout_alignParentStart="true" />
+
 
         <!--<android.support.design.widget.FloatingActionButton-->
         <!--android:id="@+id/id_fab"-->
