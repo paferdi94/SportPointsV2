@@ -32,16 +32,19 @@ public class PruebaListarEvento extends AppCompatActivity {
     private ArrayAdapter<EventoParcelable> adapter;
     private CustomRowEvento customAdapter;
 
-    private String [] eventos = {"Evento 1","Evento 2","Evento 3","Evento 4","Evento 5"};
+    private String[] eventos = {"Evento 1", "Evento 2", "Evento 3", "Evento 4", "Evento 5"};
 
     private FloatingActionButton newEventBtn;
     private EditText filter;
 
+    private EditText nombre_et;
+    private EditText descripcion_et;
+    private EditText lugar_et;
+    private EditText hora_et;
+    private EditText fecha_et;
 
-
-   // private Button newEventBtn;
-
-   // private EditText filter;
+    // private Button newEventBtn;
+    // private EditText filter;
 
 
     private ArrayList<EventoParcelable> listaEventos = new ArrayList<>();
@@ -143,7 +146,7 @@ public class PruebaListarEvento extends AppCompatActivity {
 
             }
         });
-        
+
         /*
         filter.addTextChangedListener(new TextWatcher() {
             @Override
@@ -170,11 +173,11 @@ public class PruebaListarEvento extends AppCompatActivity {
                 dialog.setContentView(R.layout.create_event_dialog);
                 dialog.show();
 
-                final EditText nombre_et = (EditText) dialog.findViewById(R.id.nombre_id);
-                final EditText descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_id);
-                final EditText lugar_et = (EditText) dialog.findViewById(R.id.lugar_id);
-                final EditText hora_et = (EditText) dialog.findViewById(R.id.hora_id);
-                final EditText fecha_et = (EditText) dialog.findViewById(R.id.fecha_id);
+                nombre_et = (EditText) dialog.findViewById(R.id.nombre_id);
+                descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_id);
+                lugar_et = (EditText) dialog.findViewById(R.id.lugar_id);
+                hora_et = (EditText) dialog.findViewById(R.id.hora_id);
+                fecha_et = (EditText) dialog.findViewById(R.id.fecha_id);
 
                 Button cancel_btn = (Button) dialog.findViewById(R.id.cancelar_buttonId);
                 Button submit_btn = (Button) dialog.findViewById(R.id.submit_buttonId);
@@ -188,33 +191,55 @@ public class PruebaListarEvento extends AppCompatActivity {
                 submit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "Evento Creado",
-                                Toast.LENGTH_SHORT).show();
+                        String check = checkUnirseData();
+                        if (check.equals("")) {
+                            Toast.makeText(getApplicationContext(), "Evento Creado",
+                                    Toast.LENGTH_SHORT).show();
 
-                        //Submitting events to Firebase
-                        DatabaseReference eventRef = mRef.child("Eventos");
-                        EventoParcelable eventoData = new EventoParcelable();
+                            //Submitting events to Firebase
+                            DatabaseReference eventRef = mRef.child("Eventos");
+                            EventoParcelable eventoData = new EventoParcelable();
 
-                        eventoData.setNombre(nombre_et.getText().toString());
-                        eventoData.setHora(hora_et.getText().toString());
-                        eventoData.setFecha(fecha_et.getText().toString());
-                        eventoData.setLugar(lugar_et.getText().toString());
-                        eventoData.setDescripcion(descripcion_et.getText().toString());
-                        eventoData.setCapacidadMaxima(22);
-                        eventoData.setCapacidadActual(eventoData.getParticipantes().size());
+                            eventoData.setNombre(nombre_et.getText().toString());
+                            eventoData.setHora(hora_et.getText().toString());
+                            eventoData.setFecha(fecha_et.getText().toString());
+                            eventoData.setLugar(lugar_et.getText().toString());
+                            eventoData.setDescripcion(descripcion_et.getText().toString());
+                            eventoData.setCapacidadMaxima(22);
+                            eventoData.setCapacidadActual(eventoData.getParticipantes().size());
 
-                        if(nombre_et.getText().toString().equals("")) {
+                            if (nombre_et.getText().toString().equals("")) {
+                                dialog.cancel();
+                            } else {
+
+                                eventRef.child(nombre_et.getText().toString()).setValue(eventoData);
+                            }
                             dialog.cancel();
-                        }else {
-
-                            eventRef.child(nombre_et.getText().toString()).setValue(eventoData);
+                        } else {
+                            Toast.makeText(getApplicationContext(), check,
+                                    Toast.LENGTH_SHORT).show();
                         }
 
-                        dialog.cancel();
+
                     }
                 });
             }
         });
+    }
+
+    private String checkUnirseData() {
+        String err = "";
+        if (nombre_et.getText().toString().equals(""))
+            err += "El campo nombre es obligatorio\n";
+        if (descripcion_et.getText().toString().equals(""))
+            err += "El campo descripción es obligatorio\n";
+        if (lugar_et.getText().toString().equals(""))
+            err += "El campo lugar es obligatorio\n";
+        if (hora_et.getText().toString().equals(""))
+            err += "El campo hora es obligatorio\n";
+        if (fecha_et.getText().toString().equals(""))
+            err += "El campo fecha es obligatorio";
+        return err;
     }
 
     @Override
@@ -226,9 +251,10 @@ public class PruebaListarEvento extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void showEventInfo(EventoParcelable e) {
         Intent i = new Intent(this, PruebaEventoInfo.class);
-        i.putExtra("PARCELABLE",e);
+        i.putExtra("PARCELABLE", e);
         startActivity(i);
     }
 }
