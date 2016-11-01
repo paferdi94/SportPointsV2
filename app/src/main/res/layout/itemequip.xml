@@ -13,24 +13,14 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
-        <TextView
-            android:id="@+id/subti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_below="@+id/txtNombreEq"
-            android:layout_alignLeft="@+id/txtNombreEq"
-            android:layout_alignStart="@+id/txtNombreEq" />
-
         <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             card_view:srcCompat="@mipmap/logo_sport_points"
             android:id="@+id/imageView_equipo"
             android:layout_marginStart="21dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_width="75dp" />
 
         <TextView
             android:id="@+id/txtNombreEq"
@@ -39,9 +29,19 @@
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginLeft="13dp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/imageView_equipo"
-            android:layout_marginStart="42dp" />
+            android:layout_marginStart="26dp"
+            android:layout_alignTop="@+id/imageView_equipo"
+            android:layout_toEndOf="@+id/imageView_equipo" />
+
+        <TextView
+            android:id="@+id/subti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_alignBottom="@+id/imageView_equipo"
+            android:layout_alignStart="@+id/txtNombreEq"
+            android:layout_marginStart="11dp" />
 
 
     </RelativeLayout>

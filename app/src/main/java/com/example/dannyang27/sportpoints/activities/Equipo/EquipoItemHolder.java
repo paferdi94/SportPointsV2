@@ -19,12 +19,11 @@ import java.util.List;
 
 public class EquipoItemHolder extends ArrayAdapter<EquipoParceable> {
 
-    public TextView txtNombreEq, subti;
-    public ImageView imageView_equipo;
+    private TextView txtNombreEq, subti;
+    private ImageView imageView_equipo;
 
     public EquipoItemHolder(Context context, List<EquipoParceable> equipos) {
         super(context, 0, equipos);
-
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,7 +42,11 @@ public class EquipoItemHolder extends ArrayAdapter<EquipoParceable> {
         txtNombreEq.setText(ep.getNom());
         int jugadores = ep.getJugadores().size();
         int max_jugadores = ep.getMaxJugadores();
-        subti.setText(jugadores+"/"+max_jugadores);
+        if(max_jugadores==-1){
+            subti.setText("Jugadores: "+jugadores+"/∞");
+        }else{
+            subti.setText("Jugadores: "+jugadores+"/"+max_jugadores);
+        }
         imageView_equipo.setImageBitmap(ep.getLogo());
         return convertView;
     }

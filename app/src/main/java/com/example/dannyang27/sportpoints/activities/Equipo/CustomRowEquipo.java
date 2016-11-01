@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.PruebasDanny;
+package com.example.dannyang27.sportpoints.activities.Equipo;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

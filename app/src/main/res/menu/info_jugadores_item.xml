@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Search, should appear as action button -->
-    <item android:id="@+id/info_participantes"
+    <item android:id="@+id/info_jugadores"
         android:icon="@drawable/ic_information_outline"
         android:title="@string/info_equipo_item"
         app:showAsAction="always" />
