@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.*;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Base64Custom;
 import com.example.dannyang27.sportpoints.activities.CorrectoEquipo;
 import com.example.dannyang27.sportpoints.activities.MainActivity;
 import com.google.firebase.database.ChildEventListener;
@@ -89,15 +90,14 @@ public class CrearEquipo extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot data, String s) {
                 Map<String, Object> map = (Map<String, Object>) data.getValue();
-                byte[] decodedString = Base64.decode(map.get("logo").toString(), Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                Bitmap logo = Base64Custom.decodeBase64(map.get("logo").toString());
                 Equipo q = new Equipo(
                         data.getKey(),
                         map.get("nombre").toString(),
                         map.get("deporte").toString(),
                         map.get("jugadores").toString(),
                         Integer.parseInt(map.get("max_jugadores").toString()),
-                        decodedByte
+                        logo
                 );
                 equipos.add(q);
             }
@@ -177,8 +177,8 @@ public class CrearEquipo extends AppCompatActivity {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
-            int maxHeight = 600;
-            int maxWidth = 600;
+            int maxHeight = 200;
+            int maxWidth = 200;
             float scale = Math.min(((float)maxHeight / bitmap.getWidth()), ((float)maxWidth / bitmap.getHeight()));
             Matrix matrix = new Matrix();
             matrix.postScale(scale, scale);

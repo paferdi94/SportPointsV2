@@ -53,7 +53,7 @@ public class OpcionesChoser extends AppCompatActivity {
         Intent i = new Intent(this, ListarEquipo.class);
         i.putExtra("id_usuario",id_usuario);
         startActivity(i);
-        Toast.makeText(getApplicationContext(),"Cargando equipos...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Cargando equipos...", Toast.LENGTH_LONG).show();
 
     }
     public void toEventoView(View v){

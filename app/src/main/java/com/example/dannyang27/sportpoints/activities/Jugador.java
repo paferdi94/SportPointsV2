@@ -84,6 +84,7 @@ public class Jugador implements Parcelable {
     public Map<String, Object> toMap() {
 
         HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
         result.put("login", login);
         result.put("password", password);
         result.put("nombre", nombre);

@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.dannyang27.sportpoints.activities.CorrectoEquipo">
+    tools:context="com.example.dannyang27.sportpoints.activities.CorrectoUnirseEquipo">
 
     <ImageView
         android:layout_width="175dp"
@@ -30,5 +30,5 @@
         android:textSize="30sp"
         android:textStyle="normal|bold"
         android:textAlignment="center"
-        android:text="Equipo creado correctamente!" />
+        android:text="Te has unido correctamente!" />
 </RelativeLayout>

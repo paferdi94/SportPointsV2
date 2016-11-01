@@ -10,6 +10,8 @@ import android.os.Parcelable;
 import android.util.Base64;
 import android.util.Log;
 
+import com.example.dannyang27.sportpoints.activities.Base64Custom;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -111,10 +113,7 @@ public class Equipo {
         String jugadores_db = sb.toString();
         result.put("jugadores", jugadores_db);
         result.put("deporte", deporte);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        logo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        String logo_db = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        String logo_db = Base64Custom.encodeToBase64(logo,Bitmap.CompressFormat.PNG,100);
         result.put("logo", logo_db);
         result.put("max_jugadores",max_jug);
         return result;
