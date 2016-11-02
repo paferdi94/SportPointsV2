@@ -33,6 +33,8 @@ public class PruebaEventoInfo extends AppCompatActivity {
     private Button verParticipantes;
     private EventoParcelable evento;
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+    private EditText nombre_editText;
+    private EditText tlf_editText;
 
 
     @Override
@@ -81,8 +83,8 @@ public class PruebaEventoInfo extends AppCompatActivity {
                 dialog.setContentView(R.layout.join_event_dialog);
                 dialog.show();
 
-                final EditText nombre_editText = (EditText) dialog.findViewById(R.id.n_editText);
-                final EditText tlf_editText = (EditText) dialog.findViewById(R.id.tlf_editText);
+                nombre_editText = (EditText) dialog.findViewById(R.id.n_editText);
+                tlf_editText = (EditText) dialog.findViewById(R.id.tlf_editText);
                 Button cancel_btn = (Button) dialog.findViewById(R.id.cancel_btn);
                 Button submit_btn = (Button) dialog.findViewById(R.id.submit_btn);
 
@@ -96,27 +98,42 @@ public class PruebaEventoInfo extends AppCompatActivity {
                 submit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "Usuario añadido",
-                                Toast.LENGTH_SHORT).show();
+                        String check = checkUnirseData();
+                        if (check.equals("")) {
+                            Toast.makeText(getApplicationContext(), "Usuario añadido",
+                                    Toast.LENGTH_SHORT).show();
 
-                        DatabaseReference eventoRef = mRef.child("Eventos");
-                        Participante part = new Participante(nombre_editText.getText().toString(),
-                                tlf_editText.getText().toString());
+                            DatabaseReference eventoRef = mRef.child("Eventos");
+                            Participante part = new Participante(nombre_editText.getText().toString(),
+                                    tlf_editText.getText().toString());
 
 
+                            eventoRef.child(evento.getNombre().toString()).child("Participantes")
+                                    .push()
+                                    .setValue(part);
+                            dialog.cancel();
 
+                        } else {
+                            Toast.makeText(getApplicationContext(), check,
+                                    Toast.LENGTH_SHORT).show();
+                        }
 
-                        eventoRef.child(evento.getNombre().toString()).child("Participantes")
-                                .push()
-                                .setValue(part);
-
-                        dialog.cancel();
                     }
                 });
 
             }
         });
     }
+
+    private String checkUnirseData() {
+        String err = "";
+        if (nombre_editText.getText().toString().equals(""))
+            err += "El campo nombre es obligatorio\n";
+        if (tlf_editText.getText().toString().equals(""))
+            err += "El campo teléfono es obligatorio";
+        return err;
+    }
+
 
     private void goListarParticipantes(EventoParcelable e) {
         Intent i = new Intent(this, ListarParticipantes.class);

@@ -22,14 +22,14 @@
         android:paddingBottom="12dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:paddingTop="12dp">
+        android:paddingTop="12dp"
+        android:layout_below="@+id/toolbar_id_2">
 
         <ListView
             android:id="@+id/equipo_listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
             android:scrollbars="none"/>
 
         <android.support.design.widget.FloatingActionButton
