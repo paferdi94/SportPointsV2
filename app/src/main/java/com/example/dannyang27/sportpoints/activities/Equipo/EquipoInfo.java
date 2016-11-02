@@ -78,8 +78,9 @@ public class EquipoInfo extends AppCompatActivity {
     }
 
     public void correctoUnirseEquipo(){
-        Intent i = new Intent(this, CorrectoUnirseEquipo.class);
-        startActivityForResult(i,EQUIPO_UNIDO_CORRECTO);
+        //Intent i = new Intent(this, CorrectoUnirseEquipo.class);
+        //startActivityForResult(i,EQUIPO_UNIDO_CORRECTO);
+        Toast.makeText(getApplicationContext(), "Te has unido correctamente al equipo.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -114,9 +115,13 @@ public class EquipoInfo extends AppCompatActivity {
     }
 
     private void goListarJugadores(EquipoParceable e) {
-        Intent i = new Intent(this, ListarJugadores.class);
-        i.putExtra("Equipo", e);
-        startActivity(i);
+        if(equipo.getJugadores().size()>0) {
+            Intent i = new Intent(this, ListarJugadores.class);
+            i.putExtra("Equipo", e);
+            startActivity(i);
+        }else{
+            Toast.makeText(getApplicationContext(), "No hay ningun jugador.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private Boolean comprobarDatos(){
