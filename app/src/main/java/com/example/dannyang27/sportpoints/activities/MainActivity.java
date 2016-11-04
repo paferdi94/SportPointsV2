@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         childUpdatesEq.put("/Equipos/" + id_jug, postValuesEq);
         mRef.updateChildren(childUpdatesEq);
         */
-        id_usuario = "-KVWlehfoK3ZaeQnbOwr";
+        id_usuario = "-KVLiykWMQXr4_aQf8tz";
         //cargar fuentes
         TextView title_txt = (TextView) findViewById(R.id.title_txt);
         title_txt.setTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/AlfaSlabOne-Regular.ttf"));
