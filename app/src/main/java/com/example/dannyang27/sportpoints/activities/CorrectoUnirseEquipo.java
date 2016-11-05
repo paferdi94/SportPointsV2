@@ -16,7 +16,7 @@ public class CorrectoUnirseEquipo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.correcto_unirse_equipo);
+        setContentView(R.layout.equipo_CorrectoUnirse);
 
         img = (ImageView) findViewById(R.id.imageView);
         correcto_txt = (TextView) findViewById(R.id.correcto_txt);

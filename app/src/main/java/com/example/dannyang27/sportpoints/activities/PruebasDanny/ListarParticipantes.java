@@ -2,7 +2,6 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +33,7 @@ public class ListarParticipantes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_participantes);
+        setContentView(R.layout.evento_ActivityListarParticipantes);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_4);
         toolbar.setTitle("LISTA PARTICIPANTES");

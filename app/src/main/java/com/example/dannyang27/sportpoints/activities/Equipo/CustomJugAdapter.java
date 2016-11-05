@@ -2,7 +2,6 @@ package com.example.dannyang27.sportpoints.activities.Equipo;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Jugador;
-import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class CustomJugAdapter extends ArrayAdapter<Jugador> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.custom_adapter_jug,parent,false);
+            convertView = inflater.inflate(R.layout.equipo_CustomAdapterJug,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre_jug_id);

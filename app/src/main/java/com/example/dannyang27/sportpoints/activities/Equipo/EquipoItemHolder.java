@@ -31,7 +31,7 @@ public class EquipoItemHolder extends ArrayAdapter<EquipoParceable> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.itemequip, parent, false);
+            convertView = inflater.inflate(R.layout.equipo_Item, parent, false);
         }
 
         txtNombreEq = (TextView) convertView.findViewById(R.id.txtNombreEq);

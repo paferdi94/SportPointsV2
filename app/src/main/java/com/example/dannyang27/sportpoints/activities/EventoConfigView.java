@@ -1,17 +1,10 @@
 package com.example.dannyang27.sportpoints.activities;
 
-import android.app.Dialog;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
@@ -29,7 +22,7 @@ public class EventoConfigView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.evento_config_view);
+        setContentView(R.layout.evento_ConfigView);
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -72,7 +65,7 @@ public class EventoConfigView extends AppCompatActivity {
 //                Toast.makeText(getApplicationContext(),"Pulsado", Toast.LENGTH_SHORT).show();
 //                final Dialog dialog = new Dialog(EventoConfigView.this);
 //                //dialog.setTitle("WOW");
-//                dialog.setContentView(R.layout.join_event_dialog);
+//                dialog.setContentView(R.layout.evento_JoinDialog);
 //                dialog.show();
 //
 //                final EditText nombre_editText = (EditText) dialog.findViewById(R.id.n_editText);

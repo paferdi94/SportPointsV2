@@ -17,7 +17,7 @@ public class alta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alta_1);
+        setContentView(R.layout.extra_Alta1);
 
         atras = (Button) findViewById(R.id.atras_button);
         siguiente = (Button) findViewById(R.id.siguiente_button1);

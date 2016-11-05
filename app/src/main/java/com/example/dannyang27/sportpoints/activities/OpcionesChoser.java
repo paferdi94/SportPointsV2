@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo;
 import com.example.dannyang27.sportpoints.activities.Equipo.ListarEquipo;
 import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaListarEvento;
 
@@ -24,7 +23,7 @@ public class OpcionesChoser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.opciones_choser);
+        setContentView(R.layout.extra_OpcionesChoser);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id);
         toolbar.setTitle(getResources().getString(R.string.entrar_en_toolbar));

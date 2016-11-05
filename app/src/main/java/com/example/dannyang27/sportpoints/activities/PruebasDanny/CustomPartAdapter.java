@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class CustomPartAdapter extends ArrayAdapter<Participante> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.custom_adapter_part,parent,false);
+            convertView = inflater.inflate(R.layout.evento_CustomAdapterPart,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre_part_id);

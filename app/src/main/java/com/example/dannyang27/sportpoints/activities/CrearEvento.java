@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
@@ -30,7 +29,7 @@ public class CrearEvento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_evento);
+        setContentView(R.layout.evento_Crear);
 
         //Precargar custom toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

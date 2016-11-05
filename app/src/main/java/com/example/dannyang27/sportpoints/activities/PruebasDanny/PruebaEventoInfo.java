@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.EventoConfigView;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +39,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prueba_evento_info);
+        setContentView(R.layout.evento_PruebaInfo);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_3);
         toolbar.setTitle("INFORMACION EVENTO");
@@ -80,7 +79,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
             public void onClick(View view) {
                 // Toast.makeText(getApplicationContext(),"Pulsado", Toast.LENGTH_SHORT).show();
                 final Dialog dialog = new Dialog(PruebaEventoInfo.this);
-                dialog.setContentView(R.layout.join_event_dialog);
+                dialog.setContentView(R.layout.evento_JoinDialog);
                 dialog.show();
 
                 nombre_editText = (EditText) dialog.findViewById(R.id.n_editText);
