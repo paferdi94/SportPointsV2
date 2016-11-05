@@ -50,7 +50,7 @@ public class EventoInfo extends AppCompatActivity {
         super.onStart();
         FirebaseRecyclerAdapter<Evento, EventoItemHolder> adapter = new FirebaseRecyclerAdapter<Evento, EventoItemHolder>(
                 Evento.class,
-                R.layout.evento_Item,
+                R.layout.evento_item,
                 EventoItemHolder.class,
                 mRef
         ) {

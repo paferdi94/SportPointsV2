@@ -24,7 +24,7 @@ public class PerfilAlta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_PerfilAlta);
+        setContentView(R.layout.extra_perfil_alta);
 
         nombre_field = (EditText) findViewById(R.id.nombre_field);
         apellidos_field = (EditText) findViewById(R.id.apellidos_field);

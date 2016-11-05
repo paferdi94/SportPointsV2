@@ -29,7 +29,7 @@ public class CustomJugAdapter extends ArrayAdapter<Jugador> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.equipo_CustomAdapterJug,parent,false);
+            convertView = inflater.inflate(R.layout.equipo_custom_adapter_jug,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre_jug_id);

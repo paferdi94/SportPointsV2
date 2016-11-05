@@ -29,7 +29,7 @@ public class CustomRowEvento extends ArrayAdapter<EventoParcelable> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.evento_CustomRow,parent,false);
+            convertView = inflater.inflate(R.layout.evento_custom_row,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nameTxt);

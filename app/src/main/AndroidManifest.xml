@@ -34,7 +34,7 @@
         <activity android:name=".activities.PruebasDanny.PruebaListarEvento" />
         <activity android:name=".activities.CrearEvento" />
         <activity android:name=".activities.Equipo.CrearEquipo" />
-        <activity android:name=".activities.CorrectoEquipo" />
+        <activity android:name=".activities.Equipo.CorrectoEquipo" />
         <activity android:name=".activities.CorrectoUnirseEquipo" />
         <activity android:name=".activities.Equipo.ListarJugadores" />
         <activity android:name=".activities.Equipo.ListarEquipo" />
