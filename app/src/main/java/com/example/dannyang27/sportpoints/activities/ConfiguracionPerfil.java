@@ -10,6 +10,6 @@ public class ConfiguracionPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.configuracion_perfil);
+        setContentView(R.layout.extra_ConfiguracionPerfil);
     }
 }

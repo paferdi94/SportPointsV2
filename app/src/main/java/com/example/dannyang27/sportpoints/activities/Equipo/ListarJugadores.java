@@ -3,19 +3,14 @@ package com.example.dannyang27.sportpoints.activities.Equipo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Jugador;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
-import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.CustomPartAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +37,7 @@ public class ListarJugadores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_jugadores);
+        setContentView(R.layout.equipo_ActivityListarJugadores);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_4);
         toolbar.setTitle("LISTA JUGADORES");
@@ -94,7 +89,7 @@ public class ListarJugadores extends AppCompatActivity {
                 Date fechaNacimiento = new Date();
                 hmUsu.put(dataSnapshot.getKey(),new Jugador(
                         dataSnapshot.getKey(),
-                        map.get("login").toString(),
+                        map.get("extra_Login").toString(),
                         map.get("password").toString(),
                         map.get("nombre").toString(),
                         map.get("apellidos").toString(),

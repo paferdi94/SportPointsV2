@@ -1,29 +1,13 @@
 package com.example.dannyang27.sportpoints.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.google.firebase.database.*;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.extra_Main);
 
         /*
         //Crear Usuario de prueba
@@ -52,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         childUpdatesEq.put("/Equipos/" + id_jug, postValuesEq);
         mRef.updateChildren(childUpdatesEq);
         */
-        id_usuario = "-KVWlehfoK3ZaeQnbOwr";
+        id_usuario = "-KVLiykWMQXr4_aQf8tz";
         //cargar fuentes
         TextView title_txt = (TextView) findViewById(R.id.title_txt);
         title_txt.setTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/AlfaSlabOne-Regular.ttf"));

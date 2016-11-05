@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.view.View;
 import android.widget.*;
 
@@ -48,7 +47,7 @@ public class CrearEquipo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_equipo);
+        setContentView(R.layout.equipo_Crear);
         Intent intent = getIntent();
         id_usuario = intent.getStringExtra("id_usuario");
 

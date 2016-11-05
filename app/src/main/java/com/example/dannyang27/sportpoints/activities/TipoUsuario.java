@@ -20,7 +20,7 @@ public class TipoUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tipo_usuario);
+        setContentView(R.layout.extra_TipoUsuario);
 
         //Precargar custom toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

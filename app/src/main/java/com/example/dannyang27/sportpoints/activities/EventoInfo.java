@@ -3,7 +3,6 @@ package com.example.dannyang27.sportpoints.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,7 +50,7 @@ public class EventoInfo extends AppCompatActivity {
         super.onStart();
         FirebaseRecyclerAdapter<Evento, EventoItemHolder> adapter = new FirebaseRecyclerAdapter<Evento, EventoItemHolder>(
                 Evento.class,
-                R.layout.evento_item,
+                R.layout.evento_Item,
                 EventoItemHolder.class,
                 mRef
         ) {

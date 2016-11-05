@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/prueba_listar_evento" />
+    <include layout="@layout/evento_PruebaListar" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,21 +1,16 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,7 +29,7 @@ public class CustomRowEvento extends ArrayAdapter<EventoParcelable> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.custom_row_evento,parent,false);
+            convertView = inflater.inflate(R.layout.evento_CustomRow,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nameTxt);

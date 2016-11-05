@@ -54,7 +54,7 @@ public class PruebaListarEvento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prueba_listar_evento);
+        setContentView(R.layout.evento_PruebaListar);
 
 
         //Creacion de EventosParcelables
@@ -170,7 +170,7 @@ public class PruebaListarEvento extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(PruebaListarEvento.this);
-                dialog.setContentView(R.layout.create_event_dialog);
+                dialog.setContentView(R.layout.evento_CreateDialog);
                 dialog.show();
 
                 nombre_et = (EditText) dialog.findViewById(R.id.nombre_id);

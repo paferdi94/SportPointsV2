@@ -16,7 +16,7 @@ public class CorrectoEquipo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.correcto_equipo);
+        setContentView(R.layout.extra_Correcto);
 
         img = (ImageView) findViewById(R.id.imageView);
         correcto_txt = (TextView) findViewById(R.id.correcto_txt);

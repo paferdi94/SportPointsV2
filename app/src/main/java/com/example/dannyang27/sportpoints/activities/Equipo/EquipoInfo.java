@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.CorrectoUnirseEquipo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,7 +37,7 @@ public class EquipoInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equipo_info);
+        setContentView(R.layout.equipo_Info);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_3);
         toolbar.setTitle("INFORMACION EQUIPO");
@@ -78,9 +77,8 @@ public class EquipoInfo extends AppCompatActivity {
     }
 
     public void correctoUnirseEquipo(){
-        //Intent i = new Intent(this, CorrectoUnirseEquipo.class);
-        //startActivityForResult(i,EQUIPO_UNIDO_CORRECTO);
-        Toast.makeText(getApplicationContext(), "Te has unido correctamente al equipo.", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, CorrectoUnirseEquipo.class);
+        startActivityForResult(i,EQUIPO_UNIDO_CORRECTO);
     }
 
     @Override
@@ -115,13 +113,9 @@ public class EquipoInfo extends AppCompatActivity {
     }
 
     private void goListarJugadores(EquipoParceable e) {
-        if(equipo.getJugadores().size()>0) {
-            Intent i = new Intent(this, ListarJugadores.class);
-            i.putExtra("Equipo", e);
-            startActivity(i);
-        }else{
-            Toast.makeText(getApplicationContext(), "No hay ningun jugador.", Toast.LENGTH_SHORT).show();
-        }
+        Intent i = new Intent(this, ListarJugadores.class);
+        i.putExtra("Equipo", e);
+        startActivity(i);
     }
 
     private Boolean comprobarDatos(){
