@@ -25,7 +25,7 @@ public class Deportes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_Deportes);
+        setContentView(R.layout.extra_deportes);
 
         email_field = (EditText) findViewById(R.id.email_field);
         password1_field = (EditText) findViewById(R.id.contrasenya1_field);

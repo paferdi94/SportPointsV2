@@ -37,7 +37,7 @@ public class ListarEquipo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equipo_Lista);
+        setContentView(R.layout.equipo_lista);
         Intent intent = getIntent();
         id_usuario = intent.getStringExtra("id_usuario");
         //filter = (EditText) findViewById(R.id.filter_id1);

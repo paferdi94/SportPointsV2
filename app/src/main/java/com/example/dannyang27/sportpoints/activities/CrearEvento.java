@@ -29,7 +29,7 @@ public class CrearEvento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.evento_Crear);
+        setContentView(R.layout.evento_crear);
 
         //Precargar custom toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

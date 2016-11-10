@@ -29,7 +29,7 @@ public class CustomPartAdapter extends ArrayAdapter<Participante> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.evento_CustomAdapterPart,parent,false);
+            convertView = inflater.inflate(R.layout.evento_custom_adapter_part,parent,false);
         }
 
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre_part_id);

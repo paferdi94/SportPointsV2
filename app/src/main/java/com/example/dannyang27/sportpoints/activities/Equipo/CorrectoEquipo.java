@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities;
+package com.example.dannyang27.sportpoints.activities.Equipo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ public class CorrectoEquipo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_Correcto);
+        setContentView(R.layout.extra_correcto);
 
         img = (ImageView) findViewById(R.id.imageView);
         correcto_txt = (TextView) findViewById(R.id.correcto_txt);

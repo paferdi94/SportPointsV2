@@ -37,7 +37,7 @@ public class ListarJugadores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equipo_ActivityListarJugadores);
+        setContentView(R.layout.equipo_activity_listar_jugadores);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_4);
         toolbar.setTitle("LISTA JUGADORES");

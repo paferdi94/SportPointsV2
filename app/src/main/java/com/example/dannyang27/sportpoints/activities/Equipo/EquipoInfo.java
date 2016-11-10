@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.CorrectoUnirseEquipo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,7 +38,7 @@ public class EquipoInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equipo_Info);
+        setContentView(R.layout.equipo_info);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id_3);
         toolbar.setTitle("INFORMACION EQUIPO");
