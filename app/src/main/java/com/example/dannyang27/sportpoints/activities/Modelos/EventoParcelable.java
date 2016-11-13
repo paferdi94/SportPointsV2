@@ -2,6 +2,7 @@ package com.example.dannyang27.sportpoints.activities.Modelos;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,16 @@ public class EventoParcelable implements Parcelable {
     private String descripcion;
     private int capacidadActual;
     private int capacidadMaxima;
+    private String eventoPhoto;
+
+    public String getEventoPhoto() {
+        return eventoPhoto;
+    }
+
+    public void setEventoPhoto(String eventoPhoto) {
+        this.eventoPhoto = eventoPhoto;
+    }
+
     private List<Participante> participantes = new ArrayList<>();
 
     public String getNombre() {
@@ -80,6 +91,9 @@ public class EventoParcelable implements Parcelable {
         this.participantes = participantes;
     }
 
+    public EventoParcelable() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -94,10 +108,8 @@ public class EventoParcelable implements Parcelable {
         dest.writeString(this.descripcion);
         dest.writeInt(this.capacidadActual);
         dest.writeInt(this.capacidadMaxima);
+        dest.writeString(this.eventoPhoto);
         dest.writeList(this.participantes);
-    }
-
-    public EventoParcelable() {
     }
 
     protected EventoParcelable(Parcel in) {
@@ -108,6 +120,7 @@ public class EventoParcelable implements Parcelable {
         this.descripcion = in.readString();
         this.capacidadActual = in.readInt();
         this.capacidadMaxima = in.readInt();
+        this.eventoPhoto = in.readString();
         this.participantes = new ArrayList<Participante>();
         in.readList(this.participantes, Participante.class.getClassLoader());
     }
