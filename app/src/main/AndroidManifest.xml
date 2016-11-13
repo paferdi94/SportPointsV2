@@ -41,7 +41,6 @@
         <activity android:name=".activities.PruebasDanny.PruebaEventoInfo" />
         <activity android:name=".activities.PruebasDanny.ListarParticipantes" />
         <activity android:name=".activities.PruebasDanny.PruebaBajadaImagen" />
-        <activity android:name=".activities.PruebasDanny.EventoFragment" />
         <activity android:name=".activities.PruebasDanny.PruebaTab" />
         <activity android:name=".activities.PruebasDanny.EventoInfo_MD"></activity>
     </application>
