@@ -1,5 +1,6 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,10 +43,15 @@ public class EventoInfo_MD extends AppCompatActivity {
         btn_evento_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Boton pulsado", Toast.LENGTH_LONG).show();
+               showParticipantesInfo();
             }
         });
 
 
+    }
+
+    private void showParticipantesInfo() {
+        Intent i = new Intent(this, PruebaListarParticipantes.class);
+        startActivity(i);
     }
 }
