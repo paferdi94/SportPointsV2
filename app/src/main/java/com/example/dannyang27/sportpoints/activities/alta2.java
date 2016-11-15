@@ -10,7 +10,7 @@ public class alta2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_Alta2);
+        setContentView(R.layout.extra_alta2);
 
     }
 }

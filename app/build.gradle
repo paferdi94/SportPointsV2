@@ -40,5 +40,6 @@ dependencies {
     //Librería FireBase para poder utilizar el FireBaseRecyclerAdapter
     compile 'com.firebaseui:firebase-ui:0.6.2'
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
 }
 apply plugin: 'com.google.gms.google-services'

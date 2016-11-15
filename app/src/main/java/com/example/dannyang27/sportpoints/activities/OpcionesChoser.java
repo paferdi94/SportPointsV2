@@ -23,7 +23,7 @@ public class OpcionesChoser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_OpcionesChoser);
+        setContentView(R.layout.extra_opciones_choser);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id);
         toolbar.setTitle(getResources().getString(R.string.entrar_en_toolbar));

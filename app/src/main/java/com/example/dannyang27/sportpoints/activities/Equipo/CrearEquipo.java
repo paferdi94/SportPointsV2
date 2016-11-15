@@ -15,7 +15,6 @@ import android.widget.*;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Base64Custom;
-import com.example.dannyang27.sportpoints.activities.CorrectoEquipo;
 import com.example.dannyang27.sportpoints.activities.MainActivity;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +46,7 @@ public class CrearEquipo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equipo_Crear);
+        setContentView(R.layout.equipo_crear);
         Intent intent = getIntent();
         id_usuario = intent.getStringExtra("id_usuario");
 

@@ -15,7 +15,7 @@ public class CorrectoAlta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equipo_CorrectoAlta);
+        setContentView(R.layout.equipo_correcto_alta);
 
         img = (ImageView) findViewById(R.id.imageView);
         correcto_txt = (TextView) findViewById(R.id.correcto_txt);

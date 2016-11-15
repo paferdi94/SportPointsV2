@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaTab;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_Main);
+        setContentView(R.layout.extra_main);
 
         /*
         //Crear Usuario de prueba
@@ -51,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 //                break;
             case R.id.login_btn:
 
-                intent = new Intent(this, OpcionesChoser.class);
-                intent.putExtra("id_usuario",id_usuario);
+                intent = new Intent(this,PruebaTab.class);
+               // intent.putExtra("id_usuario",id_usuario);
                 break;
         }
         startActivity(intent);
