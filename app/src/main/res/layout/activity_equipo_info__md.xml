@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_equipo_info__md"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoInfo_MD">
+
+
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
+                android:id="@+id/image_equipo_info_md"
+                android:layout_width="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_height="90dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Participantes: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView21"
+                android:layout_alignBottom="@+id/image_equipo_info_md"
+                android:layout_alignStart="@+id/textView16" />
+
+            <TextView
+                android:text="Deporte: "
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:id="@+id/textView16"
+                android:layout_width="60dp"
+                android:layout_above="@+id/textView21"
+                android:layout_toEndOf="@+id/image_equipo_info_md" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/participantes_equipo_info_md"
+                android:layout_below="@+id/deporte_equipo_info_md"
+                android:layout_toEndOf="@+id/textView21" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_height="wrap_content"
+                android:id="@+id/deporte_equipo_info_md"
+                android:layout_width="150dp"
+                android:layout_alignBaseline="@+id/textView16"
+                android:layout_alignBottom="@+id/textView16"
+                android:layout_toEndOf="@+id/textView16" />
+
+            <Button
+                android:text="VER PARTICIPANTES"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_equipo_info_md"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:id="@+id/verParticipantes_equipo_info_md"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#66cc66"/>
+
+            <Button
+                android:text="UNIRSE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="77dp"
+                android:id="@+id/unirse_equipo_info_md"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#66cc66"
+                android:layout_below="@id/participantes_equipo_info_md"
+                />
+
+            <TextView
+                android:text="Nombre: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView18"
+                android:layout_above="@+id/textView16"
+                android:layout_alignStart="@+id/textView16" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_height="wrap_content"
+                android:id="@+id/nombre_equipo_info_md"
+                android:layout_above="@+id/deporte_equipo_info_md"
+                android:layout_toEndOf="@+id/textView16"
+                android:layout_width="150dp" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cardView"
+        android:layout_alignParentStart="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Descripción"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="13dp"
+                android:id="@+id/textView23"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/descripcion_equipo_info_md"
+                android:layout_below="@+id/textView23"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
