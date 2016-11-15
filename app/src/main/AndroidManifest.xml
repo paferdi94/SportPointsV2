@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.PruebasDanny.LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +43,9 @@
         <activity android:name=".activities.PruebasDanny.PruebaBajadaImagen" />
         <activity android:name=".activities.PruebasDanny.PruebaTab" />
         <activity android:name=".activities.PruebasDanny.EventoInfo_MD" />
-        <activity android:name=".activities.PruebasDanny.PruebaListarParticipantes"></activity>
+        <activity android:name=".activities.PruebasDanny.PruebaListarParticipantes" />
+
+        <activity android:name=".activities.PruebasDanny.Registro"></activity>
     </application>
 
 </manifest>
