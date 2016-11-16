@@ -103,6 +103,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                             DatabaseReference eventoRef = mRef.child("Eventos");
+                            /*
                             Participante part = new Participante(nombre_editText.getText().toString(),
                                     tlf_editText.getText().toString());
 
@@ -110,6 +111,7 @@ public class PruebaEventoInfo extends AppCompatActivity {
                             eventoRef.child(evento.getNombre().toString()).child("Participantes")
                                     .push()
                                     .setValue(part);
+                             */
                             dialog.cancel();
 
                         } else {

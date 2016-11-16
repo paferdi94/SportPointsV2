@@ -27,7 +27,7 @@ public class EquipoFragmento extends Fragment {
         RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id_equipo);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
 
-        RecyclerAdapterEquipo adapter = new RecyclerAdapterEquipo();
+        RecyclerAdapterEquipo adapter = new RecyclerAdapterEquipo(getContext());
         adapter.addEquipos();
         rv.setAdapter(adapter);
 

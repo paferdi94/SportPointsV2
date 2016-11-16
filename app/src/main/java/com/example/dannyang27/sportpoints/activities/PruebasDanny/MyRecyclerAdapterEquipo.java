@@ -4,6 +4,8 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
  * Created by Dannyang27 on 13/11/16.
  */
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo;
 import com.example.dannyang27.sportpoints.activities.Equipo.EquipoParceable;
 
 import java.util.ArrayList;
@@ -22,6 +25,11 @@ import java.util.ArrayList;
  */
 class RecyclerAdapterEquipo extends RecyclerView.Adapter<RecyclerAdapterEquipo.ViewHolder> {
 
+    private Context context;
+
+    public RecyclerAdapterEquipo(Context context) {
+        this.context = context;
+    }
 
     ArrayList<EquipoParceable> listaEquipos = new ArrayList<>();
 
@@ -54,9 +62,14 @@ class RecyclerAdapterEquipo extends RecyclerView.Adapter<RecyclerAdapterEquipo.V
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    view.getContext().startActivity(new Intent(context, EquipoInfo_MD.class));
+
+
+                    /*
                     int position = getAdapterPosition();
                     Snackbar.make(view, "Click detected on item: " + position,
                             Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                     */
                 }
             });
         }
