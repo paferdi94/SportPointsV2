@@ -21,6 +21,7 @@ public class EventoInfo_MD extends AppCompatActivity {
     private TextView fecha_evento_info;
     private TextView hora_evento_info;
     private Button btn_evento_info;
+    private Button unirse_btn;
     private TextView descripcion_evento_info;
 
 
@@ -29,6 +30,7 @@ public class EventoInfo_MD extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_info__md);
 
+        unirse_btn = (Button) findViewById(R.id.unirse_evento_md);
         evento_info_img = (ImageView) findViewById(R.id.evento_info_img);
         nombre_evento_info = (TextView) findViewById(R.id.nombre_evento_info_md);
         lugar_evento_info = (TextView) findViewById(R.id.lugar_evento_info_md);
@@ -54,6 +56,13 @@ public class EventoInfo_MD extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                showParticipantesInfo();
+            }
+        });
+
+        unirse_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Unirse no implementado", Toast.LENGTH_LONG).show();
             }
         });
 

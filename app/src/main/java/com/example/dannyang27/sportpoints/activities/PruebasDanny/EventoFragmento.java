@@ -3,6 +3,7 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,8 @@ import com.example.dannyang27.sportpoints.R;
  */
 public class EventoFragmento extends Fragment {
     Context c;
+    FloatingActionButton fab;
+    FloatingActionButton fab2;
 
 
     @Nullable
@@ -27,9 +30,21 @@ public class EventoFragmento extends Fragment {
 
         View v = inflater.inflate(R.layout.aaa_activity_evento_fragmento, container, false);
         RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id);
+        fab = (FloatingActionButton) v.findViewById(R.id.fab_evento_md);
+        fab2 = (FloatingActionButton) v.findViewById(R.id.fab2_evento_md);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         //rv.setLayoutManager(layoutManager);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //fab2.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(), "Fab pulsado ", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
 
         RecyclerAdapter adapter = new RecyclerAdapter(getContext());
         adapter.addEventos();
@@ -46,4 +61,6 @@ public class EventoFragmento extends Fragment {
         super.onAttach(context);
         c= context;
     }
+
+
 }
