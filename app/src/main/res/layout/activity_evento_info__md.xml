@@ -79,18 +79,28 @@
                     android:layout_marginTop="19dp"
                     android:layout_below="@+id/nombre_evento_info_md"
                     android:layout_alignStart="@+id/hora_evento_info_md" />
+
                 <Button
                     android:text="VER PARTICIPANTES"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/hora_evento_info_md"
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/btn_evento_info_md"
-                    android:layout_marginStart="50dp"
+                    android:textColor="#66cc66"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_below="@+id/hora_evento_info_md"
+                    android:layout_alignStart="@+id/hora_evento_info_md" />
+
+                <Button
+                    android:text="UNIRSE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/unirse_evento_md"
+                    android:layout_below="@+id/hora_evento_info_md"
+                    android:layout_toEndOf="@+id/btn_evento_info_md"
+                    android:layout_marginStart="10dp"
+                    android:elevation="0dp"
                     android:textColor="#66cc66"
                     style="?android:attr/borderlessButtonStyle"/>
-
-
 
 
             </RelativeLayout>
