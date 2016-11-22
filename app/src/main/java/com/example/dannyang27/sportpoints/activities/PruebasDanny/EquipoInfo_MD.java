@@ -2,9 +2,11 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 
@@ -50,5 +52,23 @@ public class EquipoInfo_MD extends AppCompatActivity {
                 " eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque " +
                 "earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus" +
                 " maiores alias consequatur aut perferendis doloribus asperiores repellat.");
+
+    verPartBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getApplicationContext(),"No implementado ;)", Toast.LENGTH_LONG).show();
+        }
+    });
+
+        unirseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"No implementado :(", Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
+
+
+
 }
