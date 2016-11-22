@@ -45,7 +45,8 @@
         <activity android:name=".activities.PruebasDanny.EventoInfo_MD" />
         <activity android:name=".activities.PruebasDanny.PruebaListarParticipantes" />
         <activity android:name=".activities.PruebasDanny.Registro" />
-        <activity android:name=".activities.PruebasDanny.EquipoInfo_MD"></activity>
+        <activity android:name=".activities.PruebasDanny.EquipoInfo_MD" />
+        <activity android:name=".activities.PruebasDanny.DialogCrearEvento"></activity>
     </application>
 
 </manifest>
