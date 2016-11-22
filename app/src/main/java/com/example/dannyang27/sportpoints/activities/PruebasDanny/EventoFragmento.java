@@ -44,7 +44,7 @@ public class EventoFragmento extends Fragment {
     FloatingActionButton fab;
     //FloatingActionButton fab2;
     DatabaseReference mDataRef;
-    static String nombreImagen;
+    static String nombreImagen = "";
 
     public static final int GALLERY_INTENT = 2;
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
@@ -108,27 +108,45 @@ public class EventoFragmento extends Fragment {
                 fecha_et = (EditText) dialog.findViewById(R.id.fecha_dialog_evento);
                 cancelar_btn = (Button) dialog.findViewById(R.id.cancelarBtn_dialog_evento);
                 crear_btn = (Button) dialog.findViewById(R.id.crearBtn_dialog_evento);
-
                 crear_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(dialog.getContext(), "Evento creado ", Toast.LENGTH_LONG).show();
+                        String camposObligatorios="";
+                       if(nombre_et.getText().toString().equals("")){
+                           camposObligatorios += "Introduzca el nombre del evento\n";
+                       }
+                       if(lugar_et.getText().toString().equals("")){
+                           camposObligatorios += "Introduzca el lugar del evento\n";
+                       }
+                       if(hora_et.getText().toString().equals("")){
+                            camposObligatorios += "Introduzca la hora del evento\n";
+                        }
+                       if(fecha_et.getText().toString().equals("")){
+                           camposObligatorios += "Introduzca la fecha del evento\n";
+                       }
 
-                        DatabaseReference mRefEventos = mDataRef.child("Eventos");
-                        ArrayList<Participante> participantes = new ArrayList<Participante>();
-                        participantes.add(new Participante("X2084394","daskdjhsa@dkhaksd.com","12/1/1","4564564","dasdasdas"));
-                        EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagen(),
-                                nombre_et.getText().toString(),
-                                lugar_et.getText().toString(),
-                                hora_et.getText().toString(),
-                                fecha_et.getText().toString(),
-                                "Descripcion lalala","dannyang27","1","22", participantes);
-                        mRefEventos.child(nombre_et.getText().toString()).setValue(e);
+                        if(camposObligatorios.length()==0){
+                            DatabaseReference mRefEventos = mDataRef.child("Eventos");
+                            ArrayList<String> participantes = new ArrayList<String>();
+                            participantes.add("Pepi");
+                            participantes.add("Iban");
+                            participantes.add("Guillem");
+                            participantes.add("Le Danny");
+                            EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagen(),
+                                    nombre_et.getText().toString(),
+                                    lugar_et.getText().toString(),
+                                    hora_et.getText().toString(),
+                                    fecha_et.getText().toString(),
+                                    "Descripcion lalala","dannyang27","1","22", participantes);
+                            mRefEventos.child(nombre_et.getText().toString()).setValue(e);
+                            Toast.makeText(dialog.getContext(), "Evento creado ", Toast.LENGTH_LONG).show();
+                            dialog.cancel();
+                        }else{
+                            Toast.makeText(getContext(), camposObligatorios.substring(0, camposObligatorios.length()-1),Toast.LENGTH_SHORT).show();
+                        }
 
-                        dialog.cancel();
                     }
                 });
-
                 cancelar_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -146,13 +164,8 @@ public class EventoFragmento extends Fragment {
 
                     }
                 });
-
-
             }
         });
-
-
-
 
         RecyclerAdapter adapter = new RecyclerAdapter(getContext());
         adapter.addEventos();

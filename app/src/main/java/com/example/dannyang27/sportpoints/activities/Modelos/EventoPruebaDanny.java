@@ -21,14 +21,14 @@ public class EventoPruebaDanny implements Parcelable {
     private String admin;
     private String capacidadActual;
     private String capacidadMaxima;
-    private ArrayList<Participante> participantes = new ArrayList<>();
+    private ArrayList<String> participantes = new ArrayList<>();
 
     public EventoPruebaDanny() {
     }
 
     public EventoPruebaDanny(String imagen, String nombre, String lugar, String hora, String fecha,
                              String descripcion, String admin, String capacidadActual,
-                             String capacidadMaxima, ArrayList<Participante> participantes) {
+                             String capacidadMaxima, ArrayList<String> participantes) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.lugar = lugar;
@@ -113,11 +113,11 @@ public class EventoPruebaDanny implements Parcelable {
         this.capacidadMaxima = capacidadMaxima;
     }
 
-    public ArrayList<Participante> getParticipantes() {
+    public ArrayList<String> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(ArrayList<Participante> participantes) {
+    public void setParticipantes(ArrayList<String> participantes) {
         this.participantes = participantes;
     }
 
@@ -137,7 +137,7 @@ public class EventoPruebaDanny implements Parcelable {
         dest.writeString(this.admin);
         dest.writeString(this.capacidadActual);
         dest.writeString(this.capacidadMaxima);
-        dest.writeList(this.participantes);
+        dest.writeStringList(this.participantes);
     }
 
     protected EventoPruebaDanny(Parcel in) {
@@ -150,8 +150,7 @@ public class EventoPruebaDanny implements Parcelable {
         this.admin = in.readString();
         this.capacidadActual = in.readString();
         this.capacidadMaxima = in.readString();
-        this.participantes = new ArrayList<Participante>();
-        in.readList(this.participantes, Participante.class.getClassLoader());
+        this.participantes = in.createStringArrayList();
     }
 
     public static final Creator<EventoPruebaDanny> CREATOR = new Creator<EventoPruebaDanny>() {
