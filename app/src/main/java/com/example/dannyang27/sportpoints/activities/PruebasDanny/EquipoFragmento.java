@@ -22,13 +22,16 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 public class EquipoFragmento extends Fragment {
     Context c;
     FloatingActionButton fab;
+    RecyclerView rv;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.aaa_activity_equipo_fragmento, container, false);
-        RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id_equipo);
+        rv = (RecyclerView) v.findViewById(R.id.rv_id_equipo);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+
 
         fab = (FloatingActionButton) v.findViewById(R.id.fab_equipo_md);
 
