@@ -46,23 +46,22 @@ public class PruebaTab extends AppCompatActivity {
             }
         });
 
-        toolbar.setTitle("PEPPA PIG");
+        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            //Back arrow
-            case android.R.id.home:
-                onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            //Back arrow
+//            case android.R.id.home:
+//                onBackPressed();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }
