@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.MainActivity;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -178,6 +179,18 @@ public class EventoFragmento extends Fragment {
 
                 //Sacamos el id de la imagen
                 String imagenId = model.getImagen();
+
+
+                //////////////////////////////////////////////AÑADIDO////////////////////////////////////////////
+                //Cuando pulsemos un evento...
+                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),EventoInfo_MD.class);
+                        startActivity(intent);
+                    }
+                });
+                ///////////////////////////////////////////////////////////////////////////////////////////////
 
                 if(!imagenId.equals("")) {
                     Toast.makeText(getContext(), imagenId,

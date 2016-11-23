@@ -14,10 +14,7 @@ import com.example.dannyang27.sportpoints.R;
 
 public class LogIn extends AppCompatActivity {
 
-    private EditText emailEditText;
-    private EditText passwordEditText;
     private Button loginBtn;
-    private Button registrateBtn;
     private Button gmailBtn;
     private TextView titleTxt;
 
@@ -32,9 +29,6 @@ public class LogIn extends AppCompatActivity {
 
         loginBtn = (Button) findViewById(R.id.btn_login);
         gmailBtn = (Button) findViewById(R.id.btn_gmail);
-
-
-
     }
 
     public void onclick(View v) {
@@ -50,6 +44,5 @@ public class LogIn extends AppCompatActivity {
         }
         startActivity(intent);
     }
-
 
 }
