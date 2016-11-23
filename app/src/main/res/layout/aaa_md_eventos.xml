@@ -30,7 +30,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:layout_alignBottom="@id/imagen_evento_md"
             android:background="#60000000"
             android:orientation="vertical"
@@ -80,6 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Campo UPV"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@android:color/white"
                     android:textSize="15sp" />
 
@@ -91,14 +93,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/descripcion_evento_md"
+                    android:id="@+id/nombre_evento_md"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="Partido de fútbol sala, gente amateur, se acepta  a cualquier persona."
+                    android:maxLines="1"
+                    android:text="Partido de fútbol sala de amigos."
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/descripcion_evento_md"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="55dp"-->
+                <!--android:ellipsize="end"-->
+                <!--android:maxLines="2"-->
+                <!--android:text="Partido de fútbol sala, gente amateur, se acepta  a cualquier persona."-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="16sp" />-->
 
             </LinearLayout>
 
