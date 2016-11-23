@@ -67,7 +67,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
             super(itemView);
 
             img = (ImageView) itemView.findViewById(R.id.imagen_evento_md);
-            descripcionTv = (TextView) itemView.findViewById(R.id.descripcion_evento_md);
+            descripcionTv = (TextView) itemView.findViewById(R.id.nombre_evento_md);
             lugarTv = (TextView) itemView.findViewById(R.id.lugar_evento_md);
             horaTv = (TextView) itemView.findViewById(R.id.hora_evento_md);
             fechaTv = (TextView) itemView.findViewById(R.id.fecha_evento_md);

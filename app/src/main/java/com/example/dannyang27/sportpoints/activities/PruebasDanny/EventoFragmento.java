@@ -62,7 +62,6 @@ public class EventoFragmento extends Fragment {
     private EditText lugar_et;
     private EditText fecha_et;
     private EditText hora_et;
-
     private Button cancelar_btn;
     private Button crear_btn;
 
