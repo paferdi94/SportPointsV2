@@ -18,7 +18,6 @@ public class LogIn extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginBtn;
     private Button registrateBtn;
-    private Button facebookBtn;
     private Button gmailBtn;
     private TextView titleTxt;
 
@@ -31,54 +30,26 @@ public class LogIn extends AppCompatActivity {
         TextView titleTxt = (TextView) findViewById(R.id.textView_title);
         titleTxt.setTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/PassionOne-Bold.ttf"));
 
-        facebookBtn = (Button) findViewById(R.id.btn_facebook);
+        loginBtn = (Button) findViewById(R.id.btn_login);
         gmailBtn = (Button) findViewById(R.id.btn_gmail);
 
-//       emailEditText = (EditText) findViewById(R.id.email_md_main);
-//       passwordEditText = (EditText) findViewById(R.id.password_md_main);
-//       loginBtn = (Button) findViewById(R.id.login_md_btn);
-//       registrateBtn = (Button) findViewById(R.id.registrate_md_btn);
-
-//
-        facebookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPruebaTab();
-            }
-        });
-
-        gmailBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "No implementado", Toast.LENGTH_LONG).show();
-            }
-        });
-//
-//       loginBtn.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//               showPruebaTab();
-//           }
-//       });
-//
-//       registrateBtn.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//               showRegistro();
-//           }
-//       });
 
 
     }
 
-    public void showPruebaTab() {
-        Intent i = new Intent(this, PruebaTab.class);
-        startActivity(i);
+    public void onclick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.txt_registrarse:
+                intent = new Intent(this, Registro.class);
+                // intent.putExtra("id_usuario",id_usuario);
+                break;
+            case R.id.btn_login:
+                intent = new Intent(this, PruebaTab.class);
+                break;
+        }
+        startActivity(intent);
     }
 
-    public void showRegistro() {
-        Intent i = new Intent(this, Registro.class);
-        startActivity(i);
-    }
 
 }
