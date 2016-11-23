@@ -1,5 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -56,16 +58,21 @@ public class EquipoInfo_MD extends AppCompatActivity {
     verPartBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getApplicationContext(),"No implementado ;)", Toast.LENGTH_LONG).show();
+           showParticipantesInfo();
         }
     });
 
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"No implementado :(", Toast.LENGTH_LONG).show();
+                Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void showParticipantesInfo() {
+        Intent i = new Intent(this, PruebaListarParticipantes.class);
+        startActivity(i);
     }
 
 
