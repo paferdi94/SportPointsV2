@@ -12,17 +12,19 @@ import com.example.dannyang27.sportpoints.R;
  * Created by Dannyang27 on 23/11/16.
  */
 
-public class EventoViewHolder extends RecyclerView.ViewHolder{
+public class EventoViewHolder extends RecyclerView.ViewHolder {
     ImageView img;
     TextView nombreTv;
     TextView lugarTv;
     TextView horaTv;
     TextView fechaTv;
+    View view;
 
     public EventoViewHolder(View itemView) {
         super(itemView);
+        view = itemView;
 
-        img = (ImageView)itemView.findViewById(R.id.imagen_evento_md);
+        img = (ImageView) itemView.findViewById(R.id.imagen_evento_md);
         nombreTv = (TextView) itemView.findViewById(R.id.nombre_evento_md);
         lugarTv = (TextView) itemView.findViewById(R.id.lugar_evento_md);
         horaTv = (TextView) itemView.findViewById(R.id.hora_evento_md);

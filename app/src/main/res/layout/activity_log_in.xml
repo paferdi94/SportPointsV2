@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:background="#83b1cb"
                 android:onClick="onclick"
-                android:text="Login"
+                android:text="Entrar"
                 android:textColor="@android:color/white" />
 
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="#d62d20"
-                android:text="Login with Google+"
+                android:text="Entrar con Google+"
                 android:textColor="@android:color/white" />
 
 
