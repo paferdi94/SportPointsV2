@@ -46,7 +46,7 @@ public class PruebaTab extends AppCompatActivity {
             }
         });
 
-        toolbar.setTitle("Home");
+        toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
