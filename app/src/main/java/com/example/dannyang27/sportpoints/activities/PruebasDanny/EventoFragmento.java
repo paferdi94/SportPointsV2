@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +47,7 @@ public class EventoFragmento extends Fragment {
     FloatingActionButton fab;
     //FloatingActionButton fab2;
     DatabaseReference mDataRef;
+    DatabaseReference mEventoRef;
     static String nombreImagen = "";
 
     public static final int GALLERY_INTENT = 2;
@@ -74,27 +78,15 @@ public class EventoFragmento extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mDataRef =  FirebaseDatabase.getInstance().getReference();
+        mEventoRef = mDataRef.child("Eventos");
         View v = inflater.inflate(R.layout.aaa_activity_evento_fragmento, container, false);
         RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id);
         fab = (FloatingActionButton) v.findViewById(R.id.fab_evento_md);
-        //fab2 = (FloatingActionButton) v.findViewById(R.id.fab2_evento_md);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        //rv.setLayoutManager(layoutManager);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //fab2.setVisibility(View.VISIBLE);
-                //Toast.makeText(getContext(), mDataRef.toString(), Toast.LENGTH_LONG).show();
-
-
-                /*
-                DatabaseReference mRefEventos = mDataRef.child("Eventos");
-                ArrayList<Participante> participantes = new ArrayList<Participante>();
-                participantes.add(new Participante("X2084394","daskdjhsa@dkhaksd.com","12/1/1","4564564","dasdasdas"));
-                EventoPruebaDanny e = new EventoPruebaDanny("","DANNY","Denia","14:30h","24/02/17","Descripcion lalala","dannyang27","1","22", participantes);
-                mRefEventos.child(e.getNombre()).setValue(e);
-                 */
 
                final  Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.aaa_activity_dialog_crear_evento);
@@ -167,9 +159,60 @@ public class EventoFragmento extends Fragment {
             }
         });
 
+        /*
         RecyclerAdapter adapter = new RecyclerAdapter(getContext());
-        adapter.addEventos();
+        //adapter.addEventos();
         rv.setAdapter(adapter);
+         */
+
+        FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder> adapter;
+
+        adapter = new FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder>(EventoPruebaDanny.class,
+                R.layout.aaa_md_eventos,EventoViewHolder.class, mEventoRef) {
+            @Override
+            protected void populateViewHolder(final EventoViewHolder viewHolder, EventoPruebaDanny model, int position) {
+
+                viewHolder.nombreTv.setText(model.getNombre());
+                viewHolder.lugarTv.setText(model.getLugar());
+                viewHolder.horaTv.setText(model.getHora());
+                viewHolder.fechaTv.setText(model.getFecha());
+
+                //Sacamos el id de la imagen
+                String imagenId = model.getImagen();
+
+                if(!imagenId.equals("")) {
+                    Toast.makeText(getContext(), imagenId,
+                            Toast.LENGTH_LONG).show();
+                    StorageReference eventosRef = mStorageRef.child("eventos/"+imagenId);
+                    //Bajar la imagen
+
+                    Toast.makeText(getContext(), eventosRef.toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    eventosRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            viewHolder.img.setImageBitmap(bmp);
+                        Toast.makeText(getContext(), "Imagen descargada...",
+                                Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Error al descargar...",
+                                Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+            }
+        };
+
+        rv.setAdapter(adapter);
+
+
+
         return v;
     }
 
@@ -180,8 +223,6 @@ public class EventoFragmento extends Fragment {
 
             Uri uri = data.getData();
             imagen.setImageURI(uri);
-            //Toast.makeText(getContext(), uri.getScheme(), Toast.LENGTH_LONG).show();
-
             int num = (int)(Math.random()*100 +10);
             String child = num+"";
             StorageReference eventoRef = mStorageRef.child("eventos").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen

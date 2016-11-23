@@ -33,7 +33,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
         this.context = context;
     }
 
-    public void addEventos(){
+    /*
+        public void addEventos(){
 
         for(int i=0;i<10;i++) {
             EventoParcelable e = new EventoParcelable();
@@ -46,6 +47,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
             eventos.add(e);
         }
     }
+     */
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
