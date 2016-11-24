@@ -67,6 +67,17 @@ public class EventoFragmento extends Fragment {
     private Button cancelar_btn;
     private Button crear_btn;
 
+    static String nombreEv;
+    static String fechaEv;
+    static String lugarEv;
+    static String horaEv;
+    static String descripcion;
+    static ArrayList<String> participantes = new ArrayList<>();
+
+    static EditText descripcion_et;
+    static Button crearBtn;
+
+
     public static String getNombreImagenEvento() {
         return nombreImagenEvento;
     }
@@ -103,7 +114,7 @@ public class EventoFragmento extends Fragment {
                 crear_btn = (Button) dialog.findViewById(R.id.crearBtn_dialog_evento);
                 crear_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick( View v) {
                         String camposObligatorios="";
                        if(nombre_et.getText().toString().equals("")){
                            camposObligatorios += "Introduzca el nombre del evento\n";
@@ -119,21 +130,41 @@ public class EventoFragmento extends Fragment {
                        }
 
                         if(camposObligatorios.length()==0){
-                            DatabaseReference mRefEventos = mDataRef.child("Eventos");
-                            ArrayList<String> participantes = new ArrayList<String>();
+
+                            nombreEv = nombre_et.getText().toString();
+                            lugarEv = lugar_et.getText().toString();
+                            fechaEv = fecha_et.getText().toString();
+                            horaEv = hora_et.getText().toString();
+
+                            /*
                             participantes.add("Pepi");
                             participantes.add("Iban");
                             participantes.add("Guillem");
                             participantes.add("Le Danny");
-                            EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagenEvento(),
-                                    nombre_et.getText().toString(),
-                                    lugar_et.getText().toString(),
-                                    hora_et.getText().toString(),
-                                    fecha_et.getText().toString(),
-                                    "Descripcion lalala","dannyang27","1","22", participantes);
-                            mRefEventos.child(nombre_et.getText().toString()).setValue(e);
-                            Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
-                            dialog.cancel();
+                             */
+
+                            //mRefEventos.child(nombre_et.getText().toString()).setValue(e);
+                            //Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
+                            dialog.setContentView(R.layout.aaa_activity_dialog_descripcion);
+                            descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_equipo);
+                            crearBtn = (Button) dialog.findViewById(R.id.crear_dialog_equipo);
+
+                            crearBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    DatabaseReference mRefEventos = mDataRef.child("Eventos");
+                                    EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagenEvento()
+                                            ,nombreEv,lugarEv,horaEv,fechaEv,
+                                            descripcion_et.getText().toString(),
+                                            "Dannyang27","1","22",participantes);
+
+                                    mRefEventos.child(nombreEv).setValue(e);
+                                    Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
+                                    dialog.cancel();
+
+                                }
+                            });
+
                         }else{
                             Toast.makeText(getContext(), camposObligatorios.substring(0, camposObligatorios.length()-1),Toast.LENGTH_SHORT).show();
                         }

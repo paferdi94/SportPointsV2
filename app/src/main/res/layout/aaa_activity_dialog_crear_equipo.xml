@@ -80,7 +80,7 @@
             android:layout_alignStart="@+id/fab_dialog_equipo" />
 
         <Button
-            android:text="Button"
+            android:text="CANCELAR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cancelarBtn_dialog_equipo"
