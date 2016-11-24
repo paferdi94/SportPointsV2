@@ -67,15 +67,15 @@ public class EventoFragmento extends Fragment {
     private Button cancelar_btn;
     private Button crear_btn;
 
-    static String nombreEv;
-    static String fechaEv;
-    static String lugarEv;
-    static String horaEv;
-    static String descripcion;
-    static ArrayList<String> participantes = new ArrayList<>();
+    private String nombreEv;
+    private String fechaEv;
+    private String lugarEv;
+    private String horaEv;
+    private String descripcion;
+    private ArrayList<String> participantes = new ArrayList<>();
 
-    static EditText descripcion_et;
-    static Button crearBtn;
+    private EditText descripcion_et;
+    private Button crearBtn;
 
 
     public static String getNombreImagenEvento() {
@@ -269,6 +269,7 @@ public class EventoFragmento extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                    setNombreImagenEvento("");
                 }
             });
 
