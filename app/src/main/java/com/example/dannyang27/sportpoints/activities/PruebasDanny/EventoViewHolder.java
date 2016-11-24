@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 
@@ -29,17 +30,6 @@ public class EventoViewHolder extends RecyclerView.ViewHolder {
         lugarTv = (TextView) itemView.findViewById(R.id.lugar_evento_md);
         horaTv = (TextView) itemView.findViewById(R.id.hora_evento_md);
         fechaTv = (TextView) itemView.findViewById(R.id.fecha_evento_md);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                    int position = getAdapterPosition();
-//                    Snackbar.make(view, "Click detected on item: " + position,
-//                            Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                view.getContext().startActivity(new Intent(view.getContext(), EventoInfo_MD.class));
-
-            }
-        });
 
 
     }

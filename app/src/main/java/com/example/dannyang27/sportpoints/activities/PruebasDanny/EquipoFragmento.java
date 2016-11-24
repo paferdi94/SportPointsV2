@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -125,10 +126,11 @@ public class EquipoFragmento extends Fragment {
                             EquipoPruebaDanny e = new EquipoPruebaDanny("Dannyang27",
                                     nombre_et.getText().toString(),
                                     deporte_et.getText().toString(),
+                                    "DESCRIPCION",
                                     "1",capacidadMaxima_et.getText().toString(),nombreImagenEquipo,a);
 
                             mEquiposRef.child(nombre_et.getText().toString()).setValue(e);
-                            //Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(view,"Equipo creado", Snackbar.LENGTH_LONG).show();
 
                             dialog.cancel();
 
@@ -169,13 +171,36 @@ public class EquipoFragmento extends Fragment {
         adapter = new FirebaseRecyclerAdapter<EquipoPruebaDanny, EquipoViewHolder>(EquipoPruebaDanny.class,
                 R.layout.aaa_md_equipos,EquipoViewHolder.class, mRefEquipo) {
             @Override
-            protected void populateViewHolder(final EquipoViewHolder viewHolder, EquipoPruebaDanny model, int position) {
+            protected void populateViewHolder(final EquipoViewHolder viewHolder,final EquipoPruebaDanny model, int position) {
 
                 viewHolder.nombreTv.setText(model.getNombre());
                 viewHolder.deporteTv.setText(model.getDeporte());
                 viewHolder.participantesTv.setText(model.getCapacidadActual() +" / "+model.getCapacidadMaxima());
 
                 String imagenId = model.getImagen();
+
+
+                /*
+                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        showInfoEquipo(model);
+
+                    }
+                });
+                 */
+                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        showInfoEquipo(model);
+
+                    }
+                });
+
+
+
 
                 if(!imagenId.equals("")) {
                     StorageReference equiposRef = mStorageRef.child("equipos/"+imagenId);
@@ -202,6 +227,13 @@ public class EquipoFragmento extends Fragment {
 
         return v;
     }
+
+    private void showInfoEquipo(EquipoPruebaDanny model) {
+        Intent i = new Intent(getContext(), EquipoInfo_MD.class);
+        i.putExtra("PARCELABLE",model);
+        startActivity(i);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

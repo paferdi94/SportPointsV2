@@ -17,19 +17,29 @@ public class EquipoPruebaDanny implements Parcelable {
     private String capacidadActual;
     private String capacidadMaxima;
     private String imagen;
+    private String descripcion;
     private ArrayList<String> participantes;
 
     public EquipoPruebaDanny() {
     }
 
-    public EquipoPruebaDanny(String creador, String nombre, String deporte, String capacidadActual, String capacidadMaxima, String imagen, ArrayList<String> participantes) {
+    public EquipoPruebaDanny(String creador, String nombre, String deporte, String descripcion, String capacidadActual, String capacidadMaxima, String imagen, ArrayList<String> participantes) {
         this.creador = creador;
         this.nombre = nombre;
         this.deporte = deporte;
+        this.descripcion = descripcion;
         this.capacidadActual = capacidadActual;
         this.capacidadMaxima = capacidadMaxima;
         this.imagen = imagen;
         this.participantes = participantes;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getCreador() {
@@ -101,6 +111,7 @@ public class EquipoPruebaDanny implements Parcelable {
         dest.writeString(this.capacidadActual);
         dest.writeString(this.capacidadMaxima);
         dest.writeString(this.imagen);
+        dest.writeString(this.descripcion);
         dest.writeStringList(this.participantes);
     }
 
@@ -111,10 +122,11 @@ public class EquipoPruebaDanny implements Parcelable {
         this.capacidadActual = in.readString();
         this.capacidadMaxima = in.readString();
         this.imagen = in.readString();
+        this.descripcion = in.readString();
         this.participantes = in.createStringArrayList();
     }
 
-    public static final Parcelable.Creator<EquipoPruebaDanny> CREATOR = new Parcelable.Creator<EquipoPruebaDanny>() {
+    public static final Creator<EquipoPruebaDanny> CREATOR = new Creator<EquipoPruebaDanny>() {
         @Override
         public EquipoPruebaDanny createFromParcel(Parcel source) {
             return new EquipoPruebaDanny(source);

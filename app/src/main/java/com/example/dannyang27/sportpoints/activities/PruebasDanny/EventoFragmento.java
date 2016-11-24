@@ -170,8 +170,10 @@ public class EventoFragmento extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder>(EventoPruebaDanny.class,
                 R.layout.aaa_md_eventos,EventoViewHolder.class, mEventoRef) {
+
+
             @Override
-            protected void populateViewHolder(final EventoViewHolder viewHolder, EventoPruebaDanny model, int position) {
+            protected void populateViewHolder(final EventoViewHolder viewHolder, final EventoPruebaDanny model, int position) {
 
                 viewHolder.nombreTv.setText(model.getNombre());
                 viewHolder.lugarTv.setText(model.getLugar());
@@ -181,17 +183,15 @@ public class EventoFragmento extends Fragment {
                 //Sacamos el id de la imagen
                 String imagenId = model.getImagen();
 
-
-                //////////////////////////////////////////////AÑADIDO////////////////////////////////////////////
-                //Cuando pulsemos un evento...
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(view.getContext(),EventoInfo_MD.class);
-                        startActivity(intent);
+
+                        showInfoEvento(model);
+
                     }
                 });
-                ///////////////////////////////////////////////////////////////////////////////////////////////
+
 
                 if(!imagenId.equals("")) {
                     StorageReference eventosRef = mStorageRef.child("eventos/"+imagenId);
@@ -213,12 +213,14 @@ public class EventoFragmento extends Fragment {
 
             }
         };
-
         rv.setAdapter(adapter);
-
-
-
         return v;
+    }
+
+    public void showInfoEvento(EventoPruebaDanny e){
+        Intent i = new Intent(getContext(), EventoInfo_MD.class);
+        i.putExtra("PARCELABLE",e);
+        startActivity(i);
     }
 
     @Override
