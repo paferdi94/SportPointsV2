@@ -1,5 +1,6 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ public class PruebaTab extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     Toolbar toolbar;
+    private static final int RC_LOGIN = 9003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,6 @@ public class PruebaTab extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-
     }
 
     @Override
@@ -64,5 +63,11 @@ public class PruebaTab extends AppCompatActivity {
                 onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RC_LOGIN);
+        finish();
     }
 }
