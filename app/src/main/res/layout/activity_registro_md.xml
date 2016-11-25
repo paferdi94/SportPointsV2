@@ -14,13 +14,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:ems="10"
         android:layout_marginTop="14dp"
         android:id="@+id/telefono_md_registro"
         android:layout_below="@+id/fecha_md_registro"
         android:layout_alignParentStart="true"
-        android:hint="Telefono" />
+        android:hint="Telefono (123456789)" />
 
     <Button
         android:text="CANCELAR"
@@ -92,13 +92,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:layout_marginTop="11dp"
         android:id="@+id/fecha_md_registro"
-        android:hint="Fecha de Nacimiento"
+        android:hint="Fecha de Nacimiento (23-05-1990)"
         android:layout_below="@+id/password2_md_registro"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:inputType="date" />
 
     <ImageButton
         app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
