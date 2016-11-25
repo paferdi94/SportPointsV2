@@ -5,136 +5,152 @@
     android:id="@+id/activity_evento_info__md"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="5dp"
+    android:background="#e1f5fe"
     tools:context="com.example.dannyang27.sportpoints.activities.PruebasDanny.EventoInfo_MD">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView_evento_md"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_eventoInfo"
         android:layout_width="match_parent"
-        android:layout_height="325dp"
-        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:cardCornerRadius="10dp">
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ToolbarStyle"/>
 
-        <RelativeLayout
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_eventoInfo"
+        android:paddingBottom="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView_descripcion_evento_md"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/evento_info_img"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"  />
-                <!--app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"-->
-
+            android:layout_height="250dp"
+            android:layout_below="@+id/cardView_evento_md"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
-
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/evento_info_img">
+                android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/nombre_evento_info_md"
+                    android:id="@+id/textView_descripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="10dp"
                     android:paddingTop="10dp"
-                    android:text="TextView"
+                    android:text="DESCRIPCION"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/lugar_evento_info_md"
+                    android:id="@+id/descripcion_evento_info_md"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/nombre_evento_info_md"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/textView_descripcion"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="52dp"
-                    android:layout_marginStart="50dp"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/hora_evento_info_md"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/lugar_evento_info_md"
-                    android:layout_below="@+id/fecha_evento_info_md"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/fecha_evento_info_md"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/hora_evento_info_md"
-                    android:layout_below="@+id/nombre_evento_info_md"
-                    android:layout_marginTop="19dp"
-                    android:text="TextView" />
-
-                <Button
-                    android:id="@+id/btn_evento_info_md"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/hora_evento_info_md"
-                    android:layout_below="@+id/hora_evento_info_md"
-                    android:text="VER PARTICIPANTES"
-                    android:textColor="@color/colorAccent" />
-
-                <Button
-                    android:id="@+id/unirse_evento_md"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="0dp"
-                    android:text="UNIRSE"
-                    android:textColor="@color/colorAccent"
-                    android:layout_below="@+id/hora_evento_info_md"
-                    android:layout_toEndOf="@+id/btn_evento_info_md" />
-
-
+                    android:layout_margin="10dp" />
             </RelativeLayout>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView_descripcion_evento_md"
-        android:layout_width="match_parent"
-        android:layout_height="275dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/cardView_evento_md"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="10dp">
-
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView_evento_md"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="330dp"
+            app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/textView_descripcion"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:paddingTop="10dp"
-                android:text="DESCRIPCION"
-                android:textSize="18sp" />
+                android:layout_height="match_parent">
+                <!--app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"-->
 
-            <TextView
-                android:id="@+id/descripcion_evento_info_md"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/textView_descripcion"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10dp" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/evento_info_img">
+
+                    <TextView
+                        android:id="@+id/nombre_evento_info_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="50dp"
+                        android:paddingTop="10dp"
+                        android:text="TextView"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/lugar_evento_info_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/nombre_evento_info_md"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="52dp"
+                        android:layout_marginStart="50dp"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/hora_evento_info_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/lugar_evento_info_md"
+                        android:layout_below="@+id/fecha_evento_info_md"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/fecha_evento_info_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/hora_evento_info_md"
+                        android:layout_below="@+id/nombre_evento_info_md"
+                        android:layout_marginTop="19dp"
+                        android:text="TextView" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hora_evento_info_md"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_evento_info_md"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-20dp"
+                            android:text="VER PARTICIPANTES"
+                            android:textColor="@color/colorAccent" />
+
+                        <Button
+                            android:id="@+id/unirse_evento_md"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:elevation="0dp"
+                            android:text="UNIRSE"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/evento_info_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
 </RelativeLayout>

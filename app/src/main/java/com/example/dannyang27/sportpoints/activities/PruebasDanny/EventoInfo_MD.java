@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,6 +30,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+import static com.example.dannyang27.sportpoints.R.id.toolbar;
+
 public class EventoInfo_MD extends AppCompatActivity {
 
     Boolean usuarioEncontrado = false;
@@ -41,6 +45,7 @@ public class EventoInfo_MD extends AppCompatActivity {
     private Button btn_evento_info;
     private Button unirse_btn;
     private TextView descripcion_evento_info;
+    Toolbar toolbar;
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
     StorageReference mStorageRef = firebaseStorageRef.getReference();
@@ -56,6 +61,7 @@ public class EventoInfo_MD extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_info__md);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar_eventoInfo);
         rootView = (View) findViewById(R.id.activity_evento_info__md);
         unirse_btn = (Button) findViewById(R.id.unirse_evento_md);
         evento_info_img = (ImageView) findViewById(R.id.evento_info_img);
@@ -66,6 +72,14 @@ public class EventoInfo_MD extends AppCompatActivity {
         btn_evento_info = (Button) findViewById(R.id.btn_evento_info_md);
         descripcion_evento_info = (TextView) findViewById(R.id.descripcion_evento_info_md);
         unirse_a_evento = (TextView) findViewById(R.id.unirse_evento_md);
+
+        /////////////////////Añadir Toolbar////////////////////////
+        toolbar.setTitle("Información de Evento");
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //////////////////////////////////////////////////////////
 
         EventoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
 
@@ -148,13 +162,13 @@ public class EventoInfo_MD extends AppCompatActivity {
                             .setMessage("Estás seguro que deseas cancelar tu asistencia al evento?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                   if(isOnlineNet()) {
-                                       participantesRef.child(participanteKey).removeValue();
-                                       usuarioEncontrado = false;
-                                       unirse_a_evento.setText("Unirse");
-                                       Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
-                                   }
-                                    else Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+                                    if (isOnlineNet()) {
+                                        participantesRef.child(participanteKey).removeValue();
+                                        usuarioEncontrado = false;
+                                        unirse_a_evento.setText("Unirse");
+                                        Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
+                                    } else
+                                        Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -171,8 +185,14 @@ public class EventoInfo_MD extends AppCompatActivity {
         });
     }
 
-    private void mostrarSnackBar() {
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Back arrow
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showParticipantesInfo() {
@@ -188,9 +208,9 @@ public class EventoInfo_MD extends AppCompatActivity {
         return aux;
     }
 
-    private void borrarElementoLista(String usuario){
-        for(int i = 0; i < listaParticipantes.size();i++){
-            if(usuario.equals(listaParticipantes.get(i)))
+    private void borrarElementoLista(String usuario) {
+        for (int i = 0; i < listaParticipantes.size(); i++) {
+            if (usuario.equals(listaParticipantes.get(i)))
                 listaParticipantes.remove(i);
         }
     }
@@ -201,7 +221,7 @@ public class EventoInfo_MD extends AppCompatActivity {
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
 
-            int val           = p.waitFor();
+            int val = p.waitFor();
             boolean reachable = (val == 0);
             return reachable;
 
