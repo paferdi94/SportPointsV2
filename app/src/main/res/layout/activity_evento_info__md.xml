@@ -30,8 +30,9 @@
                 android:layout_height="180dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
+                android:scaleType="centerCrop"  />
+                <!--app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"-->
+
 
             <RelativeLayout
 
@@ -87,19 +88,18 @@
                     android:layout_alignStart="@+id/hora_evento_info_md"
                     android:layout_below="@+id/hora_evento_info_md"
                     android:text="VER PARTICIPANTES"
-                    android:textColor="#66cc66" />
+                    android:textColor="@color/colorAccent" />
 
                 <Button
                     android:id="@+id/unirse_evento_md"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/hora_evento_info_md"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/btn_evento_info_md"
                     android:elevation="0dp"
                     android:text="UNIRSE"
-                    android:textColor="#66cc66" />
+                    android:textColor="@color/colorAccent"
+                    android:layout_below="@+id/hora_evento_info_md"
+                    android:layout_toEndOf="@+id/btn_evento_info_md" />
 
 
             </RelativeLayout>
