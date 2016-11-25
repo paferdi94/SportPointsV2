@@ -5,120 +5,192 @@
     android:id="@+id/activity_log_in"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dannyang27.sportpoints.activities.PruebasDanny.LogIn">
 
-    <TextView
-        android:text="Sport Points"
-        android:layout_width="300dp"
-        android:layout_marginTop="87dp"
-        android:id="@+id/textView7"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="normal|bold" />
-
-    <EditText
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/textView9"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:id="@+id/email_md_main"
-        android:hint="Email Address" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_background" />
 
-    <TextView
-        android:text="LOG IN"
-        android:id="@+id/textView9"
-        android:layout_width="150dp"
-        android:textAlignment="center"
-        android:textStyle="normal|bold"
-        android:layout_height="40dp"
-        android:textSize="20sp"
-        android:layout_below="@+id/textView7"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="¿No tienes una cuenta?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_below="@+id/gmail_md_btn"
-        android:layout_alignStart="@+id/textView7" />
-
-    <Button
-        android:text="Login with Facebook"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/facebook_md_btn"
-        android:background="#3b5998"
-        android:layout_below="@+id/textView15"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password_md_main"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:hint="Password" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.44"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:text="Sport Points"
+                android:textColor="@android:color/black"
+                android:textSize="54sp" />
+
+            <TextView
+                android:id="@+id/textView_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disfruta del deporte con la mejor compañia"
+                android:textColor="@android:color/black"
+                android:textSize="12.5sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--<Button-->
+            <!--android:id="@+id/btn_facebook"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#3b5998"-->
+            <!--android:text="Login with Facebook"-->
+            <!--android:textColor="@android:color/white" />-->
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#83b1cb"
+                android:onClick="onclick"
+                android:text="Entrar"
+                android:textColor="@android:color/white" />
 
 
-    <Button
-        android:text="LOGIN WITH GMAIL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/gmail_md_btn"
-        android:background="#d62d20"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/facebook_md_btn"
-        android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#d62d20"
+                android:text="Entrar con Google+"
+                android:textColor="@android:color/white" />
 
-    <TextView
-        android:text="OR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:id="@+id/textView15"
-        android:textStyle="normal|bold"
-        android:layout_below="@+id/password_md_main"
-        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="Log in"
-        android:textColor="#0099ff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_md_btn"
-        android:textAllCaps="false"
-        style="?android:attr/borderlessButtonStyle"
-        android:elevation="0dp"
-        android:layout_below="@+id/password_md_main"
-        android:layout_centerHorizontal="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
 
-    <Button
-        android:text="Registrate"
-        android:textColor="#0099ff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/registrate_md_btn"
-        android:textAllCaps="false"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_alignBaseline="@+id/textView17"
-        android:layout_alignBottom="@+id/textView17"
-        android:layout_toEndOf="@+id/textView17" />
+                <TextView
+                    android:id="@+id/tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Todavía no eres miembro? "
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_registrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regístrate"
+                    android:textColor="#3f51b5"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:onClick="onclick"
+                    android:clickable="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--<EditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textPersonName"-->
+    <!--android:ems="10"-->
+    <!--android:layout_below="@+id/textView9"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="23dp"-->
+    <!--android:id="@+id/email_md_main"-->
+    <!--android:hint="Email Address" />-->
+
+    <!--<TextView-->
+    <!--android:text="LOG IN"-->
+    <!--android:id="@+id/textView9"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:textStyle="normal|bold"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:textSize="20sp"-->
+    <!--android:layout_below="@+id/textView7"-->
+    <!--android:layout_centerHorizontal="true" />-->
+
+    <!--<TextView-->
+    <!--android:text="¿No tienes una cuenta?"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/textView17"-->
+    <!--android:layout_marginStart="40dp"-->
+    <!--android:layout_marginTop="12dp"-->
+    <!--android:layout_below="@+id/gmail_md_btn"-->
+    <!--android:layout_alignStart="@+id/textView7" />-->
+
+
+    <!--<EditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textPassword"-->
+    <!--android:ems="10"-->
+    <!--android:id="@+id/password_md_main"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:hint="Password" />-->
+
+
+    <!--<TextView-->
+    <!--android:text="OR"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="40dp"-->
+    <!--android:id="@+id/textView15"-->
+    <!--android:textStyle="normal|bold"-->
+    <!--android:layout_below="@+id/password_md_main"-->
+    <!--android:layout_centerHorizontal="true" />-->
+
+    <!--<Button-->
+    <!--android:text="Log in"-->
+    <!--android:textColor="#0099ff"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/login_md_btn"-->
+    <!--android:textAllCaps="false"-->
+    <!--style="?android:attr/borderlessButtonStyle"-->
+    <!--android:elevation="0dp"-->
+    <!--android:layout_below="@+id/password_md_main"-->
+    <!--android:layout_centerHorizontal="true" />-->
+
+    <!--<Button-->
+    <!--android:text="Registrate"-->
+    <!--android:textColor="#0099ff"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/registrate_md_btn"-->
+    <!--android:textAllCaps="false"-->
+    <!--style="?android:attr/borderlessButtonStyle"-->
+    <!--android:layout_alignBaseline="@+id/textView17"-->
+    <!--android:layout_alignBottom="@+id/textView17"-->
+    <!--android:layout_toEndOf="@+id/textView17" />-->
 
 </RelativeLayout>

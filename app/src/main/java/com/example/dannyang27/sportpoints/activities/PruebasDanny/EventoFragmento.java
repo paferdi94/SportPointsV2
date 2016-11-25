@@ -7,8 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,8 +24,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.MainActivity;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,7 +49,8 @@ public class EventoFragmento extends Fragment {
     FloatingActionButton fab;
     //FloatingActionButton fab2;
     DatabaseReference mDataRef;
-    static String nombreImagen = "";
+    DatabaseReference mEventoRef;
+    static String nombreImagenEvento = "";
 
     public static final int GALLERY_INTENT = 2;
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
@@ -58,43 +64,41 @@ public class EventoFragmento extends Fragment {
     private EditText lugar_et;
     private EditText fecha_et;
     private EditText hora_et;
-
     private Button cancelar_btn;
     private Button crear_btn;
 
-    public static String getNombreImagen() {
-        return nombreImagen;
+    private String nombreEv;
+    private String fechaEv;
+    private String lugarEv;
+    private String horaEv;
+    private String descripcion;
+    private ArrayList<String> participantes = new ArrayList<>();
+
+    private EditText descripcion_et;
+    private Button crearBtn;
+
+
+    public static String getNombreImagenEvento() {
+        return nombreImagenEvento;
     }
 
-    public static void setNombreImagen(String nombreImagen) {
-        EventoFragmento.nombreImagen = nombreImagen;
+    public static void setNombreImagenEvento(String nombreImagen) {
+        EventoFragmento.nombreImagenEvento = nombreImagen;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mDataRef =  FirebaseDatabase.getInstance().getReference();
+        mEventoRef = mDataRef.child("Eventos");
         View v = inflater.inflate(R.layout.aaa_activity_evento_fragmento, container, false);
         RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id);
         fab = (FloatingActionButton) v.findViewById(R.id.fab_evento_md);
-        //fab2 = (FloatingActionButton) v.findViewById(R.id.fab2_evento_md);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        //rv.setLayoutManager(layoutManager);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //fab2.setVisibility(View.VISIBLE);
-                //Toast.makeText(getContext(), mDataRef.toString(), Toast.LENGTH_LONG).show();
-
-
-                /*
-                DatabaseReference mRefEventos = mDataRef.child("Eventos");
-                ArrayList<Participante> participantes = new ArrayList<Participante>();
-                participantes.add(new Participante("X2084394","daskdjhsa@dkhaksd.com","12/1/1","4564564","dasdasdas"));
-                EventoPruebaDanny e = new EventoPruebaDanny("","DANNY","Denia","14:30h","24/02/17","Descripcion lalala","dannyang27","1","22", participantes);
-                mRefEventos.child(e.getNombre()).setValue(e);
-                 */
+            public void onClick(final View view) {
 
                final  Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.aaa_activity_dialog_crear_evento);
@@ -110,7 +114,7 @@ public class EventoFragmento extends Fragment {
                 crear_btn = (Button) dialog.findViewById(R.id.crearBtn_dialog_evento);
                 crear_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick( View v) {
                         String camposObligatorios="";
                        if(nombre_et.getText().toString().equals("")){
                            camposObligatorios += "Introduzca el nombre del evento\n";
@@ -126,21 +130,41 @@ public class EventoFragmento extends Fragment {
                        }
 
                         if(camposObligatorios.length()==0){
-                            DatabaseReference mRefEventos = mDataRef.child("Eventos");
-                            ArrayList<String> participantes = new ArrayList<String>();
+
+                            nombreEv = nombre_et.getText().toString();
+                            lugarEv = lugar_et.getText().toString();
+                            fechaEv = fecha_et.getText().toString();
+                            horaEv = hora_et.getText().toString();
+
+                            /*
                             participantes.add("Pepi");
                             participantes.add("Iban");
                             participantes.add("Guillem");
                             participantes.add("Le Danny");
-                            EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagen(),
-                                    nombre_et.getText().toString(),
-                                    lugar_et.getText().toString(),
-                                    hora_et.getText().toString(),
-                                    fecha_et.getText().toString(),
-                                    "Descripcion lalala","dannyang27","1","22", participantes);
-                            mRefEventos.child(nombre_et.getText().toString()).setValue(e);
-                            Toast.makeText(dialog.getContext(), "Evento creado ", Toast.LENGTH_LONG).show();
-                            dialog.cancel();
+                             */
+
+                            //mRefEventos.child(nombre_et.getText().toString()).setValue(e);
+                            //Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
+                            dialog.setContentView(R.layout.aaa_activity_dialog_descripcion);
+                            descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_equipo);
+                            crearBtn = (Button) dialog.findViewById(R.id.crear_dialog_equipo);
+
+                            crearBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    DatabaseReference mRefEventos = mDataRef.child("Eventos");
+                                    EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagenEvento()
+                                            ,nombreEv,lugarEv,horaEv,fechaEv,
+                                            descripcion_et.getText().toString(),
+                                            "Dannyang27","1","22",participantes);
+
+                                    mRefEventos.child(nombreEv).setValue(e);
+                                    Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
+                                    dialog.cancel();
+
+                                }
+                            });
+
                         }else{
                             Toast.makeText(getContext(), camposObligatorios.substring(0, camposObligatorios.length()-1),Toast.LENGTH_SHORT).show();
                         }
@@ -150,7 +174,7 @@ public class EventoFragmento extends Fragment {
                 cancelar_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(dialog.getContext(), "Evento cancelado", Toast.LENGTH_LONG).show();
+                        Snackbar.make(view,"Evento cancelado", Snackbar.LENGTH_LONG).show();
                         dialog.cancel();
                     }
                 });
@@ -167,10 +191,67 @@ public class EventoFragmento extends Fragment {
             }
         });
 
+        /*
         RecyclerAdapter adapter = new RecyclerAdapter(getContext());
-        adapter.addEventos();
+        //adapter.addEventos();
+        rv.setAdapter(adapter);
+         */
+
+        FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder> adapter;
+
+        adapter = new FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder>(EventoPruebaDanny.class,
+                R.layout.aaa_md_eventos,EventoViewHolder.class, mEventoRef) {
+
+
+            @Override
+            protected void populateViewHolder(final EventoViewHolder viewHolder, final EventoPruebaDanny model, int position) {
+
+                viewHolder.nombreTv.setText(model.getNombre());
+                viewHolder.lugarTv.setText(model.getLugar());
+                viewHolder.horaTv.setText(model.getHora());
+                viewHolder.fechaTv.setText(model.getFecha());
+
+                //Sacamos el id de la imagen
+                String imagenId = model.getImagen();
+
+                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        showInfoEvento(model);
+
+                    }
+                });
+
+
+                if(!imagenId.equals("")) {
+                    StorageReference eventosRef = mStorageRef.child("eventos/"+imagenId);
+                    //Bajar la imagen
+                    eventosRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            viewHolder.img.setImageBitmap(bmp);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Snackbar.make(getView(),"No se han cargado todas las fotos", Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+            }
+        };
         rv.setAdapter(adapter);
         return v;
+    }
+
+    public void showInfoEvento(EventoPruebaDanny e){
+        Intent i = new Intent(getContext(), EventoInfo_MD.class);
+        i.putExtra("PARCELABLE",e);
+        startActivity(i);
     }
 
     @Override
@@ -180,16 +261,15 @@ public class EventoFragmento extends Fragment {
 
             Uri uri = data.getData();
             imagen.setImageURI(uri);
-            //Toast.makeText(getContext(), uri.getScheme(), Toast.LENGTH_LONG).show();
-
-            int num = (int)(Math.random()*100 +10);
+            int num = (int)(Math.random()*1000000 +10);
             String child = num+"";
             StorageReference eventoRef = mStorageRef.child("eventos").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen
-            setNombreImagen(child);
+            setNombreImagenEvento(child);
             eventoRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(getContext(), "Imagen subida", Toast.LENGTH_LONG).show();
+
+                    setNombreImagenEvento("");
                 }
             });
 

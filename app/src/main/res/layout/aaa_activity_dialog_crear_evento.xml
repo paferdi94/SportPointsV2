@@ -90,15 +90,14 @@
             android:layout_alignStart="@+id/textView19" />
 
         <Button
-            android:text="Crear"
-            android:layout_width="100dp"
+            android:text="SIGUIENTE"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:id="@+id/crearBtn_dialog_evento"
             android:textColor="#66cc66"
             style="?android:attr/borderlessButtonStyle"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/cancelarBtn_dialog_evento"
-            android:layout_marginStart="18dp" />
+            android:layout_toEndOf="@+id/cancelarBtn_dialog_evento" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
