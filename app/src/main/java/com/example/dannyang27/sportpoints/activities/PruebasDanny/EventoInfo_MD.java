@@ -148,11 +148,13 @@ public class EventoInfo_MD extends AppCompatActivity {
                             .setMessage("Estás seguro que deseas cancelar tu asistencia al evento?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    participantesRef.child(participanteKey).removeValue();
-                                    usuarioEncontrado = false;
-                                    unirse_a_evento.setText("Unirse");
-                                    Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
-
+                                   if(isOnlineNet()) {
+                                       participantesRef.child(participanteKey).removeValue();
+                                       usuarioEncontrado = false;
+                                       unirse_a_evento.setText("Unirse");
+                                       Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
+                                   }
+                                    else Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -191,6 +193,23 @@ public class EventoInfo_MD extends AppCompatActivity {
             if(usuario.equals(listaParticipantes.get(i)))
                 listaParticipantes.remove(i);
         }
+    }
+
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
+
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+
+            int val           = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
