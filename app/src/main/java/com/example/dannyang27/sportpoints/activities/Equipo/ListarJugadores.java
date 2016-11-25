@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Integer.parseInt;
+
 public class ListarJugadores extends AppCompatActivity {
     private ListView jugadoresLv;
     private List<Jugador> listaJug = new ArrayList<>();
@@ -87,14 +89,23 @@ public class ListarJugadores extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Date fechaNacimiento = new Date();
+
+                /*
+                *     private String login;
+    private String password;
+    private String nombre;
+    private String apellidos;
+    private String email;
+    private int telefono;
+    private Date fechaNacimiento;
+                * */
                 hmUsu.put(dataSnapshot.getKey(),new Jugador(
-                        dataSnapshot.getKey(),
                         map.get("extra_Login").toString(),
                         map.get("password").toString(),
                         map.get("nombre").toString(),
                         map.get("apellidos").toString(),
                         map.get("email").toString(),
-                        map.get("direccion").toString(),
+                        parseInt(map.get("telefono").toString()),
                         fechaNacimiento
                 ));
                 cargarJugadores();
