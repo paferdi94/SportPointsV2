@@ -20,6 +20,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -27,8 +29,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import java.util.Locale;
 
 public class LogIn extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
@@ -61,7 +61,7 @@ public class LogIn extends AppCompatActivity implements
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
+                .enableAutoManage(this , this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
@@ -132,6 +132,7 @@ public class LogIn extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        mAuth.signOut();
     }
 
     @Override
@@ -154,7 +155,7 @@ public class LogIn extends AppCompatActivity implements
                 showPruebaTab();
             } else {
                 // El usuario ha rechazado logearse con la cuenta
-                Log.d(TAG, requestCode+"");
+                Log.d(TAG, requestCode+" Fallo");
             }
         }else if(requestCode == RC_LOGIN){
             mAuth.signOut();
