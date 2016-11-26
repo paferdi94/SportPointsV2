@@ -1,67 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/equipo_cardview"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/promo_cardview"
     android:layout_width="match_parent"
-    android:layout_height="125dp"
-    app:cardCornerRadius="10dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_height="220dp"
     android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp">
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="10dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="6dp">
+
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="250dp">-->
 
     <RelativeLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="125dp">
+        android:layout_height="match_parent">
+
 
         <ImageView
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
-            android:id="@+id/logo_md_equipo"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_width="125dp" />
-
-        <RelativeLayout
+            android:id="@+id/imagen_promo_md"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="125dp">
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
 
-            <TextView
-                android:text="TextView"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignBottom="@id/imagen_promo_md"
+            android:background="#60000000"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:layout_alignParentStart="true"
+            android:weightSum="1">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                android:layout_marginStart="20dp"
-                android:textSize="20sp"
-                android:layout_marginTop="18dp"
-                android:id="@+id/nombre_md_equipo" />
-            <TextView
-                android:text="TextView"
+                <TextView
+                    android:id="@+id/fecha_promo_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22/11/2016"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <Space
+                    android:layout_width="31dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/nombre_promo_md"
+                    android:layout_width="247dp"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=" Raquetas a 50% todos los Martes"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:layout_marginStart="20dp"
-                android:paddingTop="2dp"
+                android:layout_height="match_parent">
 
-                android:layout_below="@id/nombre_md_equipo"
-                android:id="@+id/deporte_md_equipo" />
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:layout_below="@id/deporte_md_equipo"
-                android:layout_marginStart="20dp"
-                android:paddingTop="2dp"
-                android:id="@+id/participante_md_equipo" />
+                <TextView
+                    android:id="@+id/fecha_Fin_promo_md"
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    android:text="25/01/2017"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
+                <Space
+                    android:layout_width="17dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.01" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/lugar_promo_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Campo UPV"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<TextView-->
+        <!--android:id="@+id/nombre_promo_md"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@id/imagen_promo_md"-->
+        <!--android:background="#90000000"-->
+        <!--android:lines="3"-->
+        <!--android:text="Large text"-->
+        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
+        <!--android:textColor="@android:color/white" />-->
+
     </RelativeLayout>
 
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="70dp">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/nombre_promo_md"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_height="30dp" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/nombre_promo_md"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="30dp"-->
+    <!--android:id="@+id/lugar_promo_md" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/nombre_promo_md"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="140dp"-->
+    <!--android:id="@+id/hora_promo_md" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/nombre_promo_md"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="220dp"-->
+    <!--android:id="@+id/fecha_promo_md" />-->
+    <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
 </android.support.v7.widget.CardView>

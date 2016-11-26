@@ -16,99 +16,87 @@ import java.util.Map;
 
 public class PromocionParceable implements Parcelable{
 
-    String identificador;
-    String nombre;
-    String deporte;
-    ArrayList<String> jugadores;
-    Bitmap logo;
-    int max_jug;
 
-    public String getID() {
-        return identificador;
+
+    private String imagen;
+    private String nombre;
+    private String lugar;
+    private String fechaIni;
+    private String fechaFin;
+    private String descripcion;
+    private String admin;
+
+
+    public PromocionParceable() {
     }
 
-    public String getNom() {
+    public PromocionParceable(String imagen, String nombre, String lugar, String fechaIni,String fechaFin, String descripcion, String admin) {
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.lugar = lugar;
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
+        this.descripcion = descripcion;
+        this.admin = admin;
+
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public String getDeporte() {
-        return deporte;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Bitmap getLogo() {
-        return this.logo;
+    public String getLugar() {
+        return lugar;
     }
 
-    public ArrayList<String> getJugadores() {
-        return jugadores;
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
-    public int getMaxJugadores() {
-        return max_jug;
+    public String getFechaFin() {
+        return fechaFin;
     }
 
-    public void setID(String identificador) {
-        this.identificador = identificador;
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
-    public void setNom(String nom) {
-        this.nombre = nom;
+    public String getFechaIni() {
+        return fechaIni;
     }
 
-    public void setDeporte(String deporte) {
-        this.deporte = deporte;
+    public void setFechaIni(String fechaIni) {
+        this.fechaIni = fechaIni;
     }
 
-    public void setLogo(Bitmap logo) {
-        this.logo = logo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setJugadores(ArrayList<String> jugadores) {
-        this.jugadores = jugadores;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public void setMaxJugadores(int max) {
-        this.max_jug = max;
+    public String getAdmin() {
+        return admin;
     }
 
-    // Añade los jugadores al arraylist de jugadores
-    public void addJugadores(String jugs) {
-        String[] ids = jugs.split(",");
-        for(String id : ids){
-            this.jugadores.add(id);
-        }
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 
-    // Elimina los jugadores del arraylist de jugadores
-    public void deleteJugadores(String jugs) {
-        String[] ids = jugs.split(",");
-        for(String id : ids){
-            this.jugadores.remove(id);
-        }
-    }
-
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("nombre", nombre);
-        String jugadores_db = "";
-        if(!jugadores.equals(null)) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < jugadores.size(); i++) {
-                if (i != jugadores.size() - 1) {
-                    sb.append(jugadores.get(i) + ",");
-                } else {
-                    sb.append(jugadores.get(i));
-                }
-            }
-            jugadores_db = sb.toString();
-        }
-        result.put("jugadores", jugadores_db);
-        result.put("deporte", deporte);
-        String logo_db = Base64Custom.encodeToBase64(logo,Bitmap.CompressFormat.PNG,100);
-        result.put("logo", logo_db);
-        result.put("max_jugadores",max_jug);
-        return result;
-    }
 
     @Override
     public int describeContents() {
@@ -117,45 +105,36 @@ public class PromocionParceable implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.identificador);
+        dest.writeString(this.imagen);
         dest.writeString(this.nombre);
-        dest.writeString(this.deporte);
-        dest.writeStringList(jugadores);
-        dest.writeParcelable(this.logo,15);
-        dest.writeInt(this.max_jug);
-    }
+        dest.writeString(this.lugar);
+        dest.writeString(this.fechaIni);
+        dest.writeString(this.fechaFin);
+        dest.writeString(this.descripcion);
+        dest.writeString(this.admin);
 
-    public PromocionParceable() {
-    }
-
-    public PromocionParceable(String id, String n, String deporte, int max, Bitmap logo) {
-        this.identificador = id;
-        this.nombre = n;
-        this.deporte = deporte;
-        this.jugadores = new ArrayList<>();
-        this.logo = logo;
-        this.max_jug = max;
     }
 
     protected PromocionParceable(Parcel in) {
-        this.identificador = in.readString();
+        this.imagen = in.readString();
         this.nombre = in.readString();
-        this.deporte = in.readString();
-        jugadores = new ArrayList<String>();
-        in.readStringList(jugadores);
-        this.logo = in.readParcelable(Bitmap.class.getClassLoader());
-        this.max_jug = in.readInt();
+        this.lugar = in.readString();
+        this.fechaIni = in.readString();
+        this.fechaFin = in.readString();
+        this.descripcion = in.readString();
+        this.admin = in.readString();
+
     }
 
-    public static final Creator<com.example.dannyang27.sportpoints.activities.Promocion.PromocionParceable> CREATOR = new Creator<PromocionParceable>() {
+    public static final Creator<PromocionParceable> CREATOR = new Creator<PromocionParceable>() {
         @Override
-        public com.example.dannyang27.sportpoints.activities.Promocion.PromocionParceable createFromParcel(Parcel source) {
-            return new com.example.dannyang27.sportpoints.activities.Promocion.PromocionParceable(source);
+        public PromocionParceable createFromParcel(Parcel source) {
+            return new PromocionParceable(source);
         }
 
         @Override
         public PromocionParceable[] newArray(int size) {
-            return new com.example.dannyang27.sportpoints.activities.Promocion.PromocionParceable[size];
+            return new PromocionParceable[size];
         }
     };
 }

@@ -31,17 +31,6 @@ public class RecyclerAdapterPromocion extends RecyclerView.Adapter<RecyclerAdapt
 
     ArrayList<PromocionParceable> listaPromociones = new ArrayList<>();
 
-    public void addPromocion(){
-        for(int i=0;i<10;i++) {
-            PromocionParceable e = new PromocionParceable();
-            e.setID(i+"");
-            e.setNom("DENIA"+i);
-            e.setDeporte("Futbol");
-            //e.setMaxJugadores(11);
-
-            listaPromociones.add(e);
-        }
-    }
     class ViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView img;
@@ -55,7 +44,7 @@ public class RecyclerAdapterPromocion extends RecyclerView.Adapter<RecyclerAdapt
 
             img = (ImageView) itemView.findViewById(R.id.logo_md_equipo);
             nombre_equipo = (TextView) itemView.findViewById(R.id.nombre_md_equipo);
-            deporte = (TextView) itemView.findViewById(R.id.deporte_md_equipo);
+            deporte = (TextView) itemView.findViewById(R.id.deporte_md_promo);
             participantes = (TextView) itemView.findViewById(R.id.participante_md_equipo);
             cardView = (CardView) itemView.findViewById(R.id.equipo_cardview);
 

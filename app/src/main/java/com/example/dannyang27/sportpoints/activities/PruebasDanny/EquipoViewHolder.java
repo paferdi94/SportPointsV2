@@ -1,6 +1,5 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -32,7 +31,7 @@ public class EquipoViewHolder extends RecyclerView.ViewHolder {
 
         img = (ImageView) itemView.findViewById(R.id.logo_md_equipo);
         nombreTv = (TextView) itemView.findViewById(R.id.nombre_md_equipo);
-        deporteTv = (TextView) itemView.findViewById(R.id.deporte_md_equipo);
+        deporteTv = (TextView) itemView.findViewById(R.id.deporte_md_promo);
         participantesTv = (TextView) itemView.findViewById(R.id.participante_md_equipo);
         unirse_btn = (Button) itemView.findViewById(R.id.unirse_md_btn);
 

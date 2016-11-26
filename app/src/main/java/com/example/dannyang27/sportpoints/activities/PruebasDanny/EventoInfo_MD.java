@@ -62,7 +62,6 @@ public class EventoInfo_MD extends AppCompatActivity {
         setContentView(R.layout.activity_evento_info__md);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_eventoInfo);
-        rootView = (View) findViewById(R.id.activity_evento_info__md);
         unirse_btn = (Button) findViewById(R.id.unirse_evento_md);
         evento_info_img = (ImageView) findViewById(R.id.evento_info_img);
         nombre_evento_info = (TextView) findViewById(R.id.nombre_evento_info_md);

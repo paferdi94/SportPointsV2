@@ -15,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,9 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.MainActivity;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
-import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,7 +36,6 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Dannyang27 on 13/11/16.

@@ -6,7 +6,6 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo;
 import com.example.dannyang27.sportpoints.activities.Equipo.EquipoParceable;
 
 import java.util.ArrayList;
@@ -60,7 +58,7 @@ class RecyclerAdapterEquipo extends RecyclerView.Adapter<RecyclerAdapterEquipo.V
 
             img = (ImageView) itemView.findViewById(R.id.logo_md_equipo);
             nombre_equipo = (TextView) itemView.findViewById(R.id.nombre_md_equipo);
-            deporte = (TextView) itemView.findViewById(R.id.deporte_md_equipo);
+            deporte = (TextView) itemView.findViewById(R.id.deporte_md_promo);
             participantes = (TextView) itemView.findViewById(R.id.participante_md_equipo);
             cardView = (CardView) itemView.findViewById(R.id.equipo_cardview);
 
