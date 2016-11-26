@@ -1,6 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
@@ -37,7 +39,7 @@ public class LogIn extends AppCompatActivity implements
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginBtn;
-    private Button registrateBtn;
+    private TextView registrateBtn;
     private Button gmailBtn;
 
     private GoogleApiClient mGoogleApiClient;
@@ -76,11 +78,11 @@ public class LogIn extends AppCompatActivity implements
             }
         };
 
-        emailEditText = (EditText) findViewById(R.id.email_md_main);
-        passwordEditText = (EditText) findViewById(R.id.password_md_main);
-        loginBtn = (Button) findViewById(R.id.login_md_btn);
-        registrateBtn = (Button) findViewById(R.id.registrate_md_btn);
-        gmailBtn = (Button) findViewById(R.id.gmail_md_btn);
+        emailEditText = (EditText) findViewById(R.id.editText_email);
+        passwordEditText = (EditText) findViewById(R.id.editText_password);
+        loginBtn = (Button) findViewById(R.id.btn_login);
+        registrateBtn = (TextView) findViewById(R.id.txt_registrarse);
+        gmailBtn = (Button) findViewById(R.id.btn_gmail);
 
         gmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,14 +144,11 @@ public class LogIn extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN_GMAIL) {
-            Log.d(TAG, "logeado7");
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                Log.d(TAG, "logeado8");
                 GoogleSignInAccount acct = result.getSignInAccount();
                 firebaseAuthWithGoogle(acct);
                 emailUsuario = acct.getEmail();
-                Log.d(TAG, "logeado10");
                 showPruebaTab();
             } else {
                 // El usuario ha rechazado logearse con la cuenta
@@ -172,7 +171,6 @@ public class LogIn extends AppCompatActivity implements
             Toast.makeText(getApplicationContext(), "Logeado con la cuenta de Google.", Toast.LENGTH_SHORT).show();
             showPruebaTab();
         } else {
-            Log.d(TAG, "logeado5");
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN_GMAIL);
         }
@@ -224,8 +222,11 @@ public class LogIn extends AppCompatActivity implements
                         if (!task.isSuccessful()) {
                             if (password.length() < 6) {
                                 passwordEditText.setError("Debe tener 6 carácteres mínimo.");
+                            } else if(task.getException().getMessage().equals("The password is invalid or the user does not have a password.")) {
+                                Toast.makeText(getApplicationContext(), "La contraseña no es válida.", Toast.LENGTH_LONG).show();
+                            } else if(task.getException().getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")) {
+                                Toast.makeText(getApplicationContext(), "El email no es válido.", Toast.LENGTH_LONG).show();
                             } else {
-                                Log.w(TAG, "signInWithEmail:failed", task.getException());
                                 Toast.makeText(getApplicationContext(), "Se ha perdido la conexión.", Toast.LENGTH_LONG).show();
                             }
                         }else{
@@ -237,4 +238,3 @@ public class LogIn extends AppCompatActivity implements
                 });
     }
 }
-

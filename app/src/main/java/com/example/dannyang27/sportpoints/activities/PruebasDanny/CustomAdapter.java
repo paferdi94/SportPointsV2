@@ -1,17 +1,18 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
-import android.content.Context;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
+
+
+import com.example.dannyang27.sportpoints.activities.Promocion.PromocionFragmento;
 
 /**
  * Created by Dannyang27 on 13/11/16.
  */
 public class CustomAdapter extends FragmentStatePagerAdapter {
-    private String [] fragments = {"EQUIPOS", "EVENTOS"};
+    private String [] fragments = {"EQUIPOS", "EVENTOS", "PROMOCIONES"};
     int numTabs;
     public CustomAdapter(FragmentManager fm, int numTabs) {
         super(fm);
@@ -26,6 +27,8 @@ public class CustomAdapter extends FragmentStatePagerAdapter {
                 return new EquipoFragmento();
             case 1:
                 return new EventoFragmento();
+            case 2:
+                return new PromocionFragmento();
 
             default:
                 return null;
