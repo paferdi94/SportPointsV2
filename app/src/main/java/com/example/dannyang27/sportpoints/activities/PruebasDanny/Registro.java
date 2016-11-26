@@ -113,6 +113,8 @@ public class Registro extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String pass1 = pass1EditText.getText().toString();
         String pass2 = pass2EditText.getText().toString();
+        int tel_length = telefonoEditText.getText().length();
+        telefono = parseInt(telefonoEditText.getText().toString());
         if(
                 nombreEditText.getText().toString().equals("") ||
                         emailEditText.getText().toString().equals("") ||
@@ -127,7 +129,8 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if((int)(Math.log10(telefono)+1) != 9){
+        if(tel_length != 9){
+            Log.d(TAG, tel_length+"");
             Toast.makeText(getApplicationContext(),"El telefono tiene que contener 9 números.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -186,7 +189,6 @@ public class Registro extends AppCompatActivity {
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/Usuarios/" + key, postValues);
-        Log.d(TAG, key);
         mDatabase.updateChildren(childUpdates);
     }
 
