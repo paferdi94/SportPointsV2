@@ -1,8 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.PruebasDanny;
-
-/**
- * Created by Dannyang27 on 13/11/16.
- */
+package com.example.dannyang27.sportpoints.activities.Promocion;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,34 +13,24 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Equipo.EquipoParceable;
+import com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoInfo_MD;
+
 
 import java.util.ArrayList;
 
 /**
- * Created by Dannyang27 on 13/11/16.
+ * Created by Pablo_Fernandez on 23/11/16.
  */
-class RecyclerAdapterEquipo extends RecyclerView.Adapter<RecyclerAdapterEquipo.ViewHolder> {
 
+public class RecyclerAdapterPromocion extends RecyclerView.Adapter<RecyclerAdapterPromocion.ViewHolder> {
     private Context context;
 
-    public RecyclerAdapterEquipo(Context context) {
+    public RecyclerAdapterPromocion(Context context) {
         this.context = context;
     }
 
-    ArrayList<EquipoParceable> listaEquipos = new ArrayList<>();
+    ArrayList<PromocionParceable> listaPromociones = new ArrayList<>();
 
-    public void addEquipos(){
-        for(int i=0;i<10;i++) {
-            EquipoParceable e = new EquipoParceable();
-            e.setID(i+"");
-            e.setNom("DENIA"+i);
-            e.setDeporte("Futbol");
-            //e.setMaxJugadores(11);
-
-            listaEquipos.add(e);
-        }
-    }
     class ViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView img;
@@ -80,15 +66,15 @@ class RecyclerAdapterEquipo extends RecyclerView.Adapter<RecyclerAdapterEquipo.V
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.aaa_md_equipos, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
+    public RecyclerAdapterPromocion.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.aaa_md_promociones, parent, false);
+        RecyclerAdapterPromocion.ViewHolder viewHolder = new RecyclerAdapterPromocion.ViewHolder(v);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerAdapterPromocion.ViewHolder holder, int position) {
 
         holder.nombre_equipo.setText("DASDSA");
         holder.deporte.setText("FUTBOL");
@@ -101,6 +87,8 @@ class RecyclerAdapterEquipo extends RecyclerView.Adapter<RecyclerAdapterEquipo.V
 
     @Override
     public int getItemCount() {
-        return listaEquipos.size();
+        return listaPromociones.size();
     }
 }
+
+

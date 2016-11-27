@@ -49,13 +49,13 @@
                 android:paddingTop="2dp"
 
                 android:layout_below="@id/nombre_md_equipo"
-                android:id="@+id/deporte_md_equipo" />
+                android:id="@+id/deporte_md_promo" />
             <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:layout_below="@id/deporte_md_equipo"
+                android:layout_below="@id/deporte_md_promo"
                 android:layout_marginStart="20dp"
                 android:paddingTop="2dp"
                 android:id="@+id/participante_md_equipo" />
