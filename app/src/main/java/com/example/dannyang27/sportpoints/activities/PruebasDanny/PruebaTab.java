@@ -51,12 +51,8 @@ public class PruebaTab extends AppCompatActivity {
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-<<<<<<< HEAD
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Toast.makeText(this, LogIn.emailUsuario + " ",Toast.LENGTH_LONG).show();
     }
 
 
