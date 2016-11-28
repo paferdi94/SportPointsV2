@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,19 +18,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Jugador;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
 import java.util.ArrayList;
 
+import static com.example.dannyang27.sportpoints.R.id.listarParticipantes_id;
 import static com.example.dannyang27.sportpoints.R.id.toolbar;
 
 public class EventoInfo_MD extends AppCompatActivity {
@@ -45,14 +50,18 @@ public class EventoInfo_MD extends AppCompatActivity {
     private Button btn_evento_info;
     private Button unirse_btn;
     private TextView descripcion_evento_info;
+    FirebaseAuth mAuth;
     Toolbar toolbar;
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
     StorageReference mStorageRef = firebaseStorageRef.getReference();
 
     FirebaseDatabase mDataRef = FirebaseDatabase.getInstance();
+    //DatabaseReference usuarioReference = mDataRef.getReference();
     DatabaseReference participantesRef = mDataRef.getReference();
+    //String usuarioKey;
     String participanteKey;
+    String emailLogeado;
 
     private ArrayList<String> listaParticipantes = new ArrayList<>();
 
@@ -80,21 +89,29 @@ public class EventoInfo_MD extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //////////////////////////////////////////////////////////
 
+        //Instancia del usuario que ha logeado
+        mAuth = FirebaseAuth.getInstance();
+
         EventoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
 
         //vamos a la ruta de la imagen
-
         mStorageRef = mStorageRef.child("eventos/" + e.getImagen());
 
+        //Referencia a participantes del Evento en la BDD
         participantesRef = participantesRef.child("Eventos")
                 .child(e.getNombre().toString()).child("participantes");
 
+
+        //Referencia a la tabla del usuario logeado en la BDD
+        //usuarioKey = mAuth.getCurrentUser().getEmail().replace(".", "%2E");
+        //usuarioReference = usuarioReference.child("Usuarios").child(usuarioKey);
+        emailLogeado = mAuth.getCurrentUser().getEmail();
 
         participantesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String str = dataSnapshot.getValue(String.class).toString();
-                if (!usuarioEncontrado && "rita".equals(str)) {
+                if (!usuarioEncontrado && emailLogeado.equals(str)) {
                     unirse_a_evento.setText("No voy a ir");
                     usuarioEncontrado = true;
                     participanteKey = dataSnapshot.getKey();
@@ -125,6 +142,19 @@ public class EventoInfo_MD extends AppCompatActivity {
             }
         });
 
+//        // Attach a listener to read the data at our posts reference
+//        usuarioReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Jugador j = dataSnapshot.getValue(Jugador.class);
+//                System.out.println(j.getNombre());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
 
         nombre_evento_info.setText(e.getNombre().toString());
         lugar_evento_info.setText(e.getLugar());
@@ -165,7 +195,8 @@ public class EventoInfo_MD extends AppCompatActivity {
                                         participantesRef.child(participanteKey).removeValue();
                                         usuarioEncontrado = false;
                                         unirse_a_evento.setText("Unirse");
-                                        Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
+                                        //Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
+                                        dialog.cancel();
                                     } else
                                         Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
                                 }
@@ -219,7 +250,6 @@ public class EventoInfo_MD extends AppCompatActivity {
 
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-
             int val = p.waitFor();
             boolean reachable = (val == 0);
             return reachable;

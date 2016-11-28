@@ -13,9 +13,6 @@ import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 
 import java.util.List;
 
-/**
- * Created by Danny on 30/10/2016.
- */
 
 public class CustomPartAdapter extends ArrayAdapter<Participante> {
     public CustomPartAdapter(Context context, List<Participante> participantes) {

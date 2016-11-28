@@ -43,6 +43,7 @@ public class CustomRowEvento extends ArrayAdapter<EventoParcelable> {
         hora.setText(ep.getHora());
         fecha.setText(ep.getFecha());
 
+
         return convertView;
     }
 }
