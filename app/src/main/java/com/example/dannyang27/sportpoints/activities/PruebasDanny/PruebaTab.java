@@ -48,7 +48,7 @@ public class PruebaTab extends AppCompatActivity {
             }
         });
 
-        toolbar.setTitle("PEPPA PIG");
+        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
