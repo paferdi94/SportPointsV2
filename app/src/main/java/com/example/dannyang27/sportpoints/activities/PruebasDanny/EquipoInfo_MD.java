@@ -100,7 +100,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         nombreTxt.setText(e.getNombre());
         deporteTxt.setText(e.getDeporte());
         participantesTxt.setText(e.getCapacidadActual()+" / "+e.getCapacidadMaxima());
-        //descripcionTxt.setText(e.getD);
+        descripcionTxt.setText(e.getDescripcion());
 
 
         mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

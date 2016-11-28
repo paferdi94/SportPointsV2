@@ -135,15 +135,6 @@ public class EventoFragmento extends Fragment {
                             fechaEv = fecha_et.getText().toString();
                             horaEv = hora_et.getText().toString();
 
-                            /*
-                            participantes.add("Pepi");
-                            participantes.add("Iban");
-                            participantes.add("Guillem");
-                            participantes.add("Le Danny");
-                             */
-
-                            //mRefEventos.child(nombre_et.getText().toString()).setValue(e);
-                            //Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
                             dialog.setContentView(R.layout.aaa_activity_dialog_descripcion);
                             descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_equipo);
                             crearBtn = (Button) dialog.findViewById(R.id.crear_dialog_equipo);
@@ -222,6 +213,14 @@ public class EventoFragmento extends Fragment {
                     }
                 });
 
+                viewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Toast.makeText(getContext(),mAuth.getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
+                        return true;
+                    }
+                });
+
 
                 if(!imagenId.equals("")) {
                     StorageReference eventosRef = mStorageRef.child("eventos/"+imagenId);
@@ -284,7 +283,21 @@ public class EventoFragmento extends Fragment {
 
 
 
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
 
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
 

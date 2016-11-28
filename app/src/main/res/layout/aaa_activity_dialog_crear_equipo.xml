@@ -69,7 +69,7 @@
             android:hint="Capacidad Maxima" />
 
         <Button
-            android:text="Crear"
+            android:text="Siguiente"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/crearBtn_dialog_equipo"
