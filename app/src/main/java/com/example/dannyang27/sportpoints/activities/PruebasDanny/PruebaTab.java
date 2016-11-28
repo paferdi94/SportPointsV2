@@ -54,30 +54,13 @@ public class PruebaTab extends AppCompatActivity {
 <<<<<<< HEAD
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Toast.makeText(this, LogIn.emailUsuario + " ",Toast.LENGTH_LONG).show();
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            //Back arrow
-//            case android.R.id.home:
-//                onBackPressed();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        setResult(RC_LOGIN);
-//        finish();
-//    }
-=======
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-    }
 
-    /*@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //Back arrow
@@ -91,6 +74,5 @@ public class PruebaTab extends AppCompatActivity {
     public void onBackPressed() {
         setResult(RC_LOGIN);
         finish();
-    }*/
->>>>>>> refs/remotes/Dannyang27/master
+    }
 }
