@@ -27,6 +27,7 @@ import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -62,7 +63,7 @@ public class EventoFragmento extends Fragment {
     private EditText hora_et;
     private Button cancelar_btn;
     private Button crear_btn;
-
+    private FirebaseAuth mAuth;
     private String nombreEv;
     private String fechaEv;
     private String lugarEv;
@@ -91,6 +92,8 @@ public class EventoFragmento extends Fragment {
         RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id);
         fab = (FloatingActionButton) v.findViewById(R.id.fab_evento_md);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+
+        mAuth = FirebaseAuth.getInstance();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +155,7 @@ public class EventoFragmento extends Fragment {
                                     EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagenEvento()
                                             ,nombreEv,lugarEv,horaEv,fechaEv,
                                             descripcion_et.getText().toString(),
-                                            "Dannyang27","1","22",participantes);
+                                            mAuth.getCurrentUser().getEmail(),"1","22",participantes);
 
                                     mRefEventos.child(nombreEv).setValue(e);
                                     Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();

@@ -1,12 +1,12 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 
@@ -51,11 +51,12 @@ public class PruebaTab extends AppCompatActivity {
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
-    /*@Override
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //Back arrow
@@ -69,5 +70,5 @@ public class PruebaTab extends AppCompatActivity {
     public void onBackPressed() {
         setResult(RC_LOGIN);
         finish();
-    }*/
+    }
 }

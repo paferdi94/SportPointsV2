@@ -83,7 +83,7 @@ public class Registro extends AppCompatActivity {
             }
         };
 
-        profile = (ImageButton) findViewById(R.id.imageBtn_md_registro);
+        //profile = (ImageButton) findViewById(R.id.imageBtn_md_registro);
         nombreEditText = (EditText) findViewById(R.id.nombre_md_registro);
         emailEditText = (EditText) findViewById(R.id.email_md_registro);
         pass1EditText = (EditText) findViewById(R.id.password_md_registro);
