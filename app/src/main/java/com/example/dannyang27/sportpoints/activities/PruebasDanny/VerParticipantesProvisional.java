@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
+import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,10 +27,14 @@ public class VerParticipantesProvisional extends AppCompatActivity {
     private ListView lv;
     private ArrayList<String> participantes = new ArrayList<>();
 
-    private String [] arrayParticipantes = new String[30];
+    private String[] arrayParticipantes = new String[30];
 
     FirebaseDatabase mRef = FirebaseDatabase.getInstance();
     DatabaseReference mRefPart = mRef.getReference();
+    DatabaseReference mRefParticipates;
+    EquipoPruebaDanny nombre_equipo;
+    EventoPruebaDanny evento;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +44,17 @@ public class VerParticipantesProvisional extends AppCompatActivity {
         //Intent i = getIntent();
         //participantes = i.getStringArrayListExtra("listaParticipantes");
 
-        EquipoPruebaDanny nombre_equipo = getIntent().getParcelableExtra("PARCELABLE");
+        //EquipoPruebaDanny nombre_equipo = getIntent().getParcelableExtra("PARCELABLE");
 
-        DatabaseReference mRefParticipates = mRefPart.child("Equipos").child(nombre_equipo.getNombre())
-                .child("participantes");
+        if ((getIntent().getParcelableExtra("PARCELABLE") instanceof EquipoPruebaDanny)) {
+            nombre_equipo = getIntent().getParcelableExtra("PARCELABLE");
+            mRefParticipates = mRefPart.child("Equipos").child(nombre_equipo.getNombre())
+                    .child("participantes");
+        } else {
+            evento = getIntent().getParcelableExtra("PARCELABLE");
+            mRefParticipates = mRefPart.child("Eventos").child(evento.getNombre())
+                    .child("participantes");
+        }
 
 
         tb = (Toolbar) findViewById(R.id.tb);
@@ -102,13 +114,13 @@ public class VerParticipantesProvisional extends AppCompatActivity {
         lv.setAdapter(adapter);
 
 
-        }
+    }
 
 
-    public int devolverKey(String str){
-        int k=-1;
-        for(int i=0; i<arrayParticipantes.length;i++){
-            if(arrayParticipantes[i].equals(str)) {
+    public int devolverKey(String str) {
+        int k = -1;
+        for (int i = 0; i < arrayParticipantes.length; i++) {
+            if (arrayParticipantes[i].equals(str)) {
                 return i;
             }
         }
@@ -125,5 +137,5 @@ public class VerParticipantesProvisional extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    }
+}
 
