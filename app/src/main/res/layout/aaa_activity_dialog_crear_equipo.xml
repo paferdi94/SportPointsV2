@@ -11,7 +11,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
         <TextView
             android:text="Sport Points"
@@ -86,10 +88,9 @@
             android:id="@+id/cancelarBtn_dialog_equipo"
             android:textColor="@color/colorAccent"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_marginTop="14dp"
-            android:layout_below="@+id/capMax_dialog_equipo"
             android:layout_alignStart="@+id/sportPoints_label"
-            android:layout_marginStart="13dp" />
+            android:layout_marginStart="13dp"
+            android:layout_below="@+id/capMax_dialog_equipo" />
 
         <EditText
             android:layout_width="wrap_content"
