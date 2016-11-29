@@ -58,8 +58,8 @@ public class EventoInfo_MD extends AppCompatActivity {
     FirebaseDatabase mDataRef = FirebaseDatabase.getInstance();
     //DatabaseReference usuarioReference = mDataRef.getReference();
     DatabaseReference participantesRef = mDataRef.getReference();
-    //String usuarioKey;
     String participanteKey;
+    String nombreKey;
     String emailLogeado;
 
     private ArrayList<String> listaParticipantes = new ArrayList<>();
@@ -89,10 +89,18 @@ public class EventoInfo_MD extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //////////////////////////////////////////////////////////
 
+        final DatabaseReference eventosRef = mDataRef.getReference().child("Eventos");
+
         //Instancia del usuario que ha logeado
         mAuth = FirebaseAuth.getInstance();
 
-        EventoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
+        final EventoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
+
+        nombreKey = e.getNombre();
+
+//        //Añadir el creador al evento
+//        e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
+//        eventosRef.child(nombreKey).setValue(e);
 
         //vamos a la ruta de la imagen
         mStorageRef = mStorageRef.child("eventos/" + e.getImagen());
@@ -129,6 +137,7 @@ public class EventoInfo_MD extends AppCompatActivity {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 String usuarioBorrado = dataSnapshot.getValue(String.class).toString();
                 borrarElementoLista(usuarioBorrado);
+                e.setParticipantes(listaParticipantes);
             }
 
             @Override
@@ -196,7 +205,6 @@ public class EventoInfo_MD extends AppCompatActivity {
                                         usuarioEncontrado = false;
                                         unirse_a_evento.setText("Unirse");
                                         Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
-                                        dialog.cancel();
                                     } else
                                         Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
                                 }
@@ -208,8 +216,16 @@ public class EventoInfo_MD extends AppCompatActivity {
                             })
                             .show();
                 } else {
-                    //implementar en la BDD - unir usuario a evento
-                    Snackbar.make(view, "Te has unido al evento correctamente", Snackbar.LENGTH_LONG).show();
+
+                    if (!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
+                        e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
+                        //DatabaseReference auxRef= equiposRef.child(nombre_key);
+
+                        eventosRef.child(nombreKey).setValue(e);
+                        Snackbar.make(view, "Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(view, "Ya estás unido en el evento", Snackbar.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -248,11 +264,15 @@ public class EventoInfo_MD extends AppCompatActivity {
 
     //Comprobar si tenemos internet en un momento determinado
     public Boolean isOnlineNet() {
-
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0);
+            if (!reachable) {
+                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
+                val = p.waitFor();
+                reachable = (val == 0);
+            }
             return reachable;
 
         } catch (Exception e) {
