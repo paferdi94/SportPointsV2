@@ -114,6 +114,7 @@ public class Registro extends AppCompatActivity {
         String pass1 = pass1EditText.getText().toString();
         String pass2 = pass2EditText.getText().toString();
         int tel_length = telefonoEditText.getText().length();
+        telefono = parseInt(telefonoEditText.getText().toString());
         if(
                 nombreEditText.getText().toString().equals("") ||
                         emailEditText.getText().toString().equals("") ||
@@ -134,7 +135,6 @@ public class Registro extends AppCompatActivity {
             return;
         }
         try{
-            telefono = parseInt(telefonoEditText.getText().toString());
             String fecha = fechaNacimientoEditText.getText().toString();
             DateFormat format = new SimpleDateFormat("d-L-y", Locale.ENGLISH);
             this.fechaNacimiento = format.parse(fecha);
@@ -167,7 +167,6 @@ public class Registro extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Ya existe una cuenta con ese email.", Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getApplicationContext(), "Se ha perdido la conexión.", Toast.LENGTH_SHORT).show();
                                 }
                             }else{
                                 guardarDatos();
