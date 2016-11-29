@@ -37,6 +37,7 @@ public class LogIn extends AppCompatActivity implements
     private static final int RC_SIGN_IN_GMAIL = 9001;
     private static final int RC_REGISTER = 9002;
     private static final int RC_LOGIN = 9003;
+    private static final int RC_REGISTER_FAIL = 9004;
 
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -116,7 +117,6 @@ public class LogIn extends AppCompatActivity implements
     public void showRegistro(){
         Intent i = new Intent(this, Registro.class);
         startActivityForResult(i, RC_REGISTER);
-
     }
 
     // --- Comun Logeo ---
@@ -160,8 +160,9 @@ public class LogIn extends AppCompatActivity implements
         }else if(requestCode == RC_LOGIN){
             mAuth.signOut();
         }else if(requestCode == RC_REGISTER){
-            Toast.makeText(getApplicationContext(), "Logeado con la cuenta recien creada.", Toast.LENGTH_SHORT).show();
-            showPruebaTab();
+            if(resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(), "Cuenta creada con exito.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
