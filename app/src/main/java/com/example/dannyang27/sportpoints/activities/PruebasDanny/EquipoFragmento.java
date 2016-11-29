@@ -2,6 +2,7 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -68,6 +71,17 @@ public class EquipoFragmento extends Fragment {
     private Button crear_btn;
 
 
+    private EditText descripcion_et;
+    private Button crearBtn;
+
+    private String nombreEv;
+    private String deporteEv;
+    private String capacidadMaximaEv;
+
+    private FirebaseAuth mAuth;
+
+    private ArrayList<String> participantes = new ArrayList<>();
+
 
     public static void setNombreImagenEquipo(String nombreImagenEquipo) {
         EquipoFragmento.nombreImagenEquipo = nombreImagenEquipo;
@@ -86,12 +100,16 @@ public class EquipoFragmento extends Fragment {
         rv = (RecyclerView) v.findViewById(R.id.rv_id_equipo);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
 
+        mAuth = FirebaseAuth.getInstance();
+
         fab = (FloatingActionButton) v.findViewById(R.id.fab_equipo_md);
+
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-               // Toast.makeText(getContext(),"CREAR EQUIPO", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(),"CREAR EQUIPO", Toast.LENGTH_SHORT).show();
 
                 final Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.aaa_activity_dialog_crear_equipo);
@@ -119,21 +137,34 @@ public class EquipoFragmento extends Fragment {
                             camposObligatorios += "Introduzca la capacidad maxima\n";
                         }
                         if(camposObligatorios.length()==0){
-                            DatabaseReference mEquiposRef = mDataRef.child("Equipos");
 
-                            ArrayList<String> a = new ArrayList<String>();
-                            a.add("Cristiano Ronaldo");
-                            a.add("Lionel Messi");
-                            EquipoPruebaDanny e = new EquipoPruebaDanny("Dannyang27",
-                                    nombre_et.getText().toString(),
-                                    deporte_et.getText().toString(),
-                                    "DESCRIPCION",
-                                    "1",capacidadMaxima_et.getText().toString(),nombreImagenEquipo,a);
+                            nombreEv = nombre_et.getText().toString();
+                            deporteEv = deporte_et.getText().toString();
+                            capacidadMaximaEv = capacidadMaxima_et.getText().toString();
 
-                            mEquiposRef.child(nombre_et.getText().toString()).setValue(e);
-                            Snackbar.make(view,"Equipo creado", Snackbar.LENGTH_LONG).show();
+                            dialog.setContentView(R.layout.aaa_dialogo_equipo_desc);
+                            descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_equipo_1);
+                            crearBtn = (Button) dialog.findViewById(R.id.crear_dialog_equipo_1);
 
-                            dialog.cancel();
+                            crearBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    DatabaseReference mEquiposRef = mDataRef.child("Equipos");
+
+                                    EquipoPruebaDanny e = new EquipoPruebaDanny(mAuth.getCurrentUser().getEmail(),
+                                            nombreEv, deporteEv, descripcion_et.getText().toString(),
+                                            "1",capacidadMaximaEv, nombreImagenEquipo, participantes);
+
+                                    String auth= mAuth.getCurrentUser().getEmail();
+
+                                    Toast.makeText(getContext(),auth + " : "+nombreEv + " : " +descripcion_et + " : " +participantes.toString() ,Toast.LENGTH_SHORT).show();
+
+
+                                    mEquiposRef.child(nombre_et.getText().toString()).setValue(e);
+                                    Snackbar.make(view,"Equipo creado", Snackbar.LENGTH_LONG).show();
+                                    dialog.cancel();
+                                }
+                            });
 
 
                         }else{
@@ -176,12 +207,10 @@ public class EquipoFragmento extends Fragment {
 
                 viewHolder.nombreTv.setText(model.getNombre());
                 viewHolder.deporteTv.setText(model.getDeporte());
-                viewHolder.participantesTv.setText(model.getCapacidadActual() +" / "+model.getCapacidadMaxima());
+                //viewHolder.participantesTv.setText(model.getCapacidadActual() +" / "+model.getCapacidadMaxima());
 
                 String imagenId = model.getImagen();
 
-
-                /*
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -190,13 +219,10 @@ public class EquipoFragmento extends Fragment {
 
                     }
                 });
-                 */
-                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+
+                //Para borrar equipo
+                viewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
-                    public void onClick(View view) {
-
-                        showInfoEquipo(model);
-
                     public boolean onLongClick(View view) {
 
                         new AlertDialog.Builder(getContext())
@@ -226,7 +252,6 @@ public class EquipoFragmento extends Fragment {
                         return true;
                     }
                 });
-
 
 
 
@@ -288,5 +313,22 @@ public class EquipoFragmento extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         c=context;
+    }
+
+
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
+
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
     }
 }
