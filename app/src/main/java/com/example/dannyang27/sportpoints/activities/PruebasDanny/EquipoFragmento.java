@@ -79,6 +79,7 @@ public class EquipoFragmento extends Fragment {
         //Referencio equipos
         mDataRef =  FirebaseDatabase.getInstance().getReference();
         mRefEquipo = mDataRef.child("Equipos");
+        participantes.add("Tecnico");
 
 
         View v = inflater.inflate(R.layout.aaa_activity_equipo_fragmento, container, false);
@@ -196,6 +197,33 @@ public class EquipoFragmento extends Fragment {
 
                         showInfoEquipo(model);
 
+                    public boolean onLongClick(View view) {
+
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Delete Entry")
+                                .setMessage("Estas seguro que quieres borrar este equipo?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
+                                            mRefEquipo.child(model.getNombre()).removeValue();
+                                            Toast.makeText(getContext(), "Elemento borrado", Toast.LENGTH_LONG).show();
+                                        }else {
+                                            Toast.makeText(getContext(), "No eres el creador del equipo", Toast.LENGTH_LONG).show();
+                                        }
+
+
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Toast.makeText(getContext(), "Operacion cancelada", Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert).show();
+
+                        return true;
                     }
                 });
 
