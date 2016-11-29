@@ -109,7 +109,7 @@ public class EquipoFragmento extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-               // Toast.makeText(getContext(),"CREAR EQUIPO", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(),"CREAR EQUIPO", Toast.LENGTH_SHORT).show();
 
                 final Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.aaa_activity_dialog_crear_equipo);
