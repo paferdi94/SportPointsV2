@@ -3,6 +3,7 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import static java.security.AccessController.getContext;
+
 public class LogIn extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -44,6 +51,7 @@ public class LogIn extends AppCompatActivity implements
     private Button loginBtn;
     private TextView registrateBtn;
     private Button gmailBtn;
+    private View rootView;
 
     private GoogleApiClient mGoogleApiClient;
     private String emailUsuario;
@@ -81,6 +89,7 @@ public class LogIn extends AppCompatActivity implements
             }
         };
 
+        rootView = (View) findViewById(R.id.activity_log_in);
         emailEditText = (EditText) findViewById(R.id.editText_email);
         passwordEditText = (EditText) findViewById(R.id.editText_password);
         loginBtn = (Button) findViewById(R.id.btn_login);
@@ -149,10 +158,13 @@ public class LogIn extends AppCompatActivity implements
         if (requestCode == RC_SIGN_IN_GMAIL) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                GoogleSignInAccount acct = result.getSignInAccount();
-                firebaseAuthWithGoogle(acct);
-                emailUsuario = acct.getEmail();
-                showPruebaTab();
+                if(isOnlineNet()) {
+                    GoogleSignInAccount acct = result.getSignInAccount();
+                    firebaseAuthWithGoogle(acct);
+                    emailUsuario = acct.getEmail();
+                    showPruebaTab();
+                } else
+                    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
             } else {
                 // El usuario ha rechazado logearse con la cuenta
                 Log.d(TAG, requestCode+" Fallo");
@@ -241,4 +253,25 @@ public class LogIn extends AppCompatActivity implements
                     }
                 });
     }
+
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            if (!reachable) {
+                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
+                val = p.waitFor();
+                reachable = (val == 0);
+            }
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

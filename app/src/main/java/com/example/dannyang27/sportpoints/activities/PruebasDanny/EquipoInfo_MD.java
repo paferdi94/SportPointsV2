@@ -1,12 +1,16 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +32,8 @@ import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -37,10 +43,15 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private TextView nombreTxt;
     private TextView deporteTxt;
     private TextView participantesTxt;
+    private TextView unirse_a_equipo;
     private Button verPartBtn;
     private Button unirseBtn;
     private Button bajaBtn;
     private TextView descripcionTxt;
+    String emailLogeado;
+    private View rootView;
+    String participanteKey;
+    Boolean usuarioEncontrado = false;
     private int cap=0;
 
     private Toolbar tb;
@@ -49,8 +60,6 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ArrayList<String> listaParticipantes = new ArrayList<>();
-
-    private String [] arrayParticipantes = new String[30];
 
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
@@ -66,7 +75,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         final DatabaseReference equiposRef = mDataRef.getReference().child("Equipos");
 
         mAuth = FirebaseAuth.getInstance();
-
+        rootView = (View) findViewById(R.id.activity_equipo_info__md);
         tb = (Toolbar) findViewById(R.id.toolbar_equipoInfo);
 
         nombreTxt = (TextView) findViewById(R.id.nombre_equipo_info_md);
@@ -77,6 +86,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         unirseBtn = (Button) findViewById(R.id.unirse_equipo_info_md);
         bajaBtn = (Button) findViewById(R.id.baja_equipo_info_md);
         descripcionTxt = (TextView) findViewById(R.id.descripcion_equipo_info_md);
+        unirse_a_equipo = (TextView) findViewById(R.id.unirse_equipo_info_md);
 
         /////////////////////Añadir Toolbar////////////////////////
         tb.setTitle("Información de Equipo");
@@ -90,6 +100,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         final EquipoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
 
         nombre_key = e.getNombre();
+        emailLogeado = mAuth.getCurrentUser().getEmail();
 
         mStorageRef = mStorageRef.child("equipos/"+e.getImagen());
         participantesRef = participantesRef.child("Equipos")
@@ -100,10 +111,13 @@ public class EquipoInfo_MD extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String str = dataSnapshot.getValue(String.class).toString();
                 int key =Integer.parseInt(dataSnapshot.getKey().toString());
-
-                arrayParticipantes[key] = str;
-
-
+                if (!usuarioEncontrado && emailLogeado.equals(str)) {
+                    unirse_a_equipo.setText("DEJAR");
+                    usuarioEncontrado = true;
+                    participanteKey = dataSnapshot.getKey();
+                } else {
+                    listaParticipantes.add(str);
+                }
             }
 
             @Override
@@ -113,7 +127,10 @@ public class EquipoInfo_MD extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                String usuarioBorrado = dataSnapshot.getValue(String.class).toString();
+                Log.d("SportPoints",usuarioBorrado);
+                borrarElementoLista(usuarioBorrado);
+                e.setParticipantes(listaParticipantes);
             }
 
             @Override
@@ -161,17 +178,39 @@ public class EquipoInfo_MD extends AppCompatActivity {
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
-                if(!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
-                    e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
-                    //DatabaseReference auxRef= equiposRef.child(nombre_key);
+                if (unirse_a_equipo.getText().equals("DEJAR")) {
+                    new AlertDialog.Builder(view.getContext())
+                            .setTitle("Dejar Equipo")
+                            .setMessage("Estás seguro que salir del equipo?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(isOnlineNet()) {
+                                        participantesRef.child(participanteKey).removeValue();
+                                        usuarioEncontrado = false;
+                                        unirse_a_equipo.setText("UNIRSE");
+                                        Snackbar.make(rootView, "Has salido del equipo correctamente", Snackbar.LENGTH_LONG).show();
+                                    } else
+                                        Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .show();
+                }else {
+                    // Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+                    if (!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
+                        e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
+                        //DatabaseReference auxRef= equiposRef.child(nombre_key);
 
-                    equiposRef.child(nombre_key).setValue(e);
-                    Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
-                }else{
-                    Snackbar.make(view,"Ya estas dentro del equipo", Snackbar.LENGTH_LONG).show();
+                        equiposRef.child(nombre_key).setValue(e);
+                        Snackbar.make(view, "Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(view, "Ya estas dentro del equipo", Snackbar.LENGTH_LONG).show();
+                    }
                 }
-
 
             }
         });
@@ -246,6 +285,32 @@ public class EquipoInfo_MD extends AppCompatActivity {
         return cap;
     }
 
+    private void borrarElementoLista(String usuario) {
+        for (int i = 0; i < listaParticipantes.size(); i++) {
+            if (usuario.equals(listaParticipantes.get(i))) {
+                listaParticipantes.remove(i);
+                Log.d("SportPoints",usuario);
+            }
+        }
+    }
 
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            if (!reachable) {
+                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
+                val = p.waitFor();
+                reachable = (val == 0);
+            }
+            return reachable;
 
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
