@@ -73,7 +73,7 @@
             android:ems="10"
             android:layout_marginTop="10dp"
             android:id="@+id/nombre_dialog_equipo"
-            
+
             android:hint="Nombre"
             android:layout_below="@+id/fab_dialog_equipo"
             android:layout_alignParentEnd="true" />
