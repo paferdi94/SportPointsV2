@@ -158,7 +158,7 @@ public class EventoFragmento extends Fragment {
                                 @Override
                                 public void onClick(View v) {
                                     DatabaseReference mRefEventos = mDataRef.child("Eventos");
-                                    EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagenEvento()
+                                    EventoPruebaDanny e = new EventoPruebaDanny(nombreImagenEvento
                                             , nombreEv, lugarEv, horaEv, fechaEv,
                                             descripcion_et.getText().toString(),
                                             mAuth.getCurrentUser().getEmail(), "1", "22", participantes);
@@ -230,6 +230,8 @@ public class EventoFragmento extends Fragment {
                 viewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
+                        //quitar toast!!!
+                        Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
                         mEventoRef = mDataRef.child("Eventos").child(model.getNombre());
                         //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
                         if (model.getAdmin().equals(emailLogin)) {
@@ -310,7 +312,7 @@ public class EventoFragmento extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    setNombreImagenEvento("");
+                    //setNombreImagenEvento(""); ---> FALLAZO BRO!
                 }
             });
         }
