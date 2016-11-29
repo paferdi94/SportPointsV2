@@ -1,6 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.Promocion;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.media.MediaMetadataCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ import com.example.dannyang27.sportpoints.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -50,6 +53,7 @@ public class PromocionFragmento extends Fragment {
     RecyclerView rv;
     DatabaseReference mDataRef;
     DatabaseReference mPromoRef;
+    private FirebaseAuth mAuth;
     static String nombreImagenPromo = "";
 
     public static final int GALLERY_INTENT =2;
@@ -93,11 +97,13 @@ public class PromocionFragmento extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         mDataRef = FirebaseDatabase.getInstance().getReference();
         mPromoRef = mDataRef.child("Promociones");
         View v = inflater.inflate(R.layout.aaa_activity_promocion_fragmento, container, false);
         rv = (RecyclerView) v.findViewById(R.id.rv_id_promo);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+        mAuth = FirebaseAuth.getInstance();
 
         fab = (FloatingActionButton) v.findViewById(R.id.fab_promo_md); // Boton Floating CrearPromocion
 
@@ -154,7 +160,9 @@ public class PromocionFragmento extends Fragment {
                                 @Override
                                 public void onClick(View v) {
                                     DatabaseReference mRefPromo = mDataRef.child("Promociones");
-                                    PromocionParceable e = new PromocionParceable(getNombreImagenPromo(), nombrePm, lugarPm, fechaPmInit, fechaPmFin, descripcion_et.getText().toString(), "Paferdi94");
+                                    PromocionParceable e = new PromocionParceable(getNombreImagenPromo(), nombrePm, lugarPm, fechaPmInit, fechaPmFin, descripcion_et.getText().toString(), mAuth.getCurrentUser().getEmail());
+
+                                    String auth= mAuth.getCurrentUser().getEmail();
 
                                     mRefPromo.child(nombrePm).setValue(e);
                                     Snackbar.make(view, "Promocion Creada", Snackbar.LENGTH_LONG).show();
@@ -197,8 +205,8 @@ public class PromocionFragmento extends Fragment {
 
                 viewHolder.nombrePm.setText(model.getNombre());
                 viewHolder.lugarPm.setText(model.getLugar());
-                viewHolder.fechaIni.setText(model.getFechaIni());
-                viewHolder.fechaFin.setText(model.getFechaFin());
+                viewHolder.fechaIni.setText(model.getFechaIn());
+                viewHolder.fechaFin.setText(model.getFechaF());
                 String imagenId = model.getImagen();
 
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
@@ -209,10 +217,47 @@ public class PromocionFragmento extends Fragment {
                     }
                 });
 
+                //Para borrar promocion
+                viewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Eliminar Promocion")
+                                .setMessage("¿Estas seguro que quieres borrar esta promoción?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
+                                            mPromoRef.child(model.getNombre()).removeValue();
+                                            Toast.makeText(getContext(), "Promoción borrada", Toast.LENGTH_LONG).show();
+                                        }else {
+                                            Toast.makeText(getContext(), "No eres el creador de la promoción", Toast.LENGTH_LONG).show();
+                                        }
+
+
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Toast.makeText(getContext(), "Operacion cancelada", Toast.LENGTH_LONG).show();
+                                    }
+                                }).show();
+
+
+                        return true;
+                    }
+                });
+
                 if (!imagenId.equals("")) {
-                    StorageReference promosRef = mStorageRef.child("eventos/" + imagenId);
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+
+                    StorageReference storageRef = storage.getReferenceFromUrl("gs://sport-points-7f5e0.appspot.com/");
+                    StorageReference imagesRef = storageRef.child("promociones/"+ imagenId);
+                    //StorageReference promosRef = mStorageRef.child("promociones/" + imagenId);
                     //Bajar la imagen
-                    promosRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    imagesRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
                             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -223,6 +268,8 @@ public class PromocionFragmento extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Snackbar.make(getView(), "No se han cargado todas las fotos", Snackbar.LENGTH_LONG).show();
+
+
                         }
                     });
 
@@ -269,5 +316,21 @@ public class PromocionFragmento extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         c= context;
+    }
+
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
+
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
     }
 }

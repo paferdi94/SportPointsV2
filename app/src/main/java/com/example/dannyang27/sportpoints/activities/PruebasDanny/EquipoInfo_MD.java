@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;

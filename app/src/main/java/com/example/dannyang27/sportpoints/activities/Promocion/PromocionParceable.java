@@ -21,10 +21,11 @@ public class PromocionParceable implements Parcelable{
     private String imagen;
     private String nombre;
     private String lugar;
-    private String fechaIni;
-    private String fechaFin;
+    private String fechaIn;
+    private String fechaF;
     private String descripcion;
     private String admin;
+    private String creador;
 
 
     public PromocionParceable() {
@@ -34,8 +35,8 @@ public class PromocionParceable implements Parcelable{
         this.imagen = imagen;
         this.nombre = nombre;
         this.lugar = lugar;
-        this.fechaIni = fechaIni;
-        this.fechaFin = fechaFin;
+        this.fechaIn= fechaIni;
+        this.fechaF = fechaFin;
         this.descripcion = descripcion;
         this.admin = admin;
 
@@ -65,20 +66,20 @@ public class PromocionParceable implements Parcelable{
         this.lugar = lugar;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public String getFechaF() {
+        return fechaF;
     }
 
     public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+        this.fechaF = fechaFin;
     }
 
-    public String getFechaIni() {
-        return fechaIni;
+    public String getFechaIn() {
+        return fechaIn;
     }
 
     public void setFechaIni(String fechaIni) {
-        this.fechaIni = fechaIni;
+        this.fechaIn = fechaIni;
     }
 
     public String getDescripcion() {
@@ -97,7 +98,9 @@ public class PromocionParceable implements Parcelable{
         this.admin = admin;
     }
 
-
+    public String getCreador() {
+        return creador;
+    }
     @Override
     public int describeContents() {
         return 0;
@@ -108,8 +111,8 @@ public class PromocionParceable implements Parcelable{
         dest.writeString(this.imagen);
         dest.writeString(this.nombre);
         dest.writeString(this.lugar);
-        dest.writeString(this.fechaIni);
-        dest.writeString(this.fechaFin);
+        dest.writeString(this.fechaIn);
+        dest.writeString(this.fechaF);
         dest.writeString(this.descripcion);
         dest.writeString(this.admin);
 
@@ -119,14 +122,14 @@ public class PromocionParceable implements Parcelable{
         this.imagen = in.readString();
         this.nombre = in.readString();
         this.lugar = in.readString();
-        this.fechaIni = in.readString();
-        this.fechaFin = in.readString();
+        this.fechaIn = in.readString();
+        this.fechaF = in.readString();
         this.descripcion = in.readString();
         this.admin = in.readString();
 
     }
 
-    public static final Creator<PromocionParceable> CREATOR = new Creator<PromocionParceable>() {
+    public static final Parcelable.Creator<PromocionParceable> CREATOR = new Parcelable.Creator<PromocionParceable>() {
         @Override
         public PromocionParceable createFromParcel(Parcel source) {
             return new PromocionParceable(source);
