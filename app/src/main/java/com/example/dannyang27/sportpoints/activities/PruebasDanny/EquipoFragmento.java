@@ -241,6 +241,7 @@ public class EquipoFragmento extends Fragment {
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+
                                         Toast.makeText(getContext(), "Operacion cancelada", Toast.LENGTH_LONG).show();
                                     }
                                 }).show();

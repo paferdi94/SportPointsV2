@@ -225,7 +225,7 @@ public class PromocionFragmento extends Fragment {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
+                                        if(mAuth.getCurrentUser().getEmail().equals(model.getAdmin()) && isOnlineNet()){
                                             mPromoRef.child(model.getNombre()).removeValue();
                                             Toast.makeText(getContext(), "Promoción borrada", Toast.LENGTH_LONG).show();
                                         }else {
@@ -237,6 +237,7 @@ public class PromocionFragmento extends Fragment {
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+
                                         Toast.makeText(getContext(), "Operacion cancelada", Toast.LENGTH_LONG).show();
                                     }
                                 }).show();
