@@ -2,6 +2,7 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,8 +53,7 @@ public class EventoFragmento extends Fragment {
 
     public static final int GALLERY_INTENT = 2;
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
-    StorageReference mStorageRef =firebaseStorageRef.getReference();
-
+    StorageReference mStorageRef = firebaseStorageRef.getReference();
 
     //Widgets del Dialogo
     private ImageView imagen;
@@ -63,7 +64,6 @@ public class EventoFragmento extends Fragment {
     private EditText hora_et;
     private Button cancelar_btn;
     private Button crear_btn;
-    private FirebaseAuth mAuth;
     private String nombreEv;
     private String fechaEv;
     private String lugarEv;
@@ -73,7 +73,10 @@ public class EventoFragmento extends Fragment {
 
     private EditText descripcion_et;
     private Button crearBtn;
+    View rootView;
 
+    private FirebaseAuth mAuth;
+    private String emailLogin = "";
 
     public static String getNombreImagenEvento() {
         return nombreImagenEvento;
@@ -86,22 +89,25 @@ public class EventoFragmento extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mDataRef =  FirebaseDatabase.getInstance().getReference();
+        mDataRef = FirebaseDatabase.getInstance().getReference();
         mEventoRef = mDataRef.child("Eventos");
         View v = inflater.inflate(R.layout.aaa_activity_evento_fragmento, container, false);
         RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_id);
         fab = (FloatingActionButton) v.findViewById(R.id.fab_evento_md);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+        rootView = (View) v.findViewById(R.id.coordinate);
 
         mAuth = FirebaseAuth.getInstance();
+        emailLogin = mAuth.getCurrentUser().getEmail();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
 
-               final  Dialog dialog = new Dialog(getContext());
+                final Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.aaa_activity_dialog_crear_evento);
                 dialog.show();
+
 
                 imagen = (ImageView) dialog.findViewById(R.id.imagen_dialog_evento);
                 fab_dialog = (FloatingActionButton) dialog.findViewById(R.id.fab_dialog_evento);
@@ -113,22 +119,22 @@ public class EventoFragmento extends Fragment {
                 crear_btn = (Button) dialog.findViewById(R.id.crearBtn_dialog_evento);
                 crear_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick( View v) {
-                        String camposObligatorios="";
-                       if(nombre_et.getText().toString().equals("")){
-                           camposObligatorios += "Introduzca el nombre del evento\n";
-                       }
-                       if(lugar_et.getText().toString().equals("")){
-                           camposObligatorios += "Introduzca el lugar del evento\n";
-                       }
-                       if(hora_et.getText().toString().equals("")){
+                    public void onClick(View v) {
+                        String camposObligatorios = "";
+                        if (nombre_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca el nombre del evento\n";
+                        }
+                        if (lugar_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca el lugar del evento\n";
+                        }
+                        if (hora_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca la hora del evento\n";
                         }
-                       if(fecha_et.getText().toString().equals("")){
-                           camposObligatorios += "Introduzca la fecha del evento\n";
-                       }
+                        if (fecha_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca la fecha del evento\n";
+                        }
 
-                        if(camposObligatorios.length()==0){
+                        if (camposObligatorios.length() == 0) {
 
                             nombreEv = nombre_et.getText().toString();
                             lugarEv = lugar_et.getText().toString();
@@ -153,19 +159,19 @@ public class EventoFragmento extends Fragment {
                                 public void onClick(View v) {
                                     DatabaseReference mRefEventos = mDataRef.child("Eventos");
                                     EventoPruebaDanny e = new EventoPruebaDanny(getNombreImagenEvento()
-                                            ,nombreEv,lugarEv,horaEv,fechaEv,
+                                            , nombreEv, lugarEv, horaEv, fechaEv,
                                             descripcion_et.getText().toString(),
-                                            mAuth.getCurrentUser().getEmail(),"1","22",participantes);
+                                            mAuth.getCurrentUser().getEmail(), "1", "22", participantes);
 
                                     mRefEventos.child(nombreEv).setValue(e);
-                                    Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
+                                    Snackbar.make(view, "Evento creado", Snackbar.LENGTH_LONG).show();
                                     dialog.cancel();
 
                                 }
                             });
 
-                        }else{
-                            Toast.makeText(getContext(), camposObligatorios.substring(0, camposObligatorios.length()-1),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), camposObligatorios.substring(0, camposObligatorios.length() - 1), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -173,7 +179,7 @@ public class EventoFragmento extends Fragment {
                 cancelar_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Snackbar.make(view,"Evento cancelado", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, "Evento cancelado", Snackbar.LENGTH_LONG).show();
                         dialog.cancel();
                     }
                 });
@@ -199,7 +205,7 @@ public class EventoFragmento extends Fragment {
         FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder> adapter;
 
         adapter = new FirebaseRecyclerAdapter<EventoPruebaDanny, EventoViewHolder>(EventoPruebaDanny.class,
-                R.layout.aaa_md_eventos,EventoViewHolder.class, mEventoRef) {
+                R.layout.aaa_md_eventos, EventoViewHolder.class, mEventoRef) {
 
 
             @Override
@@ -210,21 +216,52 @@ public class EventoFragmento extends Fragment {
                 viewHolder.horaTv.setText(model.getHora());
                 viewHolder.fechaTv.setText(model.getFecha());
 
+
                 //Sacamos el id de la imagen
                 String imagenId = model.getImagen();
 
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         showInfoEvento(model);
+                    }
+                });
 
+                viewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        mEventoRef = mDataRef.child("Eventos").child(model.getNombre());
+                        //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
+                        if (model.getAdmin().equals(emailLogin)) {
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle("Eliminar Evento")
+                                    .setMessage("Estás seguro que deseas eliminar el evento?")
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (isOnlineNet()) {
+                                                mEventoRef.removeValue();
+                                                Snackbar.make(rootView, "Evento eliminado", Snackbar.LENGTH_LONG).show();
+                                                dialog.cancel();
+                                            } else
+                                                Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+                                        }
+                                    })
+                                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            Snackbar.make(v, "Solo el creador puede eliminar un evento.", Snackbar.LENGTH_LONG).show();
+                        }
+                        return true;
                     }
                 });
 
 
-                if(!imagenId.equals("")) {
-                    StorageReference eventosRef = mStorageRef.child("eventos/"+imagenId);
+                if (!imagenId.equals("")) {
+                    StorageReference eventosRef = mStorageRef.child("eventos/" + imagenId);
                     //Bajar la imagen
                     eventosRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
@@ -236,7 +273,7 @@ public class EventoFragmento extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Snackbar.make(getView(),"No se han cargado todas las fotos", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), "No se han cargado todas las fotos", Snackbar.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -247,21 +284,26 @@ public class EventoFragmento extends Fragment {
         return v;
     }
 
-    public void showInfoEvento(EventoPruebaDanny e){
+    public void generateDialog(View view, DatabaseReference ref) {
+
+    }
+
+
+    public void showInfoEvento(EventoPruebaDanny e) {
         Intent i = new Intent(getContext(), EventoInfo_MD.class);
-        i.putExtra("PARCELABLE",e);
+        i.putExtra("PARCELABLE", e);
         startActivity(i);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
 
             Uri uri = data.getData();
             imagen.setImageURI(uri);
-            int num = (int)(Math.random()*1000000 +10);
-            String child = num+"";
+            int num = (int) (Math.random() * 1000000 + 10);
+            String child = num + "";
             StorageReference eventoRef = mStorageRef.child("eventos").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen
             setNombreImagenEvento(child);
             eventoRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -271,26 +313,30 @@ public class EventoFragmento extends Fragment {
                     setNombreImagenEvento("");
                 }
             });
-
-
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        c= context;
+        c = context;
     }
 
 
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
 
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
 
-
-
-
-
-
-
-
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

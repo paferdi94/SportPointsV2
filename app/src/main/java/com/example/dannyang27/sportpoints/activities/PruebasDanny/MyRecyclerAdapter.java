@@ -86,6 +86,10 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
         }
     }
 
+    public interface OnItemLongClickListener {
+        public boolean onItemLongClicked(int position);
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //  this.addEventos();
