@@ -43,32 +43,33 @@ public class PromoInfo_MD extends AppCompatActivity {
     private TextView fechaIn_promo_info;
     private TextView fechaF_promo_info;
     private TextView descripcion_promo_info;
-    private FirebaseAuth mAuth;
     Toolbar toolbar;
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
     StorageReference mStorageRef =firebaseStorageRef.getReference();
 
+
     FirebaseDatabase mDataRef = FirebaseDatabase.getInstance();
 
 
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://sport-points-7f5e0.appspot.com/promociones/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promo_info__md);
-        FirebaseStorage storage = FirebaseStorage.getInstance();
 
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://sport-points-7f5e0.appspot.com/promociones/");
         //StorageReference imagesRef = storageRef.child("promociones");
 
+        System.out.println("Storage");
+        System.out.println(firebaseStorageRef);
+        System.out.println(mStorageRef);
 
-        //final DatabaseReference promosRef = mDataRef.getReference().child("Promociones");
+        final DatabaseReference promosRef = mDataRef.getReference().child("Promociones");
 
-        System.out.println(storage);
-        System.out.println(mAuth);
-
-        mAuth = FirebaseAuth.getInstance();
+        System.out.println(promosRef);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_promoInfo);
         rootView = (View) findViewById(R.id.activity_promo_info__md);
@@ -91,16 +92,17 @@ public class PromoInfo_MD extends AppCompatActivity {
         PromocionParceable e = getIntent().getParcelableExtra("PARCELABLE");
 
         //vamos a la ruta de la imagen
-        StorageReference imagesRef = storageRef.child(e.getImagen());
-        //mStorageRef = mStorageRef.child("promociones/" + e.getImagen());
-        System.out.println(imagesRef);
+        //StorageReference imagesRef = storageRef.child(e.getImagen());
+        //System.out.println(mStorageRef.child());
+        mStorageRef = mStorageRef.child("promociones/" + e.getImagen());
+        System.out.println(mStorageRef);
         nombre_promo_info.setText(e.getNombre().toString());
         lugar_promo_info.setText(e.getLugar());
         fechaIn_promo_info.setText(e.getFechaIn());
         fechaF_promo_info.setText(e.getFechaF());
         descripcion_promo_info.setText(e.getDescripcion());
 
-        imagesRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
