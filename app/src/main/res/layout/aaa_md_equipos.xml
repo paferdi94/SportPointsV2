@@ -67,7 +67,7 @@
                 android:layout_below="@+id/participante_md_equipo"
                 android:layout_marginStart="110dp"
                 android:id="@+id/unirse_md_btn"
-                android:textColor="#66cc66"
+                android:textColor="@color/colorAccent"
                 style="?android:attr/borderlessButtonStyle"/>
 
 
