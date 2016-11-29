@@ -63,9 +63,6 @@ public class PromoInfo_MD extends AppCompatActivity {
 
         //StorageReference imagesRef = storageRef.child("promociones");
 
-        System.out.println("Storage");
-        System.out.println(firebaseStorageRef);
-        System.out.println(mStorageRef);
 
         final DatabaseReference promosRef = mDataRef.getReference().child("Promociones");
 
