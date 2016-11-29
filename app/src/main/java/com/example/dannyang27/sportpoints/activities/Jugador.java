@@ -14,29 +14,24 @@ import java.util.Map;
 
 public class Jugador implements Parcelable {
 
-    private String id;
     private String login;
     private String password;
     private String nombre;
     private String apellidos;
     private String email;
-    private String direccion;
+    private int telefono;
     private Date fechaNacimiento;
 
-    public Jugador(String id, String login, String password, String nombre, String apellidos, String email, String direccion, Date fechaNacimiento){
-        this.id = id;
+    public Jugador(String login, String password, String nombre, String apellidos, String email, int telefono, Date fechaNacimiento){
         this.login = login;
         this.password = password;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
-        this.direccion = direccion;
+        this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getID(){
-        return this.id;
-    }
     public String getLogin(){
         return this.login;
     }
@@ -52,8 +47,8 @@ public class Jugador implements Parcelable {
     public String getEmail(){
         return this.email;
     }
-    public String getDireccion(){
-        return this.direccion;
+    public int getTelefono(){
+        return this.telefono;
     }
     public Date getFechaNacimiento(){
         return this.fechaNacimiento;
@@ -74,8 +69,8 @@ public class Jugador implements Parcelable {
     public void setEmail(String email){
         this.email = email;
     }
-    public void setDireccion(String direccion){
-        this.direccion = direccion;
+    public void setTelefono(int telefono){
+        this.telefono = telefono;
     }
     public void setFechaNacimiento(Date fechaNacimiento){
         this.fechaNacimiento = fechaNacimiento;
@@ -84,13 +79,12 @@ public class Jugador implements Parcelable {
     public Map<String, Object> toMap() {
 
         HashMap<String, Object> result = new HashMap<>();
-        result.put("id", id);
-        result.put("extra_Login", login);
+        result.put("login", login);
         result.put("password", password);
         result.put("nombre", nombre);
         result.put("apellidos", apellidos);
         result.put("email", email);
-        result.put("direccion", direccion);
+        result.put("telefono", telefono);
         result.put("fechaNacimiento", (new SimpleDateFormat("dd/MM/yyyy")).format(fechaNacimiento));
         return result;
     }
@@ -104,13 +98,12 @@ public class Jugador implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
         parcel.writeString(login);
         parcel.writeString(password);
         parcel.writeString(nombre);
         parcel.writeString(apellidos);
         parcel.writeString(email);
-        parcel.writeString(direccion);
+        parcel.writeInt(telefono);
         parcel.writeLong(fechaNacimiento.getTime());
     }
 
@@ -125,13 +118,12 @@ public class Jugador implements Parcelable {
     };
 
     private Jugador(Parcel in) {
-        id = in.readString();
         login = in.readString();
         password = in.readString();
         nombre = in.readString();
         apellidos = in.readString();
         email = in.readString();
-        direccion = in.readString();
+        telefono = in.readInt();
         fechaNacimiento = new Date(in.readLong());
     }
 }

@@ -1,65 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/evento_cardview"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:elevation="5dp"
-    app:cardCornerRadius="10dp"
+    android:layout_height="220dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="10dp"
-    >
+    android:elevation="4dp"
+    app:cardCornerRadius="6dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="250dp">-->
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        >
+        android:layout_height="match_parent">
+
 
         <ImageView
+            android:id="@+id/imagen_evento_md"
             android:layout_width="match_parent"
-            android:layout_height="184dp"
-            app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
-            android:id="@+id/imagen_evento_md" />
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="50dp"
+            android:layout_alignBottom="@id/imagen_evento_md"
+            android:background="#60000000"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
 
-            <TextView
-                android:id="@+id/nombre_evento_md"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nombre_evento_md"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="30dp"
-                android:id="@+id/lugar_evento_md" />
+                android:layout_marginBottom="1dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/nombre_evento_md"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="140dp"
-                android:id="@+id/hora_evento_md" />
+                <TextView
+                    android:id="@+id/fecha_evento_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22/11/2016"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/hora_evento_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21.00"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/lugar_evento_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Campo UPV"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nombre_evento_md"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="220dp"
-                android:id="@+id/fecha_evento_md" />
-        </RelativeLayout>
-    </LinearLayout>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nombre_evento_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Partido de fútbol sala de amigos."
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/descripcion_evento_md"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="55dp"-->
+                <!--android:ellipsize="end"-->
+                <!--android:maxLines="2"-->
+                <!--android:text="Partido de fútbol sala, gente amateur, se acepta  a cualquier persona."-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="16sp" />-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<TextView-->
+        <!--android:id="@+id/nombre_evento_md"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@id/imagen_evento_md"-->
+        <!--android:background="#90000000"-->
+        <!--android:lines="3"-->
+        <!--android:text="Large text"-->
+        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
+        <!--android:textColor="@android:color/white" />-->
+
+    </RelativeLayout>
+
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="70dp">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/nombre_evento_md"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_height="30dp" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/nombre_evento_md"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="30dp"-->
+    <!--android:id="@+id/lugar_evento_md" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/nombre_evento_md"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="140dp"-->
+    <!--android:id="@+id/hora_evento_md" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/nombre_evento_md"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="220dp"-->
+    <!--android:id="@+id/fecha_evento_md" />-->
+    <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
 </android.support.v7.widget.CardView>

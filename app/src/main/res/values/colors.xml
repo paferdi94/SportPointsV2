@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#cdd075</color>
-    <color name="colorPrimaryDark">#827717</color>
-    <color name="colorAccent">#daf783</color>
-
+    <color name="colorPrimary">#97CDED</color>
+    <color name="colorPrimaryDark">#83b1cb</color>
+    <color name="colorAccent">#f44336</color>
 
     <!--Extra Colors-->
     <color name="black">#000000</color>
     <color name="subtitles">#bdbdbd</color>
     <color name="toolbarColor">#3F51B5</color>
+    <color name="white_tab">#CAECFF</color>
 </resources>

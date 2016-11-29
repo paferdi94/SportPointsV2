@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 
@@ -14,6 +15,7 @@ public class PruebaTab extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     Toolbar toolbar;
+    private static final int RC_LOGIN = 9003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +48,13 @@ public class PruebaTab extends AppCompatActivity {
             }
         });
 
-        toolbar.setTitle("PEPPA PIG");
+        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -64,5 +64,11 @@ public class PruebaTab extends AppCompatActivity {
                 onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RC_LOGIN);
+        finish();
     }
 }
