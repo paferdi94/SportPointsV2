@@ -35,7 +35,6 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="Participantes: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView21"
@@ -52,7 +51,6 @@
                 android:layout_toEndOf="@+id/image_equipo_info_md" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/participantes_equipo_info_md"
@@ -136,10 +134,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/descripcion_equipo_info_md"
-                android:layout_below="@+id/textView23"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="14dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

@@ -207,7 +207,7 @@ public class EquipoFragmento extends Fragment {
 
                 viewHolder.nombreTv.setText(model.getNombre());
                 viewHolder.deporteTv.setText(model.getDeporte());
-                viewHolder.participantesTv.setText(model.getCapacidadActual() +" / "+model.getCapacidadMaxima());
+                //viewHolder.participantesTv.setText(model.getCapacidadActual() +" / "+model.getCapacidadMaxima());
 
                 String imagenId = model.getImagen();
 
