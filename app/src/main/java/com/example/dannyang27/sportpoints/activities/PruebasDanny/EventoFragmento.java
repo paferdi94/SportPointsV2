@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -74,9 +76,11 @@ public class EventoFragmento extends Fragment {
     private EditText descripcion_et;
     private Button crearBtn;
     View rootView;
+    private static final String TAG = "SportPoints";
 
     private FirebaseAuth mAuth;
     private String emailLogin = "";
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     public static String getNombreImagenEvento() {
         return nombreImagenEvento;
@@ -98,7 +102,21 @@ public class EventoFragmento extends Fragment {
         rootView = (View) v.findViewById(R.id.coordinate);
 
         mAuth = FirebaseAuth.getInstance();
-        emailLogin = mAuth.getCurrentUser().getEmail();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,6 +341,14 @@ public class EventoFragmento extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         c = context;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        mAuth.signOut();
+        //emailLogin = mAuth.getCurrentUser().getEmail();
     }
 
 
