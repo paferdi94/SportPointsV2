@@ -35,16 +35,15 @@
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="20dp"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:layout_marginTop="18dp"
                 android:id="@+id/nombre_md_equipo" />
             <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="15sp"
                 android:layout_marginStart="20dp"
                 android:paddingTop="2dp"
 
@@ -59,16 +58,16 @@
                 android:paddingTop="2dp"
                 android:id="@+id/participante_md_equipo" />
 
-            <Button
-                android:textSize="12sp"
-                android:text="UNIRSE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/participante_md_equipo"
-                android:layout_marginStart="110dp"
-                android:id="@+id/unirse_md_btn"
-                android:textColor="@color/colorAccent"
-                style="?android:attr/borderlessButtonStyle"/>
+            <!--<Button-->
+                <!--android:textSize="12sp"-->
+                <!--android:text="UNIRSE"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/participante_md_equipo"-->
+                <!--android:layout_marginStart="110dp"-->
+                <!--android:id="@+id/unirse_md_btn"-->
+                <!--android:textColor="@color/colorAccent"-->
+                <!--style="?android:attr/borderlessButtonStyle"/>-->
 
 
         </RelativeLayout>
