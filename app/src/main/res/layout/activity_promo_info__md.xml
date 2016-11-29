@@ -5,8 +5,7 @@
     android:id="@+id/activity_promo_info__md"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e1f5fe"
-    tools:context="com.example.dannyang27.sportpoints.activities.Promocion.PromoInfo_MD">
+    tools:context="com.example.dannyang27.sportpoints.activities.PruebasDanny.promoInfo_MD">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_promoInfo"
@@ -15,134 +14,126 @@
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:theme="@style/ToolbarStyle"/>
+        app:theme="@style/ToolbarStyle" />
 
 
-    <RelativeLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_descripcion_promo_md"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_promoInfo"
-        android:paddingBottom="10dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="10dp">
+        android:layout_height="250dp"
+        android:layout_below="@+id/cardView_promo_md"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardCornerRadius="10dp">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardView_descripcion_promo_md"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_below="@+id/cardView_promo_md"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="10dp">
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:paddingTop="10dp"
+                android:text="DESCRIPCION"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/descripcion_promo_info_md"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/textView_descripcion"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_promo_md"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/toolbar_promoInfo"
+        android:layout_height="330dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"-->
+
+            <ImageView
+                android:id="@+id/promo_info_img"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:paddingTop="10dp"
-                    android:text="DESCRIPCION"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/descripcion_promo_info_md"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/textView_descripcion"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="10dp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardView_promo_md"
-            android:layout_width="match_parent"
-            android:layout_height="330dp"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <!--app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"-->
-
-                <ImageView
-                    android:id="@+id/promo_info_img"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:scaleType="centerCrop" />
-
-                <RelativeLayout
-
-                    android:layout_width="wrap_content"
                     android:layout_height="100dp"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="13dp">
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nombre_promo_info_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignStart="@+id/lugar_promo_info_md"
+                        android:paddingTop="10dp"
+                        android:text="TextView"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/lugar_promo_info_md"
+                        android:layout_width="352dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/nombre_promo_info_md"
+                        android:layout_centerHorizontal="true"
+                        android:text="TextView" />
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginBottom="13dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignStart="@+id/lugar_promo_info_md"
+                        android:layout_below="@+id/lugar_promo_info_md"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/nombre_promo_info_md"
-                            android:layout_width="276dp"
-                            android:paddingTop="10dp"
-                            android:text="TextView"
-                            android:textSize="18sp"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignStart="@+id/lugar_promo_info_md"
-                            android:layout_height="40dp" />
+                            android:id="@+id/fechaIn_promo_info_md"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/linearLayout2"
+                            android:layout_below="@+id/linearLayout2"
+                            android:layout_weight="1"
+                            android:text="TextView" />
 
                         <TextView
-                            android:id="@+id/lugar_promo_info_md"
-                            android:layout_height="30dp"
-                            android:layout_below="@id/nombre_promo_info_md"
-                            android:layout_centerHorizontal="true"
-                            android:text="TextView"
-                            android:layout_width="280dp" />
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="302dp"
-                            android:layout_height="match_parent"
+                            android:id="@+id/fechaF_promo_info_md"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/fechaIn_promo_info_md"
                             android:layout_below="@+id/lugar_promo_info_md"
-                            android:layout_alignStart="@+id/lugar_promo_info_md">
-
-                            <TextView
-                                android:id="@+id/fechaIn_promo_info_md"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                android:layout_weight="1"
-                                android:layout_below="@+id/linearLayout2"
-                                android:layout_alignStart="@+id/linearLayout2" />
-
-                            <TextView
-                                android:id="@+id/fechaF_promo_info_md"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                android:layout_below="@+id/lugar_promo_info_md"
-                                android:layout_alignStart="@+id/fechaIn_promo_info_md"
-                                android:layout_weight="1" />
-
-                        </LinearLayout>
+                            android:layout_weight="1"
+                            android:text="TextView" />
 
                     </LinearLayout>
 
-                </RelativeLayout>
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-    </RelativeLayout>
+                </LinearLayout>
 
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
+
+

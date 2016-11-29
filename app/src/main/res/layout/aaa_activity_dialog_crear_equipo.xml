@@ -11,9 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_alignParentTop="true"
+        android:layout_margin="25dp"
         android:layout_centerHorizontal="true">
         <TextView
             android:text="Sport Points"
@@ -23,37 +21,24 @@
             android:textSize="36sp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="10dp"
             android:textStyle="normal|bold" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="175dp"
             app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/imagen_dialog_equipo"
             android:layout_below="@+id/sportPoints_label"
             android:layout_alignParentStart="true" />
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/ic_plus"
-            android:id="@+id/fab_dialog_equipo"
-            android:layout_alignTop="@+id/imagen_dialog_equipo"
-            android:layout_alignEnd="@+id/sportPoints_label"
-            android:layout_marginEnd="34dp"
-            android:layout_marginTop="158dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:layout_marginTop="11dp"
             android:id="@+id/deporte_dialog_equipo"
             android:layout_below="@+id/nombre_dialog_equipo"
             android:layout_alignStart="@+id/nombre_dialog_equipo"
@@ -67,19 +52,7 @@
             android:id="@+id/capMax_dialog_equipo"
             android:layout_below="@+id/deporte_dialog_equipo"
             android:layout_alignStart="@+id/deporte_dialog_equipo"
-            android:layout_marginTop="13dp"
             android:hint="Capacidad Maxima" />
-
-        <Button
-            android:text="Crear"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/crearBtn_dialog_equipo"
-            android:textColor="@color/colorAccent"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_alignBaseline="@+id/cancelarBtn_dialog_equipo"
-            android:layout_alignBottom="@+id/cancelarBtn_dialog_equipo"
-            android:layout_alignStart="@+id/fab_dialog_equipo" />
 
         <Button
             android:text="CANCELAR"
@@ -88,19 +61,19 @@
             android:id="@+id/cancelarBtn_dialog_equipo"
             android:textColor="@color/colorAccent"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="6dp"
             android:layout_below="@+id/capMax_dialog_equipo"
             android:layout_alignStart="@+id/sportPoints_label"
-            android:layout_marginStart="13dp" />
+            android:layout_marginStart="10dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/nombre_dialog_equipo"
-            android:layout_marginEnd="11dp"
+            
             android:hint="Nombre"
             android:layout_below="@+id/fab_dialog_equipo"
             android:layout_alignParentEnd="true" />
