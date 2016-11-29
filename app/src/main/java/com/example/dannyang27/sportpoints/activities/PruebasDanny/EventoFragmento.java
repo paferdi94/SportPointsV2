@@ -260,6 +260,7 @@ public class EventoFragmento extends Fragment {
                 });
 
 
+                
                 if (!imagenId.equals("")) {
                     StorageReference eventosRef = mStorageRef.child("eventos/" + imagenId);
                     //Bajar la imagen
