@@ -40,6 +40,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private TextView participantesTxt;
     private Button verPartBtn;
     private Button unirseBtn;
+    private Button bajaBtn;
     private TextView descripcionTxt;
     private int cap=0;
 
@@ -49,6 +50,8 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ArrayList<String> listaParticipantes = new ArrayList<>();
+
+    private String [] arrayParticipantes = new String[30];
 
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
@@ -73,6 +76,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         participantesTxt = (TextView) findViewById(R.id.participantes_equipo_info_md);
         verPartBtn = (Button) findViewById(R.id.verParticipantes_equipo_info_md);
         unirseBtn = (Button) findViewById(R.id.unirse_equipo_info_md);
+        bajaBtn = (Button) findViewById(R.id.baja_equipo_info_md);
         descripcionTxt = (TextView) findViewById(R.id.descripcion_equipo_info_md);
 
         /////////////////////Añadir Toolbar////////////////////////
@@ -96,7 +100,11 @@ public class EquipoInfo_MD extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String str = dataSnapshot.getValue(String.class).toString();
-                listaParticipantes.add(str);
+                int key =Integer.parseInt(dataSnapshot.getKey().toString());
+
+                arrayParticipantes[key] = str;
+
+
             }
 
             @Override
@@ -145,7 +153,9 @@ public class EquipoInfo_MD extends AppCompatActivity {
         public void onClick(View view) {
            //showParticipantesInfo();
             //Toast.makeText(getApplicationContext(),getListaParticipantes(),Toast.LENGTH_LONG).show();
-            showListarParticipantes(listaParticipantes);
+           // showListarParticipantes(listaParticipantes);
+
+            showListarParticipantes_beta(e);
         }
     });
 
@@ -166,6 +176,40 @@ public class EquipoInfo_MD extends AppCompatActivity {
 
             }
         });
+
+        bajaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(getApplicationContext(), "pulsado", Toast.LENGTH_LONG).show();
+
+
+                Toast.makeText(view.getContext(), "!das", Toast.LENGTH_LONG).show();
+
+                //participantesRef.child(key).removeValue();
+
+
+
+            }
+        });
+    }
+    /*
+        public int devolverKey(String str){
+        int k=-1;
+        for(int i=0; i<arrayParticipantes.length;i++){
+            if(arrayParticipantes[i].equals(str)) {
+                return i;
+            }
+        }
+        return k;
+
+    }
+     */
+
+
+    private void showListarParticipantes_beta(EquipoPruebaDanny e) {
+        Intent i = new Intent(this, VerParticipantesProvisional.class);
+        i.putExtra("PARCELABLE", e);
+        startActivity(i);
     }
 
     @Override

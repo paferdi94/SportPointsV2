@@ -89,18 +89,6 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:textColor="#66cc66"/>
 
-            <Button
-                android:text="UNIRSE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="77dp"
-                android:id="@+id/unirse_equipo_info_md"
-                style="?android:attr/borderlessButtonStyle"
-                android:textColor="#66cc66"
-                android:layout_below="@id/participantes_equipo_info_md"
-                />
-
             <TextView
                 android:text="Nombre: "
                 android:layout_width="wrap_content"
@@ -116,6 +104,26 @@
                 android:layout_above="@+id/deporte_equipo_info_md"
                 android:layout_toEndOf="@+id/textView16"
                 android:layout_width="150dp" />
+
+            <Button
+                android:text="BAJA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#66cc66"
+                android:id="@+id/baja_equipo_info_md"
+                android:layout_alignTop="@+id/unirse_equipo_info_md"
+                android:layout_toEndOf="@+id/unirse_equipo_info_md" />
+
+            <Button
+                android:text="UNIRSE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/unirse_equipo_info_md"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#66cc66"
+                android:layout_alignTop="@+id/verParticipantes_equipo_info_md"
+                android:layout_toEndOf="@+id/textView16" />
 
 
         </RelativeLayout>

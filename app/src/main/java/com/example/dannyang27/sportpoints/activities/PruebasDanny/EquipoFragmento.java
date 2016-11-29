@@ -196,10 +196,6 @@ public class EquipoFragmento extends Fragment {
             }
         });
 
-        //RecyclerAdapterEquipo adapter = new RecyclerAdapterEquipo(getContext());
-        //adapter.addEquipos();
-        //rv.setAdapter(adapter);
-
         FirebaseRecyclerAdapter<EquipoPruebaDanny, EquipoViewHolder> adapter;
         adapter = new FirebaseRecyclerAdapter<EquipoPruebaDanny, EquipoViewHolder>(EquipoPruebaDanny.class,
                 R.layout.aaa_md_equipos,EquipoViewHolder.class, mRefEquipo) {
