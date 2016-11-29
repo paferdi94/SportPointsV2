@@ -16,6 +16,7 @@ import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,9 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private TextView descripcionTxt;
     private int cap=0;
 
+    private String nombre_key;
+    private FirebaseAuth mAuth;
+
     private ArrayList<String> listaParticipantes = new ArrayList<>();
 
 
@@ -53,6 +57,9 @@ public class EquipoInfo_MD extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipo_info__md);
+        final DatabaseReference equiposRef = mDataRef.getReference().child("Equipos");
+
+        mAuth = FirebaseAuth.getInstance();
 
         nombreTxt = (TextView) findViewById(R.id.nombre_equipo_info_md);
         imagenEquipo = (ImageView) findViewById(R.id.image_equipo_info_md);
@@ -62,7 +69,9 @@ public class EquipoInfo_MD extends AppCompatActivity {
         unirseBtn = (Button) findViewById(R.id.unirse_equipo_info_md);
         descripcionTxt = (TextView) findViewById(R.id.descripcion_equipo_info_md);
 
-        EquipoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
+        final EquipoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
+
+        nombre_key = e.getNombre();
 
         mStorageRef = mStorageRef.child("equipos/"+e.getImagen());
         participantesRef = participantesRef.child("Equipos")
@@ -103,6 +112,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         descripcionTxt.setText(e.getDescripcion());
 
 
+
         mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
@@ -118,16 +128,34 @@ public class EquipoInfo_MD extends AppCompatActivity {
         @Override
         public void onClick(View view) {
            //showParticipantesInfo();
-            Toast.makeText(getApplicationContext(),getListaParticipantes(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),getListaParticipantes(),Toast.LENGTH_LONG).show();
+            showListarParticipantes(listaParticipantes);
         }
     });
 
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+               // Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+                if(!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
+                    e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
+                    //DatabaseReference auxRef= equiposRef.child(nombre_key);
+
+                    equiposRef.child(nombre_key).setValue(e);
+                    Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+                }else{
+                    Snackbar.make(view,"Ya estas dentro del equipo", Snackbar.LENGTH_LONG).show();
+                }
+
+
             }
         });
+    }
+
+    private void showListarParticipantes(ArrayList<String> a) {
+        Intent i = new Intent(this, VerParticipantesProvisional.class);
+        i.putStringArrayListExtra("listaParticipantes", listaParticipantes);
+        startActivity(i);
     }
 
     private void showParticipantesInfo() {

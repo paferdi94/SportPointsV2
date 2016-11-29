@@ -93,6 +93,7 @@ public class EquipoFragmento extends Fragment {
         //Referencio equipos
         mDataRef =  FirebaseDatabase.getInstance().getReference();
         mRefEquipo = mDataRef.child("Equipos");
+        participantes.add("Tecnico");
 
 
         View v = inflater.inflate(R.layout.aaa_activity_equipo_fragmento, container, false);
@@ -233,8 +234,9 @@ public class EquipoFragmento extends Fragment {
                                         if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
                                             mRefEquipo.child(model.getNombre()).removeValue();
                                             Toast.makeText(getContext(), "Elemento borrado", Toast.LENGTH_LONG).show();
+                                        }else {
+                                            Toast.makeText(getContext(), "No eres el creador del equipo", Toast.LENGTH_LONG).show();
                                         }
-                                        Toast.makeText(getContext(), "No eres el creador del equipo", Toast.LENGTH_LONG).show();
 
 
                                     }
