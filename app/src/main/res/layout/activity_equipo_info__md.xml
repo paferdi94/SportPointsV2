@@ -5,21 +5,33 @@
     android:id="@+id/activity_equipo_info__md"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoInfo_MD">
+    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
 
 
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_equipoInfo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ToolbarStyle"/>
 
     <android.support.v7.widget.CardView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar_equipoInfo"
+        android:layout_marginTop="70dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,7 +47,6 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="Participantes: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView21"
@@ -52,7 +63,6 @@
                 android:layout_toEndOf="@+id/image_equipo_info_md" />
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/participantes_equipo_info_md"
@@ -79,18 +89,6 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:textColor="#66cc66"/>
 
-            <Button
-                android:text="UNIRSE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="77dp"
-                android:id="@+id/unirse_equipo_info_md"
-                style="?android:attr/borderlessButtonStyle"
-                android:textColor="#66cc66"
-                android:layout_below="@id/participantes_equipo_info_md"
-                />
-
             <TextView
                 android:text="Nombre: "
                 android:layout_width="wrap_content"
@@ -107,6 +105,26 @@
                 android:layout_toEndOf="@+id/textView16"
                 android:layout_width="150dp" />
 
+            <Button
+                android:text="BAJA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#66cc66"
+                android:id="@+id/baja_equipo_info_md"
+                android:layout_alignTop="@+id/unirse_equipo_info_md"
+                android:layout_toEndOf="@+id/unirse_equipo_info_md" />
+
+            <Button
+                android:text="UNIRSE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/unirse_equipo_info_md"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#66cc66"
+                android:layout_alignTop="@+id/verParticipantes_equipo_info_md"
+                android:layout_toEndOf="@+id/textView16" />
+
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -116,7 +134,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/cardView"
-        android:layout_alignParentStart="true" >
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -136,10 +155,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/descripcion_equipo_info_md"
-                android:layout_below="@+id/textView23"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="14dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

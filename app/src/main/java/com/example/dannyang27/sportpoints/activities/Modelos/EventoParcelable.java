@@ -22,7 +22,6 @@ public class EventoParcelable implements Parcelable {
         return creador;
     }
 
-
     public void setCreador(String creador) {
         this.creador = creador;
     }

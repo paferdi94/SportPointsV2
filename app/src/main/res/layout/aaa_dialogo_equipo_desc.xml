@@ -15,25 +15,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
-        <!--<TextView-->
-            <!--android:text="Descripcion"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/descripcion_label"-->
-            <!--android:textSize="18sp"-->
-            <!--android:layout_marginTop="14dp"-->
-            <!--android:textStyle="normal|bold"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_centerHorizontal="true" />-->
-
-
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="380dp"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/descripcion_dialog_equipo"
+            android:id="@+id/descripcion_dialog_equipo_1"
             android:hint="Descripcion"
             android:gravity="top|left"
 
@@ -43,10 +30,10 @@
             android:text="CREAR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/crear_dialog_equipo"
+            android:id="@+id/crear_dialog_equipo_1"
             android:textColor="#66cc66"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_below="@+id/descripcion_dialog_equipo"
+            android:layout_below="@+id/descripcion_dialog_equipo_1"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>

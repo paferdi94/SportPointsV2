@@ -9,16 +9,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+import static com.example.dannyang27.sportpoints.R.id.listarParticipantes_id;
 import static com.example.dannyang27.sportpoints.R.id.toolbar;
 
 public class EventoInfo_MD extends AppCompatActivity {
@@ -45,14 +49,18 @@ public class EventoInfo_MD extends AppCompatActivity {
     private Button btn_evento_info;
     private Button unirse_btn;
     private TextView descripcion_evento_info;
+    FirebaseAuth mAuth;
     Toolbar toolbar;
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
     StorageReference mStorageRef = firebaseStorageRef.getReference();
 
     FirebaseDatabase mDataRef = FirebaseDatabase.getInstance();
+    //DatabaseReference usuarioReference = mDataRef.getReference();
     DatabaseReference participantesRef = mDataRef.getReference();
     String participanteKey;
+    String nombreKey;
+    String emailLogeado;
 
     private ArrayList<String> listaParticipantes = new ArrayList<>();
 
@@ -61,6 +69,7 @@ public class EventoInfo_MD extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_info__md);
 
+        rootView = (View) findViewById(R.id.activity_evento_info__md);
         toolbar = (Toolbar) findViewById(R.id.toolbar_eventoInfo);
         unirse_btn = (Button) findViewById(R.id.unirse_evento_md);
         evento_info_img = (ImageView) findViewById(R.id.evento_info_img);
@@ -80,21 +89,37 @@ public class EventoInfo_MD extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //////////////////////////////////////////////////////////
 
-        EventoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
+        final DatabaseReference eventosRef = mDataRef.getReference().child("Eventos");
+
+        //Instancia del usuario que ha logeado
+        mAuth = FirebaseAuth.getInstance();
+
+        final EventoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
+
+        nombreKey = e.getNombre();
+
+//        //Añadir el creador al evento
+//        e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
+//        eventosRef.child(nombreKey).setValue(e);
 
         //vamos a la ruta de la imagen
-
         mStorageRef = mStorageRef.child("eventos/" + e.getImagen());
 
+        //Referencia a participantes del Evento en la BDD
         participantesRef = participantesRef.child("Eventos")
                 .child(e.getNombre().toString()).child("participantes");
 
+
+        //Referencia a la tabla del usuario logeado en la BDD
+        //usuarioKey = mAuth.getCurrentUser().getEmail().replace(".", "%2E");
+        //usuarioReference = usuarioReference.child("Usuarios").child(usuarioKey);
+        emailLogeado = mAuth.getCurrentUser().getEmail();
 
         participantesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String str = dataSnapshot.getValue(String.class).toString();
-                if (!usuarioEncontrado && "rita".equals(str)) {
+                if (!usuarioEncontrado && emailLogeado.equals(str)) {
                     unirse_a_evento.setText("No voy a ir");
                     usuarioEncontrado = true;
                     participanteKey = dataSnapshot.getKey();
@@ -112,6 +137,7 @@ public class EventoInfo_MD extends AppCompatActivity {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 String usuarioBorrado = dataSnapshot.getValue(String.class).toString();
                 borrarElementoLista(usuarioBorrado);
+                e.setParticipantes(listaParticipantes);
             }
 
             @Override
@@ -125,6 +151,19 @@ public class EventoInfo_MD extends AppCompatActivity {
             }
         });
 
+//        // Attach a listener to read the data at our posts reference
+//        usuarioReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Jugador j = dataSnapshot.getValue(Jugador.class);
+//                System.out.println(j.getNombre());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
 
         nombre_evento_info.setText(e.getNombre().toString());
         lugar_evento_info.setText(e.getLugar());
@@ -177,12 +216,21 @@ public class EventoInfo_MD extends AppCompatActivity {
                             })
                             .show();
                 } else {
-                    //implementar en la BDD - unir usuario a evento
-                    Snackbar.make(view, "Te has unido al evento correctamente", Snackbar.LENGTH_LONG).show();
+
+                    if (!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
+                        e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
+                        //DatabaseReference auxRef= equiposRef.child(nombre_key);
+
+                        eventosRef.child(nombreKey).setValue(e);
+                        Snackbar.make(view, "Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(view, "Ya estás unido en el evento", Snackbar.LENGTH_LONG).show();
+                    }
                 }
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -216,12 +264,15 @@ public class EventoInfo_MD extends AppCompatActivity {
 
     //Comprobar si tenemos internet en un momento determinado
     public Boolean isOnlineNet() {
-
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-
             int val = p.waitFor();
             boolean reachable = (val == 0);
+            if (!reachable) {
+                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
+                val = p.waitFor();
+                reachable = (val == 0);
+            }
             return reachable;
 
         } catch (Exception e) {
