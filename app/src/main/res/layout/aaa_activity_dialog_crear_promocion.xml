@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             app:fabSize="mini"
+            android:src="@drawable/ic_plus"
             android:id="@+id/fab_dialog_promocion"
             app:srcCompat="@drawable/ic_plus"
             android:layout_centerVertical="true"
