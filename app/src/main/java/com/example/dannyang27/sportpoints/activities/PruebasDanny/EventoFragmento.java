@@ -162,6 +162,8 @@ public class EventoFragmento extends Fragment {
                                             , nombreEv, lugarEv, horaEv, fechaEv,
                                             descripcion_et.getText().toString(),
                                             mAuth.getCurrentUser().getEmail(), "1", "22", participantes);
+                                    //Añadir el creador al evento
+                                    e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
 
                                     mRefEventos.child(nombreEv).setValue(e);
                                     Snackbar.make(view, "Evento creado", Snackbar.LENGTH_LONG).show();
@@ -230,8 +232,7 @@ public class EventoFragmento extends Fragment {
                 viewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        //quitar toast!!!
-                        Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
                         mEventoRef = mDataRef.child("Eventos").child(model.getNombre());
                         //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
                         if (model.getAdmin().equals(emailLogin)) {
@@ -327,11 +328,15 @@ public class EventoFragmento extends Fragment {
 
     //Comprobar si tenemos internet en un momento determinado
     public Boolean isOnlineNet() {
-
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0);
+            if (!reachable) {
+                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
+                val = p.waitFor();
+                reachable = (val == 0);
+            }
             return reachable;
 
         } catch (Exception e) {
