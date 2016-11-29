@@ -66,32 +66,11 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/nombre_dialog_promocion"
-            android:hint="Promocion"
-            android:layout_below="@+id/fab_dialog_promocion"
-            android:layout_alignParentEnd="true"
-            android:layout_alignStart="@+id/fecha_Init_promocion" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
             android:id="@+id/lugar_dialog_promocion"
             android:hint="Lugar"
             android:layout_below="@+id/nombre_dialog_promocion"
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/nombre_dialog_promocion" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/fecha_fin"
-            android:hint="Fecha Fin"
-            android:layout_below="@+id/fecha_Init_promocion"
-            android:layout_alignParentStart="true" />
 
         <Button
             android:text="SIGUIENTE"
@@ -108,9 +87,29 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
+            android:id="@+id/nombre_dialog_promocion"
+            android:hint="Promocion"
+            android:layout_below="@+id/fab_dialog_promocion"
+            android:layout_alignStart="@+id/cancelarBtn_dialog_promo" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
             android:id="@+id/fecha_Init_promocion"
             android:hint="Fecha Inicio"
             android:layout_below="@+id/lugar_dialog_promocion"
-            android:layout_alignParentStart="true" />
+            android:layout_alignStart="@+id/lugar_dialog_promocion" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/fecha_fin"
+            android:hint="Fecha Fin"
+            android:layout_below="@+id/fecha_Init_promocion"
+            android:layout_alignEnd="@+id/crearBtn_dialog_promo" />
     </RelativeLayout>
 </RelativeLayout>
