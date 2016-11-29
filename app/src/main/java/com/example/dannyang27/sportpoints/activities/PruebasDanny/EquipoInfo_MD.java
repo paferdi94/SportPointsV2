@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -47,13 +46,12 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private TextView unirse_a_equipo;
     private Button verPartBtn;
     private Button unirseBtn;
-    private Button bajaBtn;
     private TextView descripcionTxt;
     String emailLogeado;
     private View rootView;
     String participanteKey;
     Boolean usuarioEncontrado = false;
-    private int cap=0;
+    private int cap = 0;
 
     private Toolbar tb;
 
@@ -64,7 +62,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
 
 
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
-    StorageReference mStorageRef =firebaseStorageRef.getReference();
+    StorageReference mStorageRef = firebaseStorageRef.getReference();
 
     FirebaseDatabase mDataRef = FirebaseDatabase.getInstance();
     DatabaseReference participantesRef = mDataRef.getReference();
@@ -85,7 +83,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         participantesTxt = (TextView) findViewById(R.id.participantes_equipo_info_md);
         verPartBtn = (Button) findViewById(R.id.verParticipantes_equipo_info_md);
         unirseBtn = (Button) findViewById(R.id.unirse_equipo_info_md);
-        bajaBtn = (Button) findViewById(R.id.baja_equipo_info_md);
+
         descripcionTxt = (TextView) findViewById(R.id.descripcion_equipo_info_md);
         unirse_a_equipo = (TextView) findViewById(R.id.unirse_equipo_info_md);
 
@@ -103,7 +101,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         nombre_key = e.getNombre();
         emailLogeado = mAuth.getCurrentUser().getEmail();
 
-        mStorageRef = mStorageRef.child("equipos/"+e.getImagen());
+        mStorageRef = mStorageRef.child("equipos/" + e.getImagen());
         participantesRef = participantesRef.child("Equipos")
                 .child(e.getNombre().toString()).child("participantes");
 
@@ -111,7 +109,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String str = dataSnapshot.getValue(String.class).toString();
-                int key =Integer.parseInt(dataSnapshot.getKey().toString());
+                int key = Integer.parseInt(dataSnapshot.getKey().toString());
                 if (!usuarioEncontrado && emailLogeado.equals(str)) {
                     unirse_a_equipo.setText("DEJAR");
                     usuarioEncontrado = true;
@@ -129,7 +127,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 String usuarioBorrado = dataSnapshot.getValue(String.class).toString();
-                Log.d("SportPoints",usuarioBorrado);
+                Log.d("SportPoints", usuarioBorrado);
                 borrarElementoLista(usuarioBorrado);
                 e.setParticipantes(listaParticipantes);
             }
@@ -149,9 +147,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         nombreTxt.setText(e.getNombre());
         deporteTxt.setText(e.getDeporte());
         //participantesTxt.setText(e.getCapacidadActual()+" / "+e.getCapacidadMaxima());
-        //descripcionTxt.setText(e.getD);
-
-
+        descripcionTxt.setText(e.getDescripcion());
 
 
         mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -164,17 +160,16 @@ public class EquipoInfo_MD extends AppCompatActivity {
         });
 
 
+        verPartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //showParticipantesInfo();
+                //Toast.makeText(getApplicationContext(),getListaParticipantes(),Toast.LENGTH_LONG).show();
+                // showListarParticipantes(listaParticipantes);
 
-    verPartBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-           //showParticipantesInfo();
-            //Toast.makeText(getApplicationContext(),getListaParticipantes(),Toast.LENGTH_LONG).show();
-           // showListarParticipantes(listaParticipantes);
-
-            showListarParticipantes_beta(e);
-        }
-    });
+                showListarParticipantes_beta(e);
+            }
+        });
 
         unirseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +180,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
                             .setMessage("Estás seguro que salir del equipo?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if(isOnlineNet()) {
+                                    if (isOnlineNet()) {
                                         participantesRef.child(participanteKey).removeValue();
                                         usuarioEncontrado = false;
                                         unirse_a_equipo.setText("UNIRSE");
@@ -200,7 +195,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
                                 }
                             })
                             .show();
-                }else {
+                } else {
                     // Snackbar.make(view,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
                     if (!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
                         e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
@@ -216,20 +211,6 @@ public class EquipoInfo_MD extends AppCompatActivity {
             }
         });
 
-        bajaBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // Toast.makeText(getApplicationContext(), "pulsado", Toast.LENGTH_LONG).show();
-
-
-                Toast.makeText(view.getContext(), "!das", Toast.LENGTH_LONG).show();
-
-                //participantesRef.child(key).removeValue();
-
-
-
-            }
-        });
     }
     /*
         public int devolverKey(String str){
@@ -272,16 +253,16 @@ public class EquipoInfo_MD extends AppCompatActivity {
         startActivity(i);
     }
 
-    private String getListaParticipantes(){
+    private String getListaParticipantes() {
         String aux = "";
-        for(int i=0; i < listaParticipantes.size();i++){
-            aux += listaParticipantes.get(i)+"\n";
+        for (int i = 0; i < listaParticipantes.size(); i++) {
+            aux += listaParticipantes.get(i) + "\n";
 
         }
         return aux;
     }
 
-    private int getSize(){
+    private int getSize() {
 
         return cap;
     }
@@ -290,7 +271,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         for (int i = 0; i < listaParticipantes.size(); i++) {
             if (usuario.equals(listaParticipantes.get(i))) {
                 listaParticipantes.remove(i);
-                Log.d("SportPoints",usuario);
+                Log.d("SportPoints", usuario);
             }
         }
     }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -191,7 +192,7 @@ public class EventoInfo_MD extends AppCompatActivity {
             public void onClick(View view) {
                 // showParticipantesInfo();
                 // Snackbar.make(view,getListaParticipantes(), Snackbar.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), getListaParticipantes(), Toast.LENGTH_LONG).show();
+                showListarParticipantes_beta(e);
 
             }
         });
@@ -247,18 +248,12 @@ public class EventoInfo_MD extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showParticipantesInfo() {
-        Intent i = new Intent(this, PruebaListarParticipantes.class);
+    private void showListarParticipantes_beta(EventoPruebaDanny e) {
+        Intent i = new Intent(this, VerParticipantesProvisional.class);
+        i.putExtra("PARCELABLE", e);
         startActivity(i);
     }
 
-    private String getListaParticipantes() {
-        String aux = "";
-        for (int i = 0; i < listaParticipantes.size(); i++) {
-            aux += listaParticipantes.get(i) + "\n";
-        }
-        return aux;
-    }
 
     private void borrarElementoLista(String usuario) {
         for (int i = 0; i < listaParticipantes.size(); i++) {
