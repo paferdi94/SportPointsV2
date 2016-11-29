@@ -68,7 +68,6 @@ public class PromocionFragmento extends Fragment {
     private EditText lugar_et;
     private EditText fecha_In;
     private EditText fecha_F;
-    private EditText hora_et;
     private Button cancelar_btn;
     private Button crear_btn;
 
@@ -76,7 +75,6 @@ public class PromocionFragmento extends Fragment {
     private String fechaPmInit;
     private String fechaPmFin;
     private String lugarPm;
-    private String horaPm;
     private String descripcion;
 
 
@@ -134,9 +132,7 @@ public class PromocionFragmento extends Fragment {
                         if (lugar_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca el lugar de la promoción\n";
                         }
-                        if (hora_et.getText().toString().equals("")) {
-                            camposObligatorios += "Introduzca la hora de la promoción\n";
-                        }
+
                         if (fecha_In.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca la fecha de inicio de la promoción\n";
                         }
@@ -150,7 +146,7 @@ public class PromocionFragmento extends Fragment {
                             lugarPm = lugar_et.getText().toString();
                             fechaPmInit = fecha_In.getText().toString();
                             fechaPmFin = fecha_F.getText().toString();
-                            horaPm = hora_et.getText().toString();
+
 
                             dialog.setContentView(R.layout.aaa_activity_dialog_descripcion);
                             descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_equipo);
