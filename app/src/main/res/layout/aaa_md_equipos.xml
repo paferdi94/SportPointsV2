@@ -51,7 +51,6 @@
                 android:layout_below="@id/nombre_md_equipo"
                 android:id="@+id/deporte_md_promo" />
             <TextView
-                android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
