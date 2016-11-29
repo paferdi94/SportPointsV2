@@ -81,11 +81,12 @@ public class PromocionFragmento extends Fragment {
     private EditText descripcion_et;
     private Button crearBtn;
 
+
     public static String getNombreImagenPromo() {
         return nombreImagenPromo;
     }
 
-    public static void setNombreImagenPromo(String nombreImagen) {
+    public static void setNombreImagenEvento(String nombreImagen) {
         PromocionFragmento.nombreImagenPromo = nombreImagen;
     }
 
@@ -224,19 +225,19 @@ public class PromocionFragmento extends Fragment {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
+                                        if(mAuth.getCurrentUser().getEmail().equals(model.getAdmin()) && isOnlineNet()){
                                             mPromoRef.child(model.getNombre()).removeValue();
                                             Toast.makeText(getContext(), "Promoción borrada", Toast.LENGTH_LONG).show();
                                         }else {
                                             Toast.makeText(getContext(), "No eres el creador de la promoción", Toast.LENGTH_LONG).show();
                                         }
 
-
                                     }
                                 })
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+
                                         Toast.makeText(getContext(), "Operacion cancelada", Toast.LENGTH_LONG).show();
                                     }
                                 }).show();
@@ -247,14 +248,11 @@ public class PromocionFragmento extends Fragment {
                 });
 
                 if (!imagenId.equals("")) {
-                    FirebaseStorage storage = FirebaseStorage.getInstance();
-
                     //StorageReference storageRef = storage.getReferenceFromUrl("gs://sport-points-7f5e0.appspot.com/");
-                    //StorageReference imagesRef = storageRef.child("promociones/"+ imagenId);
-                    StorageReference promosRef = mStorageRef.child("promociones/"+imagenId);
-
+                    StorageReference imagesRef = mStorageRef.child("promociones/"+ imagenId);
+                    //StorageReference promosRef = mStorageRef.child("promociones/" + imagenId);
                     //Bajar la imagen
-                    promosRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    imagesRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
                             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -295,13 +293,13 @@ public class PromocionFragmento extends Fragment {
             imagen.setImageURI(uri);
             int num = (int)(Math.random()*1000000 +10);
             String child = num+"";
-            StorageReference pRef = mStorageRef.child("promociones").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen
-            setNombreImagenPromo(child);
-            pRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            StorageReference eventoRef = mStorageRef.child("promociones").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen
+            setNombreImagenEvento(child);
+            eventoRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    setNombreImagenPromo("");
+                   // setNombreImagenEvento("");
                 }
             });
 
