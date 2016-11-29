@@ -235,29 +235,30 @@ public class EventoFragmento extends Fragment {
                         //Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
                         mEventoRef = mDataRef.child("Eventos").child(model.getNombre());
                         //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
-                        if (model.getAdmin().equals(emailLogin)) {
-                            new AlertDialog.Builder(v.getContext())
-                                    .setTitle("Eliminar Evento")
-                                    .setMessage("Estás seguro que deseas eliminar el evento?")
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            if (isOnlineNet()) {
+                        new AlertDialog.Builder(v.getContext())
+                                .setTitle("Eliminar Evento")
+                                .setMessage("Estás seguro que deseas eliminar el evento?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (isOnlineNet()) {
+                                            if (model.getAdmin().equals(emailLogin)) {
                                                 mEventoRef.removeValue();
                                                 Snackbar.make(rootView, "Evento eliminado", Snackbar.LENGTH_LONG).show();
                                                 dialog.cancel();
-                                            } else
-                                                Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
-                                        }
-                                    })
-                                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    })
-                                    .show();
-                        } else {
-                            Snackbar.make(v, "Solo el creador puede eliminar un evento.", Snackbar.LENGTH_LONG).show();
-                        }
+                                            } else {
+                                                Snackbar.make(rootView, "Solo el creador puede eliminar un evento", Snackbar.LENGTH_LONG).show();
+                                            }
+                                        } else
+                                            Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                })
+                                .show();
+
                         return true;
                     }
                 });
