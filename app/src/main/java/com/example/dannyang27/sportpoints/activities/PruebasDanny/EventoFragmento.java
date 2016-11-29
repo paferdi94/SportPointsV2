@@ -76,7 +76,6 @@ public class EventoFragmento extends Fragment {
     View rootView;
 
     private FirebaseAuth mAuth;
-    private String emailLogin = "";
 
     public static String getNombreImagenEvento() {
         return nombreImagenEvento;
@@ -98,7 +97,6 @@ public class EventoFragmento extends Fragment {
         rootView = (View) v.findViewById(R.id.coordinate);
 
         mAuth = FirebaseAuth.getInstance();
-        emailLogin = mAuth.getCurrentUser().getEmail();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,7 +233,7 @@ public class EventoFragmento extends Fragment {
                         //Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
                         mEventoRef = mDataRef.child("Eventos").child(model.getNombre());
                         //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
-                        if (model.getAdmin().equals(emailLogin)) {
+                        if (model.getAdmin().equals(mAuth.getCurrentUser().getEmail())) {
                             new AlertDialog.Builder(v.getContext())
                                     .setTitle("Eliminar Evento")
                                     .setMessage("Estás seguro que deseas eliminar el evento?")

@@ -1,5 +1,6 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -96,7 +97,7 @@ public class Registro extends AppCompatActivity {
         cancelar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Cancelando...", Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
@@ -114,7 +115,6 @@ public class Registro extends AppCompatActivity {
         String pass1 = pass1EditText.getText().toString();
         String pass2 = pass2EditText.getText().toString();
         int tel_length = telefonoEditText.getText().length();
-        telefono = parseInt(telefonoEditText.getText().toString());
         if(
                 nombreEditText.getText().toString().equals("") ||
                         emailEditText.getText().toString().equals("") ||
@@ -123,6 +123,10 @@ public class Registro extends AppCompatActivity {
                         fechaNacimientoEditText.getText().toString().equals("") ||
                         telefonoEditText.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(),"Rellena todos los campos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!nombreEditText.getText().toString().matches("[a-zA-Z]+")){
+            Toast.makeText(getApplicationContext(),"Solo se permiten letras en el nombre.", Toast.LENGTH_SHORT).show();
             return;
         }
         if(!pass1.equals(pass2)){
@@ -135,6 +139,7 @@ public class Registro extends AppCompatActivity {
             return;
         }
         try{
+            telefono = parseInt(telefonoEditText.getText().toString());
             String fecha = fechaNacimientoEditText.getText().toString();
             DateFormat format = new SimpleDateFormat("d-L-y", Locale.ENGLISH);
             this.fechaNacimiento = format.parse(fecha);
@@ -167,10 +172,11 @@ public class Registro extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Ya existe una cuenta con ese email.", Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Se ha perdido la conexión.", Toast.LENGTH_SHORT).show();
                                 }
                             }else{
                                 guardarDatos();
-                                setResult(RC_REGISTER);
+                                setResult(RESULT_OK);
                                 finish();
                             }
                         }
