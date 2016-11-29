@@ -54,7 +54,6 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             app:fabSize="mini"
-            a
             android:id="@+id/fab_dialog_promocion"
             android:layout_centerVertical="true"
             android:layout_alignEnd="@+id/textView19"
