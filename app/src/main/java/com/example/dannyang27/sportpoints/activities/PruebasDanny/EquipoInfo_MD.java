@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -41,6 +43,8 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private TextView descripcionTxt;
     private int cap=0;
 
+    private Toolbar tb;
+
     private String nombre_key;
     private FirebaseAuth mAuth;
 
@@ -61,6 +65,8 @@ public class EquipoInfo_MD extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        tb = (Toolbar) findViewById(R.id.toolbar_equipoInfo);
+
         nombreTxt = (TextView) findViewById(R.id.nombre_equipo_info_md);
         imagenEquipo = (ImageView) findViewById(R.id.image_equipo_info_md);
         deporteTxt = (TextView) findViewById(R.id.deporte_equipo_info_md);
@@ -68,6 +74,15 @@ public class EquipoInfo_MD extends AppCompatActivity {
         verPartBtn = (Button) findViewById(R.id.verParticipantes_equipo_info_md);
         unirseBtn = (Button) findViewById(R.id.unirse_equipo_info_md);
         descripcionTxt = (TextView) findViewById(R.id.descripcion_equipo_info_md);
+
+        /////////////////////Añadir Toolbar////////////////////////
+        tb.setTitle("Información de Equipo");
+        setSupportActionBar(tb);
+        tb.setTitleTextColor(0xFFFFFFFF);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //////////////////////////////////////////////////////////
+
 
         final EquipoPruebaDanny e = getIntent().getParcelableExtra("PARCELABLE");
 
@@ -108,7 +123,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
 
         nombreTxt.setText(e.getNombre());
         deporteTxt.setText(e.getDeporte());
-        participantesTxt.setText(e.getCapacidadActual()+" / "+e.getCapacidadMaxima());
+        //participantesTxt.setText(e.getCapacidadActual()+" / "+e.getCapacidadMaxima());
         //descripcionTxt.setText(e.getD);
 
 
@@ -151,6 +166,16 @@ public class EquipoInfo_MD extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Back arrow
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showListarParticipantes(ArrayList<String> a) {

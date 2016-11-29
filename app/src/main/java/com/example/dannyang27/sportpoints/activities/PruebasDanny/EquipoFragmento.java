@@ -93,7 +93,7 @@ public class EquipoFragmento extends Fragment {
         //Referencio equipos
         mDataRef =  FirebaseDatabase.getInstance().getReference();
         mRefEquipo = mDataRef.child("Equipos");
-        participantes.add("Tecnico");
+        //participantes.add("Tecnico");
 
 
         View v = inflater.inflate(R.layout.aaa_activity_equipo_fragmento, container, false);
@@ -151,6 +151,7 @@ public class EquipoFragmento extends Fragment {
                                 public void onClick(View view) {
                                     DatabaseReference mEquiposRef = mDataRef.child("Equipos");
 
+                                    participantes.add(mAuth.getCurrentUser().getEmail());
                                     EquipoPruebaDanny e = new EquipoPruebaDanny(mAuth.getCurrentUser().getEmail(),
                                             nombreEv, deporteEv, descripcion_et.getText().toString(),
                                             "1",capacidadMaximaEv, nombreImagenEquipo, participantes);
@@ -226,14 +227,14 @@ public class EquipoFragmento extends Fragment {
                     public boolean onLongClick(View view) {
 
                         new AlertDialog.Builder(getContext())
-                                .setTitle("Delete Entry")
+                                .setTitle("Eliminar Equipo")
                                 .setMessage("Estas seguro que quieres borrar este equipo?")
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
                                             mRefEquipo.child(model.getNombre()).removeValue();
-                                            Toast.makeText(getContext(), "Elemento borrado", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getContext(), "Equipo borrado", Toast.LENGTH_LONG).show();
                                         }else {
                                             Toast.makeText(getContext(), "No eres el creador del equipo", Toast.LENGTH_LONG).show();
                                         }
@@ -246,8 +247,8 @@ public class EquipoFragmento extends Fragment {
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         Toast.makeText(getContext(), "Operacion cancelada", Toast.LENGTH_LONG).show();
                                     }
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert).show();
+                                }).show();
+
 
                         return true;
                     }
