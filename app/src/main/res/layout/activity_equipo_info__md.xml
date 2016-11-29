@@ -123,8 +123,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/verParticipantes_equipo_info_md"
                 android:layout_marginStart="13dp" />
-
-
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

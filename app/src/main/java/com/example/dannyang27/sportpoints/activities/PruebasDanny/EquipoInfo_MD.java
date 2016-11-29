@@ -46,7 +46,6 @@ public class EquipoInfo_MD extends AppCompatActivity {
     private TextView unirse_a_equipo;
     private Button verPartBtn;
     private Button unirseBtn;
-    private Button bajaBtn;
     private TextView descripcionTxt;
     String emailLogeado;
     private View rootView;
@@ -84,7 +83,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         participantesTxt = (TextView) findViewById(R.id.participantes_equipo_info_md);
         verPartBtn = (Button) findViewById(R.id.verParticipantes_equipo_info_md);
         unirseBtn = (Button) findViewById(R.id.unirse_equipo_info_md);
-        //bajaBtn = (Button) findViewById(R.id.baja_equipo_info_md);
+
         descripcionTxt = (TextView) findViewById(R.id.descripcion_equipo_info_md);
         unirse_a_equipo = (TextView) findViewById(R.id.unirse_equipo_info_md);
 
@@ -148,7 +147,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
         nombreTxt.setText(e.getNombre());
         deporteTxt.setText(e.getDeporte());
         //participantesTxt.setText(e.getCapacidadActual()+" / "+e.getCapacidadMaxima());
-        //descripcionTxt.setText(e.getD);
+        descripcionTxt.setText(e.getDescripcion());
 
 
         mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -212,19 +211,6 @@ public class EquipoInfo_MD extends AppCompatActivity {
             }
         });
 
-//        bajaBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Toast.makeText(getApplicationContext(), "pulsado", Toast.LENGTH_LONG).show();
-//
-//
-//                Toast.makeText(view.getContext(), "!das", Toast.LENGTH_LONG).show();
-//
-//                //participantesRef.child(key).removeValue();
-//
-//
-//            }
-//        });
     }
     /*
         public int devolverKey(String str){
