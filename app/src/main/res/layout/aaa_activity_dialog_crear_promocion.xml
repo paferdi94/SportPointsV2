@@ -56,6 +56,7 @@
             app:fabSize="mini"
             android:src="@drawable/ic_plus"
             android:id="@+id/fab_dialog_promocion"
+            app:srcCompat="@drawable/ic_plus"
             android:layout_centerVertical="true"
             android:layout_alignEnd="@+id/textView19"
             android:layout_marginEnd="12dp" />
