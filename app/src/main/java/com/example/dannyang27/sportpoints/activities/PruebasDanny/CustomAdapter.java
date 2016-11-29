@@ -12,7 +12,7 @@ import com.example.dannyang27.sportpoints.activities.Promocion.PromocionFragment
  * Created by Dannyang27 on 13/11/16.
  */
 public class CustomAdapter extends FragmentStatePagerAdapter {
-    private String [] fragments = {"EQUIPOS", "EVENTOS", "PROMOCIONES"};
+    private String [] fragments = {"EQUIPOS", "EVENTOS", "PROMOS"};
     int numTabs;
     public CustomAdapter(FragmentManager fm, int numTabs) {
         super(fm);
