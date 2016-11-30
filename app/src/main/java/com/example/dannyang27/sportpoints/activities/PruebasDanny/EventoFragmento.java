@@ -16,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -76,11 +74,8 @@ public class EventoFragmento extends Fragment {
     private EditText descripcion_et;
     private Button crearBtn;
     View rootView;
-    private static final String TAG = "SportPoints";
 
     private FirebaseAuth mAuth;
-    private String emailLogin = "";
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
     public static String getNombreImagenEvento() {
         return nombreImagenEvento;
@@ -102,21 +97,6 @@ public class EventoFragmento extends Fragment {
         rootView = (View) v.findViewById(R.id.coordinate);
 
         mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,29 +233,32 @@ public class EventoFragmento extends Fragment {
                         //Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
                         mEventoRef = mDataRef.child("Eventos").child(model.getNombre());
                         //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
-                        if (model.getAdmin().equals(emailLogin)) {
-                            new AlertDialog.Builder(v.getContext())
-                                    .setTitle("Eliminar Evento")
-                                    .setMessage("Estás seguro que deseas eliminar el evento?")
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            if (isOnlineNet()) {
+
+                        new AlertDialog.Builder(v.getContext())
+                                .setTitle("Eliminar Evento")
+                                .setMessage("Estás seguro que deseas eliminar el evento?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (isOnlineNet()) {
+                                            if (model.getAdmin().equals(mAuth.getCurrentUser().getEmail().toString())) {
+
                                                 mEventoRef.removeValue();
                                                 Snackbar.make(rootView, "Evento eliminado", Snackbar.LENGTH_LONG).show();
                                                 dialog.cancel();
-                                            } else
-                                                Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
-                                        }
-                                    })
-                                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    })
-                                    .show();
-                        } else {
-                            Snackbar.make(v, "Solo el creador puede eliminar un evento.", Snackbar.LENGTH_LONG).show();
-                        }
+                                            } else {
+                                                Snackbar.make(rootView, "Solo el creador puede eliminar un evento", Snackbar.LENGTH_LONG).show();
+                                            }
+                                        } else
+                                            Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                })
+                                .show();
+
                         return true;
                     }
                 });
@@ -341,14 +324,6 @@ public class EventoFragmento extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         c = context;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-        mAuth.signOut();
-        //emailLogin = mAuth.getCurrentUser().getEmail();
     }
 
 

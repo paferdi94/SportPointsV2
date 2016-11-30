@@ -20,9 +20,8 @@ public class EquipoViewHolder extends RecyclerView.ViewHolder {
     TextView nombreTv;
     TextView deporteTv;
     //TextView participantesTv;
-    Button unirse_btn;
+    //Button unirse_btn;
     View view;
-
 
 
     public EquipoViewHolder(View itemView) {
@@ -33,30 +32,31 @@ public class EquipoViewHolder extends RecyclerView.ViewHolder {
         nombreTv = (TextView) itemView.findViewById(R.id.nombre_md_equipo);
         deporteTv = (TextView) itemView.findViewById(R.id.deporte_md_promo);
         //participantesTv = (TextView) itemView.findViewById(R.id.participante_md_equipo);
-        unirse_btn = (Button) itemView.findViewById(R.id.unirse_md_btn);
+        //unirse_btn = (Button) itemView.findViewById(R.id.unirse_md_btn);
 
 
-
-         itemView.setOnClickListener(new View.OnClickListener() {
+        itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                    int position = getAdapterPosition();
 //                    Snackbar.make(view, "Click detected on item: " + position,
 //                            Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
-                Toast.makeText(view.getContext(), getAdapterPosition() +"", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), getAdapterPosition() + "", Toast.LENGTH_LONG).show();
                 //view.getContext().startActivity(new Intent(view.getContext(), EquipoInfo_MD.class));
 
             }
         });
 
 
+        /*
         unirse_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v,"Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
             }
         });
+         */
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -96,7 +97,7 @@ public class Registro extends AppCompatActivity {
         cancelar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Cancelando...", Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
@@ -122,6 +123,10 @@ public class Registro extends AppCompatActivity {
                         fechaNacimientoEditText.getText().toString().equals("") ||
                         telefonoEditText.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(),"Rellena todos los campos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!nombreEditText.getText().toString().matches("[a-zA-Z]+")){
+            Toast.makeText(getApplicationContext(),"Solo se permiten letras en el nombre.", Toast.LENGTH_SHORT).show();
             return;
         }
         if(!pass1.equals(pass2)){
@@ -171,7 +176,7 @@ public class Registro extends AppCompatActivity {
                                 }
                             }else{
                                 guardarDatos();
-                                setResult(RC_REGISTER);
+                                setResult(RESULT_OK);
                                 finish();
                             }
                         }

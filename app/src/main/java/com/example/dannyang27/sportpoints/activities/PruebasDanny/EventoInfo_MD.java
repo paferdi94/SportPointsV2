@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
 import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +33,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static com.example.dannyang27.sportpoints.R.id.listarParticipantes_id;
@@ -123,9 +128,9 @@ public class EventoInfo_MD extends AppCompatActivity {
                     unirse_a_evento.setText("No voy a ir");
                     usuarioEncontrado = true;
                     participanteKey = dataSnapshot.getKey();
+                }else {
+                    listaParticipantes.add(str);
                 }
-                listaParticipantes.add(str);
-
             }
 
             @Override
@@ -136,6 +141,7 @@ public class EventoInfo_MD extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 String usuarioBorrado = dataSnapshot.getValue(String.class).toString();
+                Log.d("SportPoints",usuarioBorrado);
                 borrarElementoLista(usuarioBorrado);
                 e.setParticipantes(listaParticipantes);
             }
@@ -186,7 +192,7 @@ public class EventoInfo_MD extends AppCompatActivity {
             public void onClick(View view) {
                 // showParticipantesInfo();
                 // Snackbar.make(view,getListaParticipantes(), Snackbar.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), getListaParticipantes(), Toast.LENGTH_LONG).show();
+                showListarParticipantes_beta(e);
 
             }
         });
@@ -200,7 +206,7 @@ public class EventoInfo_MD extends AppCompatActivity {
                             .setMessage("Estás seguro que deseas cancelar tu asistencia al evento?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (isOnlineNet()) {
+                                    if(isOnlineNet()) {
                                         participantesRef.child(participanteKey).removeValue();
                                         usuarioEncontrado = false;
                                         unirse_a_evento.setText("Unirse");
@@ -242,23 +248,19 @@ public class EventoInfo_MD extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showParticipantesInfo() {
-        Intent i = new Intent(this, PruebaListarParticipantes.class);
+    private void showListarParticipantes_beta(EventoPruebaDanny e) {
+        Intent i = new Intent(this, VerParticipantesProvisional.class);
+        i.putExtra("PARCELABLE", e);
         startActivity(i);
     }
 
-    private String getListaParticipantes() {
-        String aux = "";
-        for (int i = 0; i < listaParticipantes.size(); i++) {
-            aux += listaParticipantes.get(i) + "\n";
-        }
-        return aux;
-    }
 
     private void borrarElementoLista(String usuario) {
         for (int i = 0; i < listaParticipantes.size(); i++) {
-            if (usuario.equals(listaParticipantes.get(i)))
+            if (usuario.equals(listaParticipantes.get(i))) {
                 listaParticipantes.remove(i);
+                Log.d("SportPoints",usuario);
+            }
         }
     }
 
