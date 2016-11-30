@@ -177,7 +177,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
                 if (unirse_a_equipo.getText().equals("DEJAR")) {
                     new AlertDialog.Builder(view.getContext())
                             .setTitle("Dejar Equipo")
-                            .setMessage("Estás seguro que salir del equipo?")
+                            .setMessage("Estás seguro que quieres salir del equipo?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (isOnlineNet()) {

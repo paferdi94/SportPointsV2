@@ -158,13 +158,13 @@ public class LogIn extends AppCompatActivity implements
         if (requestCode == RC_SIGN_IN_GMAIL) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                if(isOnlineNet()) {
+                //if(isOnlineNet()) {
                     GoogleSignInAccount acct = result.getSignInAccount();
                     firebaseAuthWithGoogle(acct);
                     emailUsuario = acct.getEmail();
                     showPruebaTab();
-                } else
-                    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+               // } else
+                //    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
             } else {
                 // El usuario ha rechazado logearse con la cuenta
                 Log.d(TAG, requestCode+" Fallo");

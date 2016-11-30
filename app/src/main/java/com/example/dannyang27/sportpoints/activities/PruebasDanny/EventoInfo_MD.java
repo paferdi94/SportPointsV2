@@ -125,7 +125,7 @@ public class EventoInfo_MD extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String str = dataSnapshot.getValue(String.class).toString();
                 if (!usuarioEncontrado && emailLogeado.equals(str)) {
-                    unirse_a_evento.setText("No voy a ir");
+                    unirse_a_evento.setText("NO VOY A IR");
                     usuarioEncontrado = true;
                     participanteKey = dataSnapshot.getKey();
                 }else {
@@ -200,7 +200,7 @@ public class EventoInfo_MD extends AppCompatActivity {
         unirse_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (unirse_a_evento.getText().equals("No voy a ir")) {
+                if (unirse_a_evento.getText().equals("NO VOY A IR")) {
                     new AlertDialog.Builder(view.getContext())
                             .setTitle("Cancelar participación")
                             .setMessage("Estás seguro que deseas cancelar tu asistencia al evento?")
@@ -209,7 +209,7 @@ public class EventoInfo_MD extends AppCompatActivity {
                                     if(isOnlineNet()) {
                                         participantesRef.child(participanteKey).removeValue();
                                         usuarioEncontrado = false;
-                                        unirse_a_evento.setText("Unirse");
+                                        unirse_a_evento.setText("UNIRSE");
                                         Snackbar.make(rootView, "Has cancelado tu asistencia correctamente", Snackbar.LENGTH_LONG).show();
                                     } else
                                         Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();

@@ -239,7 +239,7 @@ public class EventoFragmento extends Fragment {
                                 .setMessage("Estás seguro que deseas eliminar el evento?")
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        if (isOnlineNet()) {
+                                        //if (isOnlineNet()) {
                                             if (model.getAdmin().equals(mAuth.getCurrentUser().getEmail().toString())) {
 
                                                 mEventoRef.removeValue();
@@ -248,8 +248,8 @@ public class EventoFragmento extends Fragment {
                                             } else {
                                                 Snackbar.make(rootView, "Solo el creador puede eliminar un evento", Snackbar.LENGTH_LONG).show();
                                             }
-                                        } else
-                                            Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
+                                       // } else
+                                        //    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
                                     }
                                 })
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
