@@ -145,6 +145,7 @@ public class Registro extends AppCompatActivity {
             this.fechaNacimiento = format.parse(fecha);
         }catch (ParseException e) {
             Toast.makeText(getApplicationContext(), "La fecha de cumpleaños no es correcta (DD-MM-YYYY).", Toast.LENGTH_SHORT).show();
+            return;
         }
         int telefono = parseInt(telefonoEditText.getText().toString());
         this.email = email;

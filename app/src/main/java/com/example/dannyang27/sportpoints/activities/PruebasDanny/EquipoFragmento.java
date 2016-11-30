@@ -158,7 +158,7 @@ public class EquipoFragmento extends Fragment {
 
                                     String auth= mAuth.getCurrentUser().getEmail();
 
-                                    Toast.makeText(getContext(),auth + " : "+nombreEv + " : " +descripcion_et + " : " +participantes.toString() ,Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getContext(),auth + " : "+nombreEv + " : " +descripcion_et + " : " +participantes.toString() ,Toast.LENGTH_SHORT).show();
 
 
                                     mEquiposRef.child(nombre_et.getText().toString()).setValue(e);
@@ -228,14 +228,15 @@ public class EquipoFragmento extends Fragment {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        //if (isOnlineNet()) {
                                         if(mAuth.getCurrentUser().getEmail().equals(model.getCreador()) && isOnlineNet()){
                                             mRefEquipo.child(model.getNombre()).removeValue();
                                             Toast.makeText(getContext(), "Equipo borrado", Toast.LENGTH_LONG).show();
                                         }else {
                                             Toast.makeText(getContext(), "No eres el creador del equipo", Toast.LENGTH_LONG).show();
                                         }
-
-
+                                        // } else
+                                        //    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show()
                                     }
                                 })
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
