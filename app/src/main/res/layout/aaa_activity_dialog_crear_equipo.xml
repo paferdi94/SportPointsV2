@@ -90,11 +90,12 @@
             android:layout_alignEnd="@+id/sportPoints_label" />
 
         <Button
-            android:text="Crear"
-            android:layout_width="wrap_content"
+            android:text="CREAR"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/crearBtn_dialog_equipo"
             android:textColor="@color/colorAccent"
+            android:layout_marginLeft="10dp"
             style="?android:attr/borderlessButtonStyle"
             android:layout_alignBaseline="@+id/cancelarBtn_dialog_equipo"
             android:layout_alignBottom="@+id/cancelarBtn_dialog_equipo"
