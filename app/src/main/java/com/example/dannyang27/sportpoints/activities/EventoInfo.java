@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
+import com.example.dannyang27.sportpoints.activities.Principal.PPrincipal;
 import com.example.dannyang27.sportpoints.activities.RecyclerViewHolders.EventoItemHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -63,7 +64,7 @@ public class EventoInfo extends AppCompatActivity {
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(view.getContext(),MainActivity.class);
+                        Intent intent = new Intent(view.getContext(),PPrincipal.class);
                         startActivity(intent);
                     }
                 });

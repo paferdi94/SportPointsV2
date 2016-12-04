@@ -1,11 +1,10 @@
-package com.example.dannyang27.sportpoints.activities.Inicio;
+package com.example.dannyang27.sportpoints.activities.Principal;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,32 +14,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+
+
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.CustomAdapter;
+import com.example.dannyang27.sportpoints.activities.Promocion.PromocionFragmento;
 import com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoFragmento;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoInfo_MD;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.PruebaTab;
+import com.example.dannyang27.sportpoints.activities.PruebasDanny.EventoFragmento;
 
-public class Maininicio extends AppCompatActivity
+public class PPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maininicio);
+        setContentView(R.layout.activity_pprincipal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,10 +49,24 @@ public class Maininicio extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        boolean FragmentTransaction = false;
+        Fragment fragment = null;
+
+        fragment = new EventoFragmento();
+        FragmentTransaction = true;
+
+        if(FragmentTransaction){
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_pprincipal,fragment).commit();
+
+            getSupportActionBar().setTitle("Eventos");
+        }
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { // cuando se presiona el navigation drawer lo abre
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -63,14 +76,14 @@ public class Maininicio extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { // menú de los tres puntitos de la parte superior derecha
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.maininicio, menu);
+        getMenuInflater().inflate(R.menu.pprincipal, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { //Este es el menu de las opciones de los tres puntitos
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -90,28 +103,40 @@ public class Maininicio extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) { showPruebaEventos();
+        boolean FragmentTransaction = false;
+        Fragment fragment = null;
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        if (id == R.id.nav_eventos) {
+            fragment = new EventoFragmento();
+            FragmentTransaction = true;
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_equipos){
+            fragment = new EquipoFragmento();
+            FragmentTransaction = true;
 
+        } else if (id == R.id.nav_promociones) {
+            fragment = new PromocionFragmento();
+            FragmentTransaction = true;
+
+        } else if (id == R.id.nav_productos) {
+            Log.i("NavigationDrawer","Aqui productos a la venta");
+        } else if (id == R.id.nav_perfil) {
+            Log.i("NavigationDrawer","Aqui perfil usuario");
+        } else if (id == R.id.nav_mensajes) {
+            Log.i("NavigationDrawer","Aqui mensajes recibidos");
+        }
+
+        if(FragmentTransaction){
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_pprincipal,fragment).commit();
+
+            item.setChecked(true);
+            getSupportActionBar().setTitle(item.getTitle());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-
-    public void showPruebaEventos(){
-        Intent i = new Intent(this, PruebaTab.class);
-        startActivity(i);
     }
 }
