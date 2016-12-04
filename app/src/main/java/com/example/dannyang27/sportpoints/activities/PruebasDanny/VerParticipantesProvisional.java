@@ -1,18 +1,15 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.EquipoPruebaDanny;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
+import com.example.dannyang27.sportpoints.activities.Equipo.EquipoPruebaDanny;
+import com.example.dannyang27.sportpoints.activities.Evento.EventoPruebaDanny;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
