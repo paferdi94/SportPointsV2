@@ -2,7 +2,6 @@ package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,16 +13,11 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.EventoInfo;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
+import com.example.dannyang27.sportpoints.activities.Evento.EventoInfo_MD;
+import com.example.dannyang27.sportpoints.activities.Evento.EventoParcelable;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-
-import static com.example.dannyang27.sportpoints.R.id.imageView;
-import static com.example.dannyang27.sportpoints.R.id.parent;
 
 /**
  * Created by Dannyang27 on 13/11/16.

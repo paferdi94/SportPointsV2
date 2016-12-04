@@ -1,7 +1,5 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
-import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Equipo.EquipoParceable;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 
 import java.util.ArrayList;
-
-import static com.example.dannyang27.sportpoints.R.id.deporte;
-import static com.example.dannyang27.sportpoints.R.id.nombre_equipo;
 
 /**
  * Created by Danny on 14/11/2016.

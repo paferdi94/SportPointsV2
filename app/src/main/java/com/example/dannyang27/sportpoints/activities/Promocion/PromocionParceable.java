@@ -1,14 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.Promocion;
 
-import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.example.dannyang27.sportpoints.activities.Base64Custom;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Dannyang27 on 15/11/16.

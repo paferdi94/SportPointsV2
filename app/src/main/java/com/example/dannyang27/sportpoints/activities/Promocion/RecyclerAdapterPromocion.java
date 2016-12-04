@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoInfo_MD;
+import com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo_MD;
 
 
 import java.util.ArrayList;

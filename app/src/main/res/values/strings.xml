@@ -1,13 +1,6 @@
 <resources>
     <string name="app_name">Sport Points</string>
 
-    <!--MainActivity Strings-->
-    <string name="title_txt_main">Sport Points</string>
-    <string name="subtitle_txt_main">Disfruta de tu deporte favorito en compañía</string>
-    <string name="entrar_btn_main">Entrar</string>
-    <string name="registrarse_btn_main">Crear cuenta</string>
-
-
     <!--Toolbar string-->
     <string name="add_evento_toolbar">CREAR EVENTO</string>
     <string name="entrar_en_toolbar">ENTRAR EN</string>
@@ -22,6 +15,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_pprincipal">PPrincipal</string>
 </resources>
 
 
