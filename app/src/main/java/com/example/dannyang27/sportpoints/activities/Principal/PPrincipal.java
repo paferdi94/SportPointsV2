@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.Toast;
 
 
 import com.example.dannyang27.sportpoints.R;
@@ -121,8 +121,10 @@ public class PPrincipal extends AppCompatActivity
             Log.i("NavigationDrawer","Aqui productos a la venta");
         } else if (id == R.id.nav_perfil) {
             Log.i("NavigationDrawer","Aqui perfil usuario");
-        } else if (id == R.id.nav_mensajes) {
-            Log.i("NavigationDrawer","Aqui mensajes recibidos");
+        } else if (id == R.id.nav_cerrarSesion) {
+            System.exit(0);
+
+
         }
 
         if(FragmentTransaction){

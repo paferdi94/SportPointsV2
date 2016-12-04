@@ -12,11 +12,11 @@
             android:title="Equipos" />
         <item
             android:id="@+id/nav_promociones"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="?android:attr/actionModeFindDrawable"
             android:title="Promociones" />
         <item
             android:id="@+id/nav_productos"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@android:drawable/star_big_off"
             android:title="Productos" />
     </group>
 
@@ -24,12 +24,12 @@
         <menu>
             <item
                 android:id="@+id/nav_perfil"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@android:drawable/ic_menu_edit"
                 android:title="Perfil" />
             <item
-                android:id="@+id/nav_mensajes"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Mensajes" />
+                android:id="@+id/nav_cerrarSesion"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="Cerrar Sesión" />
         </menu>
     </item>
 
