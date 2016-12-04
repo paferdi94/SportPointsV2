@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_equipo_info__md"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dannyang27.sportpoints.activities.Equipo.EquipoInfo_MD">
+    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_productoInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ToolbarStyle"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar_equipoInfo"
+        android:layout_marginTop="70dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
+                android:id="@+id/image_producto_info_md"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_alignBottom="@id/image_producto_info_md"
+                android:background="#60000000"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:layout_alignParentStart="true"
+                android:weightSum="1">
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/precio_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRECIO: "
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/precio_producto_info_md"
+                    android:layout_width="247dp"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=" 12,50"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+
+                 </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/nombre_label_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NOMBRE: "
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/nombre_producto_info_info"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="paleta de tenis"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cardView"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Descripción"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="13dp"
+                android:id="@+id/textView23"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/descripcion_producto_info_md"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
