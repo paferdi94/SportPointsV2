@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.PruebasDanny;
+package com.example.dannyang27.sportpoints.activities.Evento;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;

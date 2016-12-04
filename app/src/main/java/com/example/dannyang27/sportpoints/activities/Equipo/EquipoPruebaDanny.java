@@ -1,9 +1,8 @@
-package com.example.dannyang27.sportpoints.activities.Modelos;
+package com.example.dannyang27.sportpoints.activities.Equipo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

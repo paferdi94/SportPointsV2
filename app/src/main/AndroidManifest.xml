@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.PruebasDanny.LogIn">
+        <activity android:name=".activities.Principal.LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,16 +22,14 @@
         <activity android:name=".activities.EventoInfo" />
         <activity android:name=".activities.EventoConfigView" />
         <activity android:name=".activities.CrearEvento" />
-        <activity android:name=".activities.CorrectoUnirseEquipo" />
         <activity android:name=".activities.PruebasDanny.ListarParticipantes" />
         <activity android:name=".activities.PruebasDanny.PruebaBajadaImagen" />
-        <activity android:name=".activities.PruebasDanny.PruebaTab" />
-        <activity android:name=".activities.PruebasDanny.EventoInfo_MD" />
+        <activity android:name=".activities.Evento.EventoInfo_MD" />
         <activity android:name=".activities.PruebasDanny.PruebaListarParticipantes" />
-        <activity android:name=".activities.PruebasDanny.Registro" />
-        <activity android:name=".activities.PruebasDanny.EquipoInfo_MD" />
+        <activity android:name=".activities.Principal.Registro" />
+        <activity android:name=".activities.Equipo.EquipoInfo_MD" />
         <activity android:name=".activities.Promocion.PromoInfo_MD" />
-        <activity android:name=".activities.PruebasDanny.DialogCrearEvento" />
+        <activity android:name=".activities.Evento.DialogCrearEvento" />
         <activity android:name=".activities.PruebasDanny.VerParticipantesProvisional" />
         <activity
             android:name=".activities.Principal.PPrincipal"

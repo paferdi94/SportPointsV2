@@ -1,8 +1,9 @@
-package com.example.dannyang27.sportpoints.activities.Modelos;
+package com.example.dannyang27.sportpoints.activities.Evento;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
+
+import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 
 import java.util.ArrayList;
 import java.util.List;

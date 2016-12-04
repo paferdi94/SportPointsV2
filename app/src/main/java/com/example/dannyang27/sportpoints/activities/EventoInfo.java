@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
+import com.example.dannyang27.sportpoints.activities.Evento.Evento;
 import com.example.dannyang27.sportpoints.activities.Principal.PPrincipal;
 import com.example.dannyang27.sportpoints.activities.RecyclerViewHolders.EventoItemHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

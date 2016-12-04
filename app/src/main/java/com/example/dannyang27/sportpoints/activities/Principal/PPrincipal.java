@@ -1,11 +1,8 @@
 package com.example.dannyang27.sportpoints.activities.Principal;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,8 +16,8 @@ import android.view.MenuItem;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Promocion.PromocionFragmento;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.EquipoFragmento;
-import com.example.dannyang27.sportpoints.activities.PruebasDanny.EventoFragmento;
+import com.example.dannyang27.sportpoints.activities.Equipo.EquipoFragmento;
+import com.example.dannyang27.sportpoints.activities.Evento.EventoFragmento;
 
 public class PPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

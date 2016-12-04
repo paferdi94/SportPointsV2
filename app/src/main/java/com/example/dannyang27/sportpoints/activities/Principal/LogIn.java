@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.PruebasDanny;
+package com.example.dannyang27.sportpoints.activities.Principal;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
 import com.example.dannyang27.sportpoints.activities.Principal.PPrincipal;
+import com.example.dannyang27.sportpoints.activities.Principal.Registro;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;

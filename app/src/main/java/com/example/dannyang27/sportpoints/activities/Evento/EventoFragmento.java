@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.PruebasDanny;
+package com.example.dannyang27.sportpoints.activities.Evento;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoPruebaDanny;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

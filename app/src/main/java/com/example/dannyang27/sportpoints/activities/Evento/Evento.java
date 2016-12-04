@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints.activities.Modelos;
+package com.example.dannyang27.sportpoints.activities.Evento;
 
 import java.util.ArrayList;
 import java.util.HashMap;
