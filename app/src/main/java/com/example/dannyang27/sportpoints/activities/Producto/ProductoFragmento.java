@@ -49,9 +49,9 @@ public class ProductoFragmento extends Fragment {
     Context c;
     DatabaseReference mDataRef;
     DatabaseReference mProductoRef;
-    static String nombreImagenEvento = "";
+    static String nombreImagenProducto = "";
 
-    public static final int GALLERY_INTENT = 2;
+    public static final int GALLERY_INTENT_PRODUCTO = 5;
     FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
     StorageReference mStorageRef = firebaseStorageRef.getReference();
 
@@ -61,29 +61,20 @@ public class ProductoFragmento extends Fragment {
     private ImageView imagen;
     private FloatingActionButton fab_dialog;
     private EditText nombre_et;
-    private EditText lugar_et;
-    private EditText fecha_et;
-    private EditText hora_et;
+    private EditText precio_et;
+    private EditText descripcion_et;
     private Button cancelar_btn;
     private Button crear_btn;
-    private String nombreEv;
-    private String fechaEv;
-    private String lugarEv;
-    private String horaEv;
-    private String descripcion;
-    private ArrayList<String> participantes = new ArrayList<>();
 
-    private EditText descripcion_et;
-    private Button crearBtn;
     View rootView;
 
     private FirebaseAuth mAuth;
 
-    public static String getNombreImagenEvento() {
-        return nombreImagenEvento;
+    public static String getNombreImagenProducto() {
+        return nombreImagenProducto;
     }
 
-    public static void setNombreImagenEvento(String nombreImagen) {
+    public static void setNombreImagenProducto(String nombreImagen) {
 
     }
 
@@ -99,8 +90,71 @@ public class ProductoFragmento extends Fragment {
         rootView = (View) v.findViewById(R.id.coordinate);
         mAuth = FirebaseAuth.getInstance();
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.aaa_activity_dialog_producto);
+                dialog.show();
 
-        FirebaseRecyclerAdapter<ProductoPruebaDanny, ProductoViewHolder> adapter;
+
+                imagen = (ImageView) dialog.findViewById(R.id.imagen_dialog_producto);
+                fab_dialog = (FloatingActionButton) dialog.findViewById(R.id.fab_dialog_producto);
+                nombre_et = (EditText) dialog.findViewById(R.id.nombre_dialog_producto);
+                precio_et = (EditText) dialog.findViewById(R.id.precio_dialog_producto);
+                descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_producto);
+                cancelar_btn = (Button) dialog.findViewById(R.id.cancelarBtn_dialog_producto);
+                crear_btn = (Button) dialog.findViewById(R.id.crearBtn_dialog_producto);
+
+                cancelar_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Snackbar.make(view, "Producto cancelado", Snackbar.LENGTH_LONG).show();
+                        dialog.cancel();
+                    }
+                });
+                crear_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String camposObligatorios = "";
+                        if (nombre_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca el nombre del producto\n";
+                        }
+                        if (precio_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca el precio del producto\n";
+                        }
+
+                        if (camposObligatorios.length() == 0) {
+
+                            ProductoPruebaDanny p = new ProductoPruebaDanny(mAuth.getCurrentUser().getEmail(),
+                                    nombre_et.getText().toString(),precio_et.getText().toString(),
+                                    getNombreImagenProducto(),descripcion_et.getText().toString());
+
+                            mProductoRef.child(nombre_et.getText().toString()).setValue(p);
+                            Snackbar.make(view, "Producto creado", Snackbar.LENGTH_LONG).show();
+                            dialog.cancel();
+
+
+                        } else {
+                            Toast.makeText(getContext(), camposObligatorios.substring(0, camposObligatorios.length() - 1), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+                fab_dialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Intent.ACTION_PICK);
+                        i.setType("image/*");
+                        startActivityForResult(i, GALLERY_INTENT_PRODUCTO);
+
+                    }
+                });
+
+            }
+        });
+
+         FirebaseRecyclerAdapter < ProductoPruebaDanny, ProductoViewHolder > adapter;
 
 
         adapter = new FirebaseRecyclerAdapter<ProductoPruebaDanny, ProductoViewHolder>(ProductoPruebaDanny.class,
@@ -127,12 +181,12 @@ public class ProductoFragmento extends Fragment {
                     @Override
                     public boolean onLongClick(View v) {
                         //Toast.makeText(getContext(),model.getImagen(),Toast.LENGTH_LONG).show();
-                        mProductoRef = mDataRef.child("Eventos").child(model.getNombre());
+                        mProductoRef = mDataRef.child("Productos").child(model.getNombre());
                         //Toast.makeText(getContext(),model.getNombre(),Toast.LENGTH_LONG).show();
 
                         new AlertDialog.Builder(v.getContext())
-                                .setTitle("Eliminar Evento")
-                                .setMessage("Estás seguro que deseas eliminar el evento?")
+                                .setTitle("Eliminar Producto")
+                                .setMessage("Estás seguro que deseas eliminar el producto?")
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         //if (isOnlineNet()) {
@@ -142,7 +196,7 @@ public class ProductoFragmento extends Fragment {
                                             Snackbar.make(rootView, "Producto eliminado", Snackbar.LENGTH_LONG).show();
                                             dialog.cancel();
                                         } else {
-                                            Snackbar.make(rootView, "Solo el creador puede eliminar un evento", Snackbar.LENGTH_LONG).show();
+                                            Snackbar.make(rootView, "Solo el creador puede eliminar un producto", Snackbar.LENGTH_LONG).show();
                                         }
                                         // } else
                                         //    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
@@ -195,15 +249,15 @@ public class ProductoFragmento extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+        if (requestCode == GALLERY_INTENT_PRODUCTO && resultCode == RESULT_OK) {
 
             Uri uri = data.getData();
             imagen.setImageURI(uri);
             int num = (int) (Math.random() * 1000000 + 10);
             String child = num + "";
-            StorageReference eventoRef = mStorageRef.child("productos").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen
-            setNombreImagenEvento(child);
-            eventoRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            StorageReference productoRef = mStorageRef.child("productos").child(child); //uri.getLastPathSegment(), en el child es el nombre de la imagen
+            nombreImagenProducto = child;
+            productoRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 

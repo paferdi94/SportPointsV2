@@ -1,5 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.Producto;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ProductoInfo_MD extends AppCompatActivity {
 
@@ -17,6 +22,9 @@ public class ProductoInfo_MD extends AppCompatActivity {
     private TextView descripcion;
 
     private Toolbar tb;
+
+    FirebaseStorage firebaseStorageRef = FirebaseStorage.getInstance();
+    StorageReference mStorageRef = firebaseStorageRef.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +47,21 @@ public class ProductoInfo_MD extends AppCompatActivity {
 
         ProductoPruebaDanny p = getIntent().getParcelableExtra("PARCELABLE");
 
+        mStorageRef = mStorageRef.child("productos/" + p.getImagen());
+
         precio.setText(p.getPrecio());
         nombre.setText(p.getNombre());
         descripcion.setText(p.getDescripcion());
+
+
+        mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                img.setImageBitmap(bmp);
+
+            }
+        });
     }
 
     @Override
