@@ -15,7 +15,7 @@
         android:layout_width="175dp"
         android:layout_height="175dp"
         app:srcCompat="@mipmap/tick_logo"
-        android:id="@+id/fotoPerf"
+        android:id="@+id/imageView"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="85dp"
         android:adjustViewBounds="false" />
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/correcto_txt"
-        android:layout_below="@+id/fotoPerf"
+        android:layout_below="@+id/imageView"
         android:layout_marginTop="20dp"
         android:textSize="30sp"
         android:textStyle="normal|bold"

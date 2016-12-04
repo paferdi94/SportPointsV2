@@ -12,11 +12,11 @@
             android:title="Equipos" />
         <item
             android:id="@+id/nav_promociones"
-            android:icon="?android:attr/actionModeFindDrawable"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Promociones" />
         <item
             android:id="@+id/nav_productos"
-            android:icon="@android:drawable/star_big_off"
+            android:icon="@drawable/ic_menu_manage"
             android:title="Productos" />
     </group>
 
