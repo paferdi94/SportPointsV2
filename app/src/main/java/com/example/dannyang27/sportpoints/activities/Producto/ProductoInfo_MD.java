@@ -19,6 +19,7 @@ public class ProductoInfo_MD extends AppCompatActivity {
     private ImageView img;
     private TextView precio;
     private TextView nombre;
+    private TextView telefono;
     private TextView descripcion;
 
     private Toolbar tb;
@@ -43,6 +44,7 @@ public class ProductoInfo_MD extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.image_producto_info_md);
         precio = (TextView) findViewById(R.id.precio_producto_info_md);
         nombre = (TextView) findViewById(R.id.nombre_producto_info_info);
+        telefono = (TextView) findViewById(R.id.telefono_producto_info_md);
         descripcion = (TextView) findViewById(R.id.descripcion_producto_info_md);
 
         ProductoPruebaDanny p = getIntent().getParcelableExtra("PARCELABLE");
@@ -51,6 +53,7 @@ public class ProductoInfo_MD extends AppCompatActivity {
 
         precio.setText(p.getPrecio());
         nombre.setText(p.getNombre());
+        telefono.setText(p.getTelefono());
         descripcion.setText(p.getDescripcion());
 
 

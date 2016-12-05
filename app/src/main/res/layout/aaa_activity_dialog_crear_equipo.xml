@@ -47,7 +47,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|number"
             android:ems="10"
             android:id="@+id/capMax_dialog_equipo"
             android:layout_below="@+id/deporte_dialog_equipo"
@@ -73,7 +73,7 @@
             android:ems="10"
             android:layout_marginTop="10dp"
             android:id="@+id/nombre_dialog_equipo"
-            
+
             android:hint="Nombre"
             android:layout_below="@+id/fab_dialog_equipo"
             android:layout_alignParentEnd="true" />

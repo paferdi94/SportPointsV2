@@ -62,6 +62,7 @@ public class ProductoFragmento extends Fragment {
     private FloatingActionButton fab_dialog;
     private EditText nombre_et;
     private EditText precio_et;
+    private EditText telefono_et;
     private EditText descripcion_et;
     private Button cancelar_btn;
     private Button crear_btn;
@@ -96,12 +97,14 @@ public class ProductoFragmento extends Fragment {
                 final Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.aaa_activity_dialog_producto);
                 dialog.show();
+                nombreImagenProducto = "";
 
 
                 imagen = (ImageView) dialog.findViewById(R.id.imagen_dialog_producto);
                 fab_dialog = (FloatingActionButton) dialog.findViewById(R.id.fab_dialog_producto);
                 nombre_et = (EditText) dialog.findViewById(R.id.nombre_dialog_producto);
                 precio_et = (EditText) dialog.findViewById(R.id.precio_dialog_producto);
+                telefono_et = (EditText) dialog.findViewById(R.id.telefono_dialog_producto);
                 descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_producto);
                 cancelar_btn = (Button) dialog.findViewById(R.id.cancelarBtn_dialog_producto);
                 crear_btn = (Button) dialog.findViewById(R.id.crearBtn_dialog_producto);
@@ -117,17 +120,33 @@ public class ProductoFragmento extends Fragment {
                     @Override
                     public void onClick(View view) {
                         String camposObligatorios = "";
+                        if (nombreImagenProducto.equals("")) {
+                            camposObligatorios += "Introduzca una imagen\n";
+                        }
                         if (nombre_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca el nombre del producto\n";
                         }
                         if (precio_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca el precio del producto\n";
                         }
+                        if (telefono_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca el telefono de contacto\n";
+                        }
+                        if (telefono_et.getText().toString().length()!=9) {
+                            camposObligatorios += "Introduzca un numero de tlf correcto\n";
+                        }
+                        if (descripcion_et.getText().toString().equals("")) {
+                            camposObligatorios += "Introduzca una descripcion del producto\n";
+                        }
+                        if (!isOnlineNet()) {
+                            camposObligatorios += "No hay conexion a Internet\n";
+                        }
 
-                        if (camposObligatorios.length() == 0) {
+                            if (camposObligatorios.length() == 0) {
 
                             ProductoPruebaDanny p = new ProductoPruebaDanny(mAuth.getCurrentUser().getEmail(),
                                     nombre_et.getText().toString(),precio_et.getText().toString(),
+                                    telefono_et.getText().toString(),
                                     getNombreImagenProducto(),descripcion_et.getText().toString());
 
                             mProductoRef.child(nombre_et.getText().toString()).setValue(p);

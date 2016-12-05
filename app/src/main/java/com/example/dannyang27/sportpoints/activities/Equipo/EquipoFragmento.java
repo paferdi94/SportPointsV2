@@ -132,6 +132,9 @@ public class EquipoFragmento extends Fragment {
                         if(capacidadMaxima_et.getText().toString().equals("")){
                             camposObligatorios += "Introduzca la capacidad maxima\n";
                         }
+                        if(!isNumeric(capacidadMaxima_et.getText().toString())){
+                            camposObligatorios += "Introduzca capacidad valida\n";
+                        }
                         if(camposObligatorios.length()==0){
 
                             nombreEv = nombre_et.getText().toString();
@@ -282,6 +285,13 @@ public class EquipoFragmento extends Fragment {
         startActivity(i);
     }
 
+    public boolean isNumeric(String str){
+        for (char c : str.toCharArray())
+        {
+            if (!Character.isDigit(c)) return false;
+        }
+        return true;
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

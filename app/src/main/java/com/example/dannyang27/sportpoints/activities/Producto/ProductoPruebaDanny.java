@@ -13,18 +13,27 @@ public class ProductoPruebaDanny implements Parcelable {
     private String precio;
     private String descripcion;
     private String imagen;
-    //private String hora;
+    private String telefono;
     //private String fecha;
 
     public ProductoPruebaDanny() {
     }
 
-    public ProductoPruebaDanny(String autor, String nombre, String precio, String imagen, String descripcion) {
+    public ProductoPruebaDanny(String autor, String nombre, String precio, String telefono,String imagen, String descripcion) {
         this.autor = autor;
         this.nombre = nombre;
         this.precio = precio;
+        this.telefono = telefono;
         this.imagen = imagen;
         this.descripcion = descripcion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getAutor() {
@@ -79,6 +88,7 @@ public class ProductoPruebaDanny implements Parcelable {
         dest.writeString(this.precio);
         dest.writeString(this.descripcion);
         dest.writeString(this.imagen);
+        dest.writeString(this.telefono);
     }
 
     protected ProductoPruebaDanny(Parcel in) {
@@ -87,9 +97,10 @@ public class ProductoPruebaDanny implements Parcelable {
         this.precio = in.readString();
         this.descripcion = in.readString();
         this.imagen = in.readString();
+        this.telefono = in.readString();
     }
 
-    public static final Parcelable.Creator<ProductoPruebaDanny> CREATOR = new Parcelable.Creator<ProductoPruebaDanny>() {
+    public static final Creator<ProductoPruebaDanny> CREATOR = new Creator<ProductoPruebaDanny>() {
         @Override
         public ProductoPruebaDanny createFromParcel(Parcel source) {
             return new ProductoPruebaDanny(source);
