@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Producto.ProductoFragmento;
 import com.example.dannyang27.sportpoints.activities.Promocion.PromocionFragmento;
 import com.example.dannyang27.sportpoints.activities.Equipo.EquipoFragmento;
 import com.example.dannyang27.sportpoints.activities.Evento.EventoFragmento;
@@ -118,7 +119,9 @@ public class PPrincipal extends AppCompatActivity
             FragmentTransaction = true;
 
         } else if (id == R.id.nav_productos) {
-            Log.i("NavigationDrawer","Aqui productos a la venta");
+            fragment = new ProductoFragmento();
+            FragmentTransaction = true;
+            //Log.i("NavigationDrawer","Aqui productos a la venta");
         } else if (id == R.id.nav_perfil) {
             Log.i("NavigationDrawer","Aqui perfil usuario");
         } else if (id == R.id.nav_cerrarSesion) {
