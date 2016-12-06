@@ -122,6 +122,7 @@ public class PPrincipal extends AppCompatActivity
         } else if (id == R.id.nav_perfil) {
             Log.i("NavigationDrawer","Aqui perfil usuario");
         } else if (id == R.id.nav_cerrarSesion) {
+
             System.exit(0);
 
 
