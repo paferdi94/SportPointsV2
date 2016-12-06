@@ -34,7 +34,9 @@
         <activity
             android:name=".activities.Principal.PPrincipal"
             android:label="@string/title_activity_pprincipal"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.Producto.ProductoFragmento" />
+        <activity android:name=".activities.Producto.ProductoInfo_MD"></activity>
     </application>
 
 </manifest>
