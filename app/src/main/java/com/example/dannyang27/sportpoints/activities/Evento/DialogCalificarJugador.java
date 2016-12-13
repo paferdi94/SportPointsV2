@@ -66,8 +66,8 @@ public class DialogCalificarJugador extends AppCompatActivity {
                 if (j.getEmail().equals(email)) {
                     jugadorReferencia = j;
                     key = dataSnapshot.getKey();
-                    txtPorcentaje.setText(df.format(((j.getValoracion()*100)/5))+"%");
-                    txtNumValoraciones.setText("("+j.getNumValoraciones()+" valoraciones de los usuarios)");
+                    txtPorcentaje.setText(df.format(((j.getValoracion() * 100) / 5)) + "%");
+                    txtNumValoraciones.setText("(" + j.getNumValoraciones() + " valoraciones de los usuarios)");
                     //valActual = j.getValoracion();
                     //numValoraciones = j.getNumValoraciones();
                 }
@@ -76,8 +76,8 @@ public class DialogCalificarJugador extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 jugadorReferencia = dataSnapshot.getValue(Jugador.class);
-                txtPorcentaje.setText(df.format(((jugadorReferencia.getValoracion()*100)/5))+"%");
-                txtNumValoraciones.setText("("+jugadorReferencia.getNumValoraciones()+" valoraciones de los usuarios)");
+                txtPorcentaje.setText(df.format(((jugadorReferencia.getValoracion() * 100) / 5)) + "%");
+                txtNumValoraciones.setText("(" + jugadorReferencia.getNumValoraciones() + " valoraciones de los usuarios)");
 
             }
 
@@ -101,12 +101,16 @@ public class DialogCalificarJugador extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
                 if (!valoracion) {
-                    valActual = ((jugadorReferencia.getValoracion() * jugadorReferencia.getNumValoraciones()) + ratingBar.getRating()) / (jugadorReferencia.getNumValoraciones() + 1);
-                    jugadorReferencia.setValoracion(valActual);
-                    jugadorReferencia.setNumValoraciones(jugadorReferencia.getNumValoraciones() + 1);
-                    usuarioRef.child(key).setValue(jugadorReferencia);
-                    valoracion = true;
-                    Snackbar.make(view, "Valoración enviada correctamente", Snackbar.LENGTH_LONG).show();
+                    if (isOnlineNet()) {
+                        valActual = ((jugadorReferencia.getValoracion() * jugadorReferencia.getNumValoraciones()) + ratingBar.getRating()) / (jugadorReferencia.getNumValoraciones() + 1);
+                        jugadorReferencia.setValoracion(valActual);
+                        jugadorReferencia.setNumValoraciones(jugadorReferencia.getNumValoraciones() + 1);
+                        usuarioRef.child(key).setValue(jugadorReferencia);
+                        valoracion = true;
+                        Snackbar.make(view, "Valoración enviada correctamente", Snackbar.LENGTH_LONG).show();
+                    }else {
+                        Snackbar.make(view, "No hay conexión a internet, inténtelo de nuevo más tarde...", Snackbar.LENGTH_LONG).show();
+                    }
                 } else {
                     Snackbar.make(view, "Ya has valorado a este usuario", Snackbar.LENGTH_LONG).show();
                 }
@@ -121,4 +125,25 @@ public class DialogCalificarJugador extends AppCompatActivity {
             }
         });
     }
+
+    //Comprobar si tenemos internet en un momento determinado
+    public Boolean isOnlineNet() {
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            if (!reachable) {
+                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
+                val = p.waitFor();
+                reachable = (val == 0);
+            }
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
