@@ -22,11 +22,8 @@ public class navHeader extends AppCompatActivity {
     private TextView nombre;
     private TextView email;
     private ImageView fotoPerfil;
-    private GoogleApiClient mGoogleApiClient;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
