@@ -190,13 +190,17 @@ public class Registro extends AppCompatActivity {
         String key = emailEditText.getText().toString().replace(".", "%2E");
         DatabaseReference db = mDatabase.child("Usuarios").child(key);
 
-        Jugador jugador = new Jugador(login,password,nombre,apellidos,email,telefono,fechaNacimiento);
+        //fechaNacimiento.toString()
+        Jugador jugador = new Jugador(apellidos,email,fechaNacimiento.toString(),login,nombre,0,password,telefono,0);
 
-        Map<String, Object> postValues = jugador.toMap();
+
+        db.setValue(jugador);
+
+       /* Map<String, Object> postValues = jugador.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/Usuarios/" + key, postValues);
-        mDatabase.updateChildren(childUpdates);
+        mDatabase.updateChildren(childUpdates);*/
     }
 
     @Override

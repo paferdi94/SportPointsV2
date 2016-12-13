@@ -36,7 +36,8 @@
             android:label="@string/title_activity_pprincipal"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.Producto.ProductoFragmento" />
-        <activity android:name=".activities.Producto.ProductoInfo_MD"></activity>
+        <activity android:name=".activities.Producto.ProductoInfo_MD" />
+        <activity android:name=".activities.Evento.DialogCalificarJugador"></activity>
     </application>
 
 </manifest>
