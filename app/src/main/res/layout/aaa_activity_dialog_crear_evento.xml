@@ -55,17 +55,17 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/hora_dialog_evento"
             android:layout_below="@+id/lugar_dialog_evento"
             android:layout_alignParentEnd="true"
-            android:hint="Hora" />
+            android:hint="Hora"
+            android:inputType="time" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="date"
             android:ems="10"
             android:id="@+id/fecha_dialog_evento"
             android:layout_below="@+id/hora_dialog_evento"

@@ -39,6 +39,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.lang.annotation.Retention;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -127,6 +131,8 @@ public class PromocionFragmento extends Fragment {
 
                     public void onClick(View v) {
                         String camposObligatorios = "";
+                        DateFormat format = new SimpleDateFormat("d/L/yyyy");
+                        Date inicio = null, fin = null;
                         if (nombre_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca el nombre de la promoción\n";
                         }
@@ -136,11 +142,27 @@ public class PromocionFragmento extends Fragment {
 
                         if (fecha_In.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca la fecha de inicio de la promoción\n";
+                        }else{
+                            try {
+                                inicio = format.parse(fecha_In.getText().toString());
+                            } catch (ParseException e) {
+                                camposObligatorios += "Formato de feha inicio (dd/mm/yyyy)\n";
+                            }
                         }
                         if (fecha_F.getText().toString().equals("")) {
-                            camposObligatorios += "Introduzca la fecha de inicio de la promoción\n";
+                            camposObligatorios += "Introduzca la fecha de fin de la promoción\n";
+                        }else{
+                            try {
+                                fin = format.parse(fecha_F.getText().toString());
+                            } catch (ParseException e) {
+                                camposObligatorios += "Formato de feha fin (dd/mm/yyyy)\n";
+                            }
                         }
-
+                        if(inicio != null && fin !=null){
+                            if(inicio.after(fin)){
+                                camposObligatorios += "La fecha de inicio no puede ser posterior a la de fin\n";
+                            }
+                        }
                         if (camposObligatorios.length() == 0) {
 
                             nombrePm = nombre_et.getText().toString();
