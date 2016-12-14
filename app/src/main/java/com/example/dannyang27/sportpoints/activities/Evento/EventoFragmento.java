@@ -35,7 +35,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -130,7 +134,18 @@ public class EventoFragmento extends Fragment {
                         if (fecha_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca la fecha del evento\n";
                         }
-
+                        DateFormat format = new SimpleDateFormat("d/L/yyyy");
+                        try {
+                            format.parse(fecha_et.getText().toString());
+                        } catch (ParseException e) {
+                            camposObligatorios += "Introduzca una fecha correcta (dd/mm/yyyy)\n";
+                        }
+                        format = new SimpleDateFormat("H:m");
+                        try {
+                            format.parse(hora_et.getText().toString());
+                        } catch (ParseException e) {
+                            camposObligatorios += "Introduzca una hora correcta (hh:mm)\n";
+                        }
                         if (camposObligatorios.length() == 0) {
 
                             nombreEv = nombre_et.getText().toString();
