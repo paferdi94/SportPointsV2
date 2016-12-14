@@ -11,6 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.dannyang27.sportpoints.activities.Principal.PPrincipal"
-    tools:showIn="@layout/app_bar_pprincipal">
+    tools:showIn="@layout/app_bar_pprincipal"
+    android:background="@color/colorContent">
 
 </RelativeLayout>
