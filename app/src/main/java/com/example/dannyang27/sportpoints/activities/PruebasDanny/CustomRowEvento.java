@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
+import com.example.dannyang27.sportpoints.activities.Evento.EventoParcelable;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package com.example.dannyang27.sportpoints.activities.PruebasDanny;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.EventoParcelable;
+import com.example.dannyang27.sportpoints.activities.Evento.EventoParcelable;
 import com.example.dannyang27.sportpoints.activities.Modelos.Participante;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

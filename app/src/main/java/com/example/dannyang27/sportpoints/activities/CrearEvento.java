@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.dannyang27.sportpoints.R;
-import com.example.dannyang27.sportpoints.activities.Modelos.Evento;
+import com.example.dannyang27.sportpoints.activities.Evento.Evento;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
