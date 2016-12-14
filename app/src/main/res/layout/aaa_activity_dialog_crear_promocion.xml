@@ -95,12 +95,12 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/fecha_Init_promocion"
             android:hint="Fecha Inicio"
             android:layout_below="@+id/lugar_dialog_promocion"
-            android:layout_alignStart="@+id/lugar_dialog_promocion" />
+            android:layout_alignStart="@+id/lugar_dialog_promocion"
+            android:inputType="date" />
 
         <EditText
             android:layout_width="wrap_content"
