@@ -16,6 +16,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -130,7 +137,29 @@ public class EventoFragmento extends Fragment {
                         if (fecha_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca la fecha del evento\n";
                         }
-
+                        DateFormat format = new SimpleDateFormat("d/L/yyyy");
+                        try {
+                            format.parse(fecha_et.getText().toString());
+                        } catch (ParseException e) {
+                            camposObligatorios += "Introduzca una fecha correcta (dd/mm/yyyy)\n";
+                        }
+                        format = new SimpleDateFormat("HH:mm");
+                        try {
+                            Date hoy = new Date();
+                            hoy.setTime(0);
+                            hoy.setHours(23);
+                            hoy.setMinutes(59);
+                            Date hora = format.parse(hora_et.getText().toString());
+                            Log.d("SportPoints",hoy.toString());
+                            Log.d("SportPoints",hora.toString());
+                            if(hora.after(hoy)){
+                                throw new Exception();
+                            }
+                        } catch (ParseException e) {
+                            camposObligatorios += "Introduzca una hora correcta (hh:mm)\n";
+                        } catch (Exception e){
+                            camposObligatorios += "Introduzca una hora correcta (23:59)\n";
+                        }
                         if (camposObligatorios.length() == 0) {
 
                             nombreEv = nombre_et.getText().toString();
