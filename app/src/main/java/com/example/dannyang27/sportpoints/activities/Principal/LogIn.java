@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dannyang27.sportpoints.R;
+import com.example.dannyang27.sportpoints.activities.Jugador;
 import com.example.dannyang27.sportpoints.activities.Principal.PPrincipal;
 import com.example.dannyang27.sportpoints.activities.Principal.Registro;
 import com.google.android.gms.auth.api.Auth;
@@ -28,6 +29,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LogIn extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
@@ -46,9 +53,9 @@ public class LogIn extends AppCompatActivity implements
     private View rootView;
 
     private GoogleApiClient mGoogleApiClient;
-    private String emailUsuario;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +119,6 @@ public class LogIn extends AppCompatActivity implements
 
     public void showPruebaTab(){
         Intent i = new Intent(this, PPrincipal.class);
-        i.putExtra("Email",emailUsuario);
         startActivityForResult(i, RC_LOGIN);
     }
     public void showRegistro(){
@@ -153,8 +159,6 @@ public class LogIn extends AppCompatActivity implements
                 //if(isOnlineNet()) {
                     GoogleSignInAccount acct = result.getSignInAccount();
                     firebaseAuthWithGoogle(acct);
-                    emailUsuario = acct.getEmail();
-                    showPruebaTab();
                // } else
                 //    Snackbar.make(rootView, "Problemas de conexión, inténtelo más tarde...", Snackbar.LENGTH_LONG).show();
             } else {
@@ -168,6 +172,16 @@ public class LogIn extends AppCompatActivity implements
                 Toast.makeText(getApplicationContext(), "Cuenta creada con exito.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void crearUsuarioGmail() {
+        String email = mAuth.getCurrentUser().getEmail();
+        String key = email.replace(".", "%2E");
+        int index = email.indexOf('@');
+        String login = email.substring(0,index);
+        DatabaseReference db = usuarioRef.child(key);
+        Jugador jugador = new Jugador("",email,"",login,mAuth.getCurrentUser().getDisplayName(),0,"",0,0);
+        db.setValue(jugador);
     }
 
     // --- Logeo con Google ---
@@ -197,6 +211,19 @@ public class LogIn extends AppCompatActivity implements
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(getApplicationContext(), "La autentificación ha fallado.",Toast.LENGTH_SHORT).show();
+                        } else {
+                            String key = mAuth.getCurrentUser().getEmail().replace(".", "%2E");
+                            usuarioRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (!dataSnapshot.exists()) { crearUsuarioGmail(); }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {}
+                            });
+                            Toast.makeText(getApplicationContext(), "Logeado con la cuenta de Google.", Toast.LENGTH_SHORT).show();
+                            showPruebaTab();
                         }
                     }
                 });
@@ -238,7 +265,6 @@ public class LogIn extends AppCompatActivity implements
                                 Toast.makeText(getApplicationContext(), "Se ha perdido la conexión.", Toast.LENGTH_LONG).show();
                             }
                         }else{
-                            emailUsuario = mAuth.getCurrentUser().getEmail();
                             Toast.makeText(getApplicationContext(), "Logeado tu cuenta de SportPoints.", Toast.LENGTH_SHORT).show();
                             showPruebaTab();
                         }
