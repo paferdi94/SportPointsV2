@@ -30,7 +30,7 @@ public class navHeader extends AppCompatActivity {
         mAuth.getCurrentUser();
         setContentView(R.layout.nav_header_pprincipal);
 
-        nombre =  (TextView)findViewById(R.id.nombrePerf);
+        //nombre =  (TextView)findViewById(R.id.nombrePerf);
         email = (TextView) findViewById(R.id.emailPerf);
         fotoPerfil= (ImageView) findViewById(R.id.fotoPerf);
 
