@@ -1,0 +1,14 @@
+INDEX VERSION 1.130+/Users/Pablo_Fernandez/Desktop/TFG/SportPoints/.metadata/.plugins/org.eclipse.jdt.core
+2526858899.index
+150494000.index
+2147445670.index
+2136416747.index
+21894939.index
+1984505741.index
+261463849.index
+178286240.index
+2022879167.index
+2448493194.index
+3988760314.index
+3874896412.index
+3785096709.index
