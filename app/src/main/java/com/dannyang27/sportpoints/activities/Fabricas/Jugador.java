@@ -15,16 +15,14 @@ import java.util.Map;
 public class Jugador extends Usuario implements Parcelable{
 
     private String apellidos;
-
     private String password;
     private String fechaNacimiento;
     double valoracion;
     int numValoraciones;
 
-    public Jugador(String apellidos, String email, String fechaNacimiento, String login, String nombre, int numValoraciones, String password, long telefono, double valoracion) {
-        super(nombre, telefono, tipoUser, email, login);
+    public Jugador(String apellidos, String email, String fechaNacimiento, String login, String nombre, int numValoraciones, String password, long telefono, double valoracion, int tipoUser) {
+        super(nombre, telefono, tipoUser, email, login,password);
         this.apellidos = apellidos;
-        this.password = password;
         this.fechaNacimiento = fechaNacimiento;
         this.valoracion = valoracion;
         this.numValoraciones = numValoraciones;
@@ -115,6 +113,7 @@ public class Jugador extends Usuario implements Parcelable{
         result.put("password", password);
         result.put("telefono", telefono);
         result.put("valoracion", valoracion);
+        result.put("tipoUser", tipoUser);
         //result.put("fechaNacimiento", (new SimpleDateFormat("dd/MM/yyyy")).format(fechaNacimiento));
         //result.put("valoracion", valoracion);
         return result;
@@ -138,6 +137,7 @@ public class Jugador extends Usuario implements Parcelable{
         parcel.writeString(password);
         parcel.writeLong(telefono);
         parcel.writeDouble(valoracion);
+        parcel.writeInt(tipoUser);
         //parcel.writeLong(fechaNacimiento.getTime());
         // parcel.writeInt(valoracion);
     }

@@ -178,7 +178,7 @@ public class LogIn extends AppCompatActivity implements
         int index = email.indexOf('@');
         String login = email.substring(0,index);
         DatabaseReference db = usuarioRef.child(key);
-        Jugador jugador = new Jugador("",email,"",login,mAuth.getCurrentUser().getDisplayName(),0,"",0,0);
+        Jugador jugador = new Jugador("",email,"",login,mAuth.getCurrentUser().getDisplayName(),0,"",0,0,1);
         db.setValue(jugador);
     }
 

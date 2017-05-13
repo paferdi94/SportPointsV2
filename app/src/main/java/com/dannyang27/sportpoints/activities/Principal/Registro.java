@@ -1,5 +1,6 @@
 package com.dannyang27.sportpoints.activities.Principal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
+import com.dannyang27.sportpoints.activities.Fabricas.Empresa;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -40,13 +43,19 @@ public class Registro extends AppCompatActivity {
     private EditText pass2EditText;
     private EditText fechaNacimientoEditText;
     private EditText telefonoEditText;
+    private EditText CIFEditText;
     private Button cancelar_btn;
     private Button aceptar_btn;
+    private RadioButton jug_radioB;
+    private RadioButton emp_radioB;
     private DatabaseReference mDatabase;
 
 
     private static final String TAG = "SportPoints";
     private static final int RC_REGISTER = 9002;
+    private static final int RC_LOGIN = 9003;
+    private static final int empresa = 2;
+    private static final int jugador  = 1;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String login;
@@ -54,8 +63,10 @@ public class Registro extends AppCompatActivity {
     private String nombre;
     private String apellidos;
     private String email;
+    private String Cif;
     private int telefono;
     private Date fechaNacimiento;
+    private Integer tipoUser;
 
 
 
@@ -85,14 +96,18 @@ public class Registro extends AppCompatActivity {
         };
 
         //profile = (ImageButton) findViewById(R.id.imageBtn_md_registro);
+        jug_radioB = (RadioButton) findViewById(R.id.registro_radioButton_Jug);
+        emp_radioB = (RadioButton) findViewById(R.id.registro_radioButton_Emp);
         nombreEditText = (EditText) findViewById(R.id.nombre_md_registro);
         emailEditText = (EditText) findViewById(R.id.email_md_registro);
         pass1EditText = (EditText) findViewById(R.id.password_md_registro);
         pass2EditText = (EditText) findViewById(R.id.password2_md_registro);
+        CIFEditText = (EditText) findViewById(R.id.cif_md_registro);
         fechaNacimientoEditText = (EditText) findViewById(R.id.fecha_md_registro);
         telefonoEditText = (EditText) findViewById(R.id.telefono_md_registro);
         cancelar_btn = (Button) findViewById(R.id.cancelar_md_registro);
         aceptar_btn = (Button) findViewById(R.id.aceptar_md_regsitro);
+
 
         cancelar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +135,6 @@ public class Registro extends AppCompatActivity {
                         emailEditText.getText().toString().equals("") ||
                         pass1EditText.getText().toString().equals("") ||
                         pass2EditText.getText().toString().equals("") ||
-                        fechaNacimientoEditText.getText().toString().equals("") ||
                         telefonoEditText.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(),"Rellena todos los campos.", Toast.LENGTH_SHORT).show();
             return;
@@ -138,21 +152,43 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"El telefono tiene que contener 9 números.", Toast.LENGTH_SHORT).show();
             return;
         }
-        try{
-            telefono = parseInt(telefonoEditText.getText().toString());
-            String fecha = fechaNacimientoEditText.getText().toString();
-            DateFormat format = new SimpleDateFormat("d-L-y", Locale.ENGLISH);
-            this.fechaNacimiento = format.parse(fecha);
-        }catch (ParseException e) {
-            Toast.makeText(getApplicationContext(), "La fecha de cumpleaños no es correcta (DD-MM-YYYY).", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
+
         int telefono = parseInt(telefonoEditText.getText().toString());
         this.email = email;
         this.password = pass1;
         this.nombre = nombreEditText.getText().toString();
         this.apellidos = "";
         this.telefono = telefono;
+
+        if(this.emp_radioB.isChecked()){
+            this.tipoUser = empresa;
+
+            if(CIFEditText.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "Es obligatorio rellenar el campo CIF para las Empresas", Toast.LENGTH_SHORT).show();
+                return;
+            }else {
+                this.Cif = CIFEditText.getText().toString();
+            }
+
+        }else{
+            tipoUser = jugador;
+            if(fechaNacimientoEditText.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "Es obligatorio rellenar el campo Fecha de Nacimiento para los jugadores", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try{
+                String fecha = fechaNacimientoEditText.getText().toString();
+                DateFormat format = new SimpleDateFormat("d-L-y", Locale.ENGLISH);
+                this.fechaNacimiento = format.parse(fecha);
+            }catch (ParseException e){
+                Toast.makeText(getApplicationContext(), "La fecha de cumpleaños no es correcta (DD-MM-YYYY).", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        }
+
+
         // Cuenta básica.
             mAuth.createUserWithEmailAndPassword(email, pass1)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -188,13 +224,23 @@ public class Registro extends AppCompatActivity {
         int index = email.indexOf('@');
         this.login = email.substring(0,index);
         String key = emailEditText.getText().toString().replace(".", "%2E");
-        DatabaseReference db = mDatabase.child("Usuarios").child(key);
+        DatabaseReference db;
 
         //fechaNacimiento.toString()
-        Jugador jugador = new Jugador(apellidos,email,fechaNacimiento.toString(),login,nombre,0,password,telefono,0);
+
+        if(tipoUser == 1) {
+            db = mDatabase.child("Usuarios").child(key);
+            Jugador jugador = new Jugador(apellidos, email, fechaNacimiento.toString(), login, nombre, 0, password, telefono, 0, tipoUser);
+            db.setValue(jugador);
+        }else{
+            db = mDatabase.child("Empresas").child(key);
+            Empresa empresa = new Empresa(nombre,telefono, tipoUser, email, login, password, Cif);
+            db.setValue(empresa);
+        }
 
 
-        db.setValue(jugador);
+
+        showPruebaTab();
 
        /* Map<String, Object> postValues = jugador.toMap();
 
@@ -215,5 +261,10 @@ public class Registro extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    public void showPruebaTab(){
+        Intent i = new Intent(this, PPrincipal.class);
+        startActivityForResult(i, RC_LOGIN);
     }
 }
