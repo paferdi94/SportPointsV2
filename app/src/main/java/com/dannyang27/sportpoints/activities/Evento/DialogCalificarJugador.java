@@ -5,24 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
-import com.dannyang27.sportpoints.activities.Jugador;
-import com.dannyang27.sportpoints.activities.Modelos.Participante;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.dannyang27.sportpoints.activities.Fabricas.Jugador;
 
 import java.text.DecimalFormat;
-
-import static java.lang.reflect.Modifier.FINAL;
-import static java.security.AccessController.getContext;
 
 public class DialogCalificarJugador extends AppCompatActivity {
 

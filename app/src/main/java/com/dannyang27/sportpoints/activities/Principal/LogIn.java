@@ -13,9 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
-import com.dannyang27.sportpoints.activities.Jugador;
-import com.dannyang27.sportpoints.activities.Principal.PPrincipal;
-import com.dannyang27.sportpoints.activities.Principal.Registro;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -29,12 +26,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import com.dannyang27.sportpoints.activities.Fabricas.Jugador;
 
 public class LogIn extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {

@@ -1,6 +1,5 @@
 package com.dannyang27.sportpoints.activities.Principal;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
-import com.dannyang27.sportpoints.activities.Jugador;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,9 +26,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
+
+import com.dannyang27.sportpoints.activities.Fabricas.Jugador;
 
 import static java.lang.Integer.parseInt;
 
@@ -58,6 +56,8 @@ public class Registro extends AppCompatActivity {
     private String email;
     private int telefono;
     private Date fechaNacimiento;
+
+
 
 
     @Override

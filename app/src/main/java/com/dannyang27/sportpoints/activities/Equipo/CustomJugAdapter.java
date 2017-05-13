@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.dannyang27.sportpoints.R;
-import com.dannyang27.sportpoints.activities.Jugador;
+import com.dannyang27.sportpoints.activities.Fabricas.Jugador;
 
 import java.util.List;
 

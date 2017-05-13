@@ -1,38 +1,30 @@
-package com.dannyang27.sportpoints.activities;
+package com.dannyang27.sportpoints.activities.Fabricas;
+
+/**
+ * Created by Pablo_Fernandez on 12/05/2017.
+ */
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.dannyang27.sportpoints.activities.Modelos.Usuario;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+public class Jugador extends Usuario implements Parcelable{
 
-public class Jugador implements Parcelable {
-
-    private String login;
-    private String password;
-    private String nombre;
     private String apellidos;
-    private String email;
-    private long telefono;
+
+    private String password;
     private String fechaNacimiento;
     double valoracion;
     int numValoraciones;
 
-    public Jugador() {
-    }
-
     public Jugador(String apellidos, String email, String fechaNacimiento, String login, String nombre, int numValoraciones, String password, long telefono, double valoracion) {
-        this.login = login;
-        this.password = password;
-        this.nombre = nombre;
+        super(nombre, telefono, tipoUser, email, login);
         this.apellidos = apellidos;
-        this.email = email;
-        this.telefono = telefono;
+        this.password = password;
         this.fechaNacimiento = fechaNacimiento;
         this.valoracion = valoracion;
         this.numValoraciones = numValoraciones;
@@ -173,4 +165,8 @@ public class Jugador implements Parcelable {
         //fechaNacimiento = new Date(in.readLong());
         // valoracion= in.readInt();
     }
+
+
+
+
 }
