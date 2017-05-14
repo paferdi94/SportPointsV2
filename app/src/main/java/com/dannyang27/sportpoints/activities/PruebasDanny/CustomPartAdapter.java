@@ -34,7 +34,7 @@ public class CustomPartAdapter extends ArrayAdapter<Participante> {
 
         Participante p = getItem(position);
         nombre.setText(p.getNombre());
-        tlf.setText(p.getTelefono());
+        tlf.setText((int) p.getTelefono());
 
 
         return convertView;

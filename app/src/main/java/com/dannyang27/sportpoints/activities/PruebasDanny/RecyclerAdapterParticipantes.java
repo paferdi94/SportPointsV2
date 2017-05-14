@@ -24,7 +24,7 @@ public class RecyclerAdapterParticipantes extends RecyclerView.Adapter<RecyclerA
         for(int i=0;i<25;i++) {
             Participante p = new Participante();
            p.setNombre("Cristiano Ronaldo");
-            p.setTelefono("623456789");
+            //p.setTelefono("623456789");
 
             listaParticipante.add(p);
         }

@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
 import com.dannyang27.sportpoints.activities.Fabricas.Empresa;
+import com.dannyang27.sportpoints.activities.Fabricas.UsuarioFactory;
+import com.dannyang27.sportpoints.activities.Interfaz.UsuarioFactoryMethod;
+import com.dannyang27.sportpoints.activities.Modelos.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -224,17 +227,43 @@ public class Registro extends AppCompatActivity {
         int index = email.indexOf('@');
         this.login = email.substring(0,index);
         String key = emailEditText.getText().toString().replace(".", "%2E");
+        UsuarioFactoryMethod usufactory = new UsuarioFactory();
         DatabaseReference db;
 
         //fechaNacimiento.toString()
 
         if(tipoUser == 1) {
+
             db = mDatabase.child("Usuarios").child(key);
-            Jugador jugador = new Jugador(apellidos, email, fechaNacimiento.toString(), login, nombre, 0, password, telefono, 0, tipoUser);
+
+            Jugador jugador = (Jugador) usufactory.createEntidad(tipoUser);
+
+            jugador.setNombre(nombre);
+            jugador.setApellidos(apellidos);
+            jugador.setEmail(email);
+            jugador.setLogin(login);
+            jugador.setPassword(password);
+            jugador.setTelefono(telefono);
+            jugador.setFechaNacimiento(fechaNacimiento.toString());
+            jugador.setNumValoraciones(0);
+            jugador.setValoracion(0);
+            jugador.setTipoUser(tipoUser);
+
+
             db.setValue(jugador);
+
         }else{
+
             db = mDatabase.child("Empresas").child(key);
-            Empresa empresa = new Empresa(nombre,telefono, tipoUser, email, login, password, Cif);
+
+            Empresa empresa = (Empresa) usufactory.createEntidad(tipoUser);
+            empresa.setNombre(nombre);
+            empresa.setEmail(email);
+            empresa.setCIF(Cif);
+            empresa.setPassword(password);
+            empresa.setTelefono(telefono);
+            empresa.setTipoUser(tipoUser);
+
             db.setValue(empresa);
         }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.dannyang27.sportpoints.activities.Principal.PPrincipal">
+    tools:context="com.dannyang27.sportpoints.activities.Principal.PPrincipal">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

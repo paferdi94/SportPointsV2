@@ -16,6 +16,8 @@ public class Empresa extends Usuario implements Parcelable {
 
     private String CIF;
 
+    public Empresa(){};
+
     public Empresa(String nombre, long telefono, Integer tipoUser, String email, String login, String password, String CIF) {
         super(nombre, telefono, tipoUser, email, login, password);
         this.CIF = CIF;
@@ -81,5 +83,8 @@ public class Empresa extends Usuario implements Parcelable {
         telefono = in.readLong();
         //fechaNacimiento = new Date(in.readLong());
         // valoracion= in.readInt();
+
     }
+
+
 }

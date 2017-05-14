@@ -20,6 +20,8 @@ public class Jugador extends Usuario implements Parcelable{
     double valoracion;
     int numValoraciones;
 
+    public Jugador(){};
+
     public Jugador(String apellidos, String email, String fechaNacimiento, String login, String nombre, int numValoraciones, String password, long telefono, double valoracion, int tipoUser) {
         super(nombre, telefono, tipoUser, email, login,password);
         this.apellidos = apellidos;
