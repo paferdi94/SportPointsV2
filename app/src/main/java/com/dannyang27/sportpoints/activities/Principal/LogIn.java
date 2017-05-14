@@ -32,7 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.dannyang27.sportpoints.activities.Fabricas.Jugador;
+import com.dannyang27.sportpoints.activities.Entidades.Jugador;
 
 public class LogIn extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {

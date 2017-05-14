@@ -1,4 +1,4 @@
-package com.dannyang27.sportpoints.activities.Fabricas;
+package com.dannyang27.sportpoints.activities.Entidades;
 
 /**
  * Created by Pablo_Fernandez on 12/05/2017.
@@ -6,8 +6,6 @@ package com.dannyang27.sportpoints.activities.Fabricas;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.dannyang27.sportpoints.activities.Modelos.Usuario;
 
 import java.util.HashMap;
 import java.util.Map;

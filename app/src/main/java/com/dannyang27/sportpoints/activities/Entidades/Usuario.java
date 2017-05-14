@@ -1,4 +1,4 @@
-package com.dannyang27.sportpoints.activities.Modelos;
+package com.dannyang27.sportpoints.activities.Entidades;
 
 /**
  * Created by Pablo_Fernandez on 12/5/17.

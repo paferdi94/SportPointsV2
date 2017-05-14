@@ -1,4 +1,4 @@
-package com.dannyang27.sportpoints.activities.Modelos;
+package com.dannyang27.sportpoints.activities.Entidades;
 
 /**
  * Created by Dannyang27 on 30/10/16.

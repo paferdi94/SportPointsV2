@@ -3,7 +3,7 @@ package com.dannyang27.sportpoints.activities.Equipo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.dannyang27.sportpoints.activities.Modelos.Participante;
+import com.dannyang27.sportpoints.activities.Entidades.Participante;
 
 import java.util.ArrayList;
 import java.util.List;

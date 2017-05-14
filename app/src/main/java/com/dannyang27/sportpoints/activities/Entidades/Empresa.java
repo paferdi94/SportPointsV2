@@ -1,9 +1,7 @@
-package com.dannyang27.sportpoints.activities.Fabricas;
+package com.dannyang27.sportpoints.activities.Entidades;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.dannyang27.sportpoints.activities.Modelos.Usuario;
 
 import java.util.HashMap;
 import java.util.Map;

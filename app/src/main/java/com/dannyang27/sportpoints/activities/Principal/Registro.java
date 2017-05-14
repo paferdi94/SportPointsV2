@@ -13,10 +13,9 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
-import com.dannyang27.sportpoints.activities.Fabricas.Empresa;
+import com.dannyang27.sportpoints.activities.Entidades.Empresa;
 import com.dannyang27.sportpoints.activities.Fabricas.UsuarioFactory;
 import com.dannyang27.sportpoints.activities.Interfaz.UsuarioFactoryMethod;
-import com.dannyang27.sportpoints.activities.Modelos.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.dannyang27.sportpoints.activities.Fabricas.Jugador;
+import com.dannyang27.sportpoints.activities.Entidades.Jugador;
 
 import static java.lang.Integer.parseInt;
 

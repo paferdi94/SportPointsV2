@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.dannyang27.sportpoints.R;
-import com.dannyang27.sportpoints.activities.Modelos.Participante;
+import com.dannyang27.sportpoints.activities.Entidades.Participante;
 
 import java.util.List;
 
