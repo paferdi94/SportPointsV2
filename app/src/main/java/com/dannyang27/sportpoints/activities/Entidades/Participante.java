@@ -4,6 +4,10 @@ package com.dannyang27.sportpoints.activities.Entidades;
  * Created by Dannyang27 on 30/10/16.
  */
 
+
+/**
+ * Adaptación Factory Method by Pablo_ Fernandez on 13/05/2017
+ */
 public class Participante extends Usuario{
     private String dni;
     private String fecha;
