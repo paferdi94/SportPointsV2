@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
+import com.dannyang27.sportpoints.activities.ConexionDB.ConexionFireBase;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -50,16 +51,20 @@ public class LogIn extends AppCompatActivity implements
     private Button gmailBtn;
     private View rootView;
 
-    private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+    private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+    private ConexionFireBase conexionFirebase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        mAuth = FirebaseAuth.getInstance();
+        conexionFirebase = new ConexionFireBase();
+        mAuth = conexionFirebase.getmAuth();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

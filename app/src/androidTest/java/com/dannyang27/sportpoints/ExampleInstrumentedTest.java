@@ -1,4 +1,4 @@
-package com.example.dannyang27.sportpoints;
+package com.dannyang27.sportpoints;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -7,6 +7,9 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
 /**
@@ -22,5 +25,11 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.example.dannyang27.sportpoints", appContext.getPackageName());
+    }
+
+    @Test
+    public void testeo_logIn() throws Exception {
+
+        //onView(withId(R.id.activity_log_in)).perform(isClickable().)
     }
 }
