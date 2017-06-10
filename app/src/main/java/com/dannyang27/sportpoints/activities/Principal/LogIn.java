@@ -39,6 +39,7 @@ public class LogIn extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "SportPoints";
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private static final int RC_SIGN_IN_GMAIL = 9001;
     private static final int RC_REGISTER = 9002;
     private static final int RC_LOGIN = 9003;
@@ -53,7 +54,6 @@ public class LogIn extends AppCompatActivity implements
 
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
     private ConexionFireBase conexionFirebase;
 
@@ -76,20 +76,7 @@ public class LogIn extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
+        mAuthListener = conexionFirebase.getmAuthListener();
 
         rootView = (View) findViewById(R.id.activity_log_in);
         emailEditText = (EditText) findViewById(R.id.editText_email);
@@ -190,7 +177,7 @@ public class LogIn extends AppCompatActivity implements
     // --- Logeo con Google ---
 
     private void signInGoogle() {
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user = conexionFirebase.getUser();
         if (user != null) {
             // User is signed in
             Toast.makeText(getApplicationContext(), "Logeado con la cuenta de Google.", Toast.LENGTH_SHORT).show();
