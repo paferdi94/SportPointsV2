@@ -4,7 +4,7 @@
     android:id="@+id/activity_log_in"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dannyang27.sportpoints.activities.Principal.LogIn">
+    tools:context="com.dannyang27.sportpoints.activities.Principal.LogIn">
 
     <ImageView
         android:layout_width="match_parent"

@@ -39,9 +39,7 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-/**
- * Created by Dannyang27 on 13/11/16.
- */
+
 public class EquipoFragmento extends Fragment {
     Context c;
     FloatingActionButton fab;

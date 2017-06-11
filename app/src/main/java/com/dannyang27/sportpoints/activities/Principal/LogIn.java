@@ -60,7 +60,7 @@ public class LogIn extends AppCompatActivity implements
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         conexionFirebase = new ConexionFireBase();

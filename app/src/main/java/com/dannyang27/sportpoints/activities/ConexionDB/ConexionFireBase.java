@@ -1,5 +1,6 @@
 package com.dannyang27.sportpoints.activities.ConexionDB;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -10,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Created by Pablo_Fernandez on 10/6/17.
  */
 
-public class ConexionFireBase {
+public class ConexionFireBase extends Activity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
