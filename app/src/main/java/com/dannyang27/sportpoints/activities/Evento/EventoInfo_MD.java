@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dannyang27.sportpoints.R;
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.dannyang27.sportpoints.activities.PruebasDanny.VerParticipantesProvisional;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -147,19 +148,6 @@ public class EventoInfo_MD extends AppCompatActivity {
             }
         });
 
-//        // Attach a listener to read the data at our posts reference
-//        usuarioReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Jugador j = dataSnapshot.getValue(Jugador.class);
-//                System.out.println(j.getNombre());
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
 
         nombre_evento_info.setText(e.getNombre().toString());
         lugar_evento_info.setText(e.getLugar());
@@ -180,8 +168,7 @@ public class EventoInfo_MD extends AppCompatActivity {
         btn_evento_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // showParticipantesInfo();
-                // Snackbar.make(view,getListaParticipantes(), Snackbar.LENGTH_LONG).show();
+
                 showListarParticipantes_beta(e);
 
             }
@@ -193,10 +180,10 @@ public class EventoInfo_MD extends AppCompatActivity {
                 if (unirse_a_evento.getText().equals("NO VOY A IR")) {
                     new AlertDialog.Builder(view.getContext())
                             .setTitle("Cancelar participación")
-                            .setMessage("Estás seguro que deseas cancelar tu asistencia al evento?")
+                            .setMessage("¿Estás seguro que deseas cancelar tu asistencia al evento?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if(isOnlineNet()) {
+                                    if(isOnline()) {
                                         participantesRef.child(participanteKey).removeValue();
                                         usuarioEncontrado = false;
                                         unirse_a_evento.setText("UNIRSE");
@@ -215,7 +202,7 @@ public class EventoInfo_MD extends AppCompatActivity {
 
                     if (!e.getParticipantes().contains(mAuth.getCurrentUser().getEmail())) {
                         e.getParticipantes().add(mAuth.getCurrentUser().getEmail());
-                        //DatabaseReference auxRef= equiposRef.child(nombre_key);
+
 
                         eventosRef.child(nombreKey).setValue(e);
                         Snackbar.make(view, "Te has unido al equipo correctamente", Snackbar.LENGTH_LONG).show();
@@ -255,23 +242,11 @@ public class EventoInfo_MD extends AppCompatActivity {
     }
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            if (!reachable) {
-                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
-                val = p.waitFor();
-                reachable = (val == 0);
-            }
-            return reachable;
+    public Boolean isOnline() {
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        Connected cn = new Connected();
+
+        return cn.isOnlineNet();
     }
 
 }

@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -247,7 +248,7 @@ public class PromocionFragmento extends Fragment {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        if(mAuth.getCurrentUser().getEmail().equals(model.getAdmin()) && isOnlineNet()){
+                                        if(mAuth.getCurrentUser().getEmail().equals(model.getAdmin()) && isOnline()){
                                             mPromoRef.child(model.getNombre()).removeValue();
                                             Toast.makeText(getContext(), "Promoción borrada", Toast.LENGTH_LONG).show();
                                         }else {
@@ -336,18 +337,10 @@ public class PromocionFragmento extends Fragment {
     }
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
+    public Boolean isOnline() {
 
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
+        Connected cn = new Connected();
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        return cn.isOnlineNet();
     }
 }

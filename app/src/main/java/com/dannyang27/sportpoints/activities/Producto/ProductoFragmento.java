@@ -30,6 +30,7 @@ import com.dannyang27.sportpoints.activities.Evento.EventoFragmento;
 import com.dannyang27.sportpoints.activities.Evento.EventoInfo_MD;
 import com.dannyang27.sportpoints.activities.Evento.EventoPruebaDanny;
 import com.dannyang27.sportpoints.activities.Evento.EventoViewHolder;
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -138,7 +139,7 @@ public class ProductoFragmento extends Fragment {
                         if (descripcion_et.getText().toString().equals("")) {
                             camposObligatorios += "Introduzca una descripcion del producto\n";
                         }
-                        if (!isOnlineNet()) {
+                        if (!isOnline()) {
                             camposObligatorios += "No hay conexion a Internet\n";
                         }
 
@@ -293,22 +294,10 @@ public class ProductoFragmento extends Fragment {
 
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            if (!reachable) {
-                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
-                val = p.waitFor();
-                reachable = (val == 0);
-            }
-            return reachable;
+    public Boolean isOnline() {
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        Connected cn = new Connected();
+
+        return cn.isOnlineNet();
     }
 }

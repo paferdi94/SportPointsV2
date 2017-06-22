@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
 import com.dannyang27.sportpoints.activities.ConexionDB.ConexionFireBase;
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -126,16 +127,16 @@ public class EventoFragmento extends Fragment {
                     @Override
                     public void onClick(View v) {
                         String camposObligatorios = "";
-                        if (nombre_et.getText().toString().equals("")) {
+                        if (esBlanco(nombre_et)) {
                             camposObligatorios += "Introduzca el nombre del evento\n";
                         }
-                        if (lugar_et.getText().toString().equals("")) {
+                        if (esBlanco(lugar_et)) {
                             camposObligatorios += "Introduzca el lugar del evento\n";
                         }
-                        if (hora_et.getText().toString().equals("")) {
+                        if (esBlanco(hora_et)) {
                             camposObligatorios += "Introduzca la hora del evento\n";
                         }
-                        if (fecha_et.getText().toString().equals("")) {
+                        if (esBlanco(fecha_et)) {
                             camposObligatorios += "Introduzca la fecha del evento\n";
                         }
                         DateFormat format = new SimpleDateFormat("d/L/yyyy");
@@ -168,15 +169,6 @@ public class EventoFragmento extends Fragment {
                             fechaEv = fecha_et.getText().toString();
                             horaEv = hora_et.getText().toString();
 
-                            /*
-                            participantes.add("Pepi");
-                            participantes.add("Iban");
-                            participantes.add("Guillem");
-                            participantes.add("Le Danny");
-                             */
-
-                            //mRefEventos.child(nombre_et.getText().toString()).setValue(e);
-                            //Snackbar.make(view,"Evento creado", Snackbar.LENGTH_LONG).show();
                             dialog.setContentView(R.layout.aaa_activity_dialog_descripcion);
                             descripcion_et = (EditText) dialog.findViewById(R.id.descripcion_dialog_equipo);
                             crearBtn = (Button) dialog.findViewById(R.id.crear_dialog_equipo);
@@ -357,23 +349,16 @@ public class EventoFragmento extends Fragment {
 
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            if (!reachable) {
-                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
-                val = p.waitFor();
-                reachable = (val == 0);
-            }
-            return reachable;
+    public Boolean isOnline() {
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        Connected cn = new Connected();
+
+        return cn.isOnlineNet();
+    }
+
+    public boolean esBlanco(EditText t){
+
+        return t.getText().toString().equals("");
     }
 
 }

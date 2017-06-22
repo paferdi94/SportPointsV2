@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.dannyang27.sportpoints.R;
 import com.dannyang27.sportpoints.activities.ConexionDB.ConexionFireBase;
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -44,6 +45,9 @@ public class LogIn extends AppCompatActivity implements
     private static final int RC_REGISTER = 9002;
     private static final int RC_LOGIN = 9003;
     private static final int RC_REGISTER_FAIL = 9004;
+    private static final String  passInvalid = "The password is invalid or the user does not have a password.";
+    private static final String ncaracteres="Debe tener 6 carácteres mínimo.";
+    private static final String noIndet = "There is no user record corresponding to this identifier. The user may have been deleted.";
 
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -146,7 +150,7 @@ public class LogIn extends AppCompatActivity implements
         if (requestCode == RC_SIGN_IN_GMAIL) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                //if(isOnlineNet()) {
+                //if(isOnline()) {
                     GoogleSignInAccount acct = result.getSignInAccount();
                     firebaseAuthWithGoogle(acct);
                // } else
@@ -246,10 +250,10 @@ public class LogIn extends AppCompatActivity implements
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             if (password.length() < 6) {
-                                passwordEditText.setError("Debe tener 6 carácteres mínimo.");
-                            } else if(task.getException().getMessage().equals("The password is invalid or the user does not have a password.")) {
+                                passwordEditText.setError(ncaracteres);
+                            } else if(task.getException().getMessage().equals(passInvalid)) {
                                 Toast.makeText(getApplicationContext(), "La contraseña no es válida.", Toast.LENGTH_LONG).show();
-                            } else if(task.getException().getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")) {
+                            } else if(task.getException().getMessage().equals(noIndet)) {
                                 Toast.makeText(getApplicationContext(), "El email no es válido.", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), "Se ha perdido la conexión.", Toast.LENGTH_LONG).show();
@@ -263,23 +267,11 @@ public class LogIn extends AppCompatActivity implements
     }
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            if (!reachable) {
-                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
-                val = p.waitFor();
-                reachable = (val == 0);
-            }
-            return reachable;
+    public Boolean isOnline() {
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        Connected cn = new Connected();
+
+        return cn.isOnlineNet();
     }
 
 }

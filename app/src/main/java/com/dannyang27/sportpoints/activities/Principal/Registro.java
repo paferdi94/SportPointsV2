@@ -131,15 +131,17 @@ public class Registro extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String pass1 = pass1EditText.getText().toString();
         String pass2 = pass2EditText.getText().toString();
+        boolean nom = nombreEditText.getText().toString().equals("");
+        boolean em = emailEditText.getText().toString().equals("");
+        boolean pass1b = pass1EditText.getText().toString().equals("");
+        boolean pass2b = pass2EditText.getText().toString().equals("");
+        boolean tel = telefonoEditText.getText().toString().equals("");
         int tel_length = telefonoEditText.getText().length();
-        if(
-                nombreEditText.getText().toString().equals("") ||
-                        emailEditText.getText().toString().equals("") ||
-                        pass1EditText.getText().toString().equals("") ||
-                        pass2EditText.getText().toString().equals("") ||
-                        telefonoEditText.getText().toString().equals("")){
+
+        if(nom||em||pass1b||pass2b||tel){
             Toast.makeText(getApplicationContext(),"Rellena todos los campos.", Toast.LENGTH_SHORT).show();
             return;
+
         }
         if(!nombreEditText.getText().toString().matches("[a-zA-Z]+")){
             Toast.makeText(getApplicationContext(),"Solo se permiten letras en el nombre.", Toast.LENGTH_SHORT).show();

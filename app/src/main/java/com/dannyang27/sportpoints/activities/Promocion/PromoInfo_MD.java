@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.dannyang27.sportpoints.R;
 
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -122,20 +123,11 @@ public class PromoInfo_MD extends AppCompatActivity {
 
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
+    public Boolean isOnline() {
 
-        try {
-            Process p = Runtime.getRuntime().exec("ping -c 1 www.google.es");
+        Connected cn = new Connected();
 
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        return cn.isOnlineNet();
     }
 
 }

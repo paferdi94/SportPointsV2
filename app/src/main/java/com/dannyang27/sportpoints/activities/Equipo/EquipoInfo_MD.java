@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dannyang27.sportpoints.R;
+import com.dannyang27.sportpoints.activities.Helpers.Connected;
 import com.dannyang27.sportpoints.activities.PruebasDanny.PruebaListarParticipantes;
 import com.dannyang27.sportpoints.activities.PruebasDanny.VerParticipantesProvisional;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -175,7 +176,7 @@ public class EquipoInfo_MD extends AppCompatActivity {
                             .setMessage("Estás seguro que quieres salir del equipo?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (isOnlineNet()) {
+                                    if (isOnline()) {
                                         participantesRef.child(participanteKey).removeValue();
                                         usuarioEncontrado = false;
                                         unirse_a_equipo.setText("UNIRSE");
@@ -272,22 +273,10 @@ public class EquipoInfo_MD extends AppCompatActivity {
     }
 
     //Comprobar si tenemos internet en un momento determinado
-    public Boolean isOnlineNet() {
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            if (!reachable) {
-                p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.upv.es");
-                val = p.waitFor();
-                reachable = (val == 0);
-            }
-            return reachable;
+    public Boolean isOnline() {
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+        Connected cn = new Connected();
+
+        return cn.isOnlineNet();
     }
 }
